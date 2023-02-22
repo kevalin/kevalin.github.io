@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        hexo-theme-suka © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+    -->
+
+    <!-- ### Resource Hint ### -->
+
+    <!-- ## DNS Prefetch ## -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- busuanzi -->
+
+    <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
+
+
+<!-- comment -->
+
+
+    <link rel="dns-prefetch" href="//disqus.com">
+    <link rel="dns-prefetch" href="//kevalin-github-io-1.disqus.com">
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="//pingjs.qq.com">
+
+
+    <!-- ## Preload ## -->
+    
+    <!-- Busuanzi -->
+    
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" as="script">
+
+
+
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+    <meta name="renderer" content="webkit">
+
+    <!-- Title -->
+    <title>rsync | 举个栗子</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image&#x2F;ico" href="/img/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png"><link rel="icon" typt="image&#x2F;png" sizes="192x192" href="/img/android-chrome-192x192.png"><link rel="icon" typt="image&#x2F;png" sizes="32x32" href="/img/favicon-32x32.png"><link rel="icon" typt="image&#x2F;png" sizes="16x16" href="/img/favicon-16x16.png"><link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="">
+
+    <!-- ### Import File ### -->
+    <link rel="stylesheet" href="/lib/spectre/spectre.min.css"><style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style><link rel="stylesheet" href="/css/style.min.css">
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    <link rel="preload" href="/css/highlight/xcode.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/highlight/xcode.min.css"></noscript>
+
+
+
+
+
+<script>
+/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script>
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="举个栗子"><meta name="msapplication-starturl" content="https://kevalin.github.io"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="举个栗子"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="rsync | 举个栗子"><meta property="og:site_name" content="举个栗子"><meta property="og:type" content="article"><meta property="og:url" content="https://kevalin.github.io/2023/02/22/rsync/"><meta property="og:locale" content="zh-CN"><meta name="description" content="rsync是Unix下的一款应用软件，它能同步更新两处计算机的文件与目录，并适当利用差分编码以减少数据传输量。rsync中的一项同类软件不常见的重要特性是每个目标的镜像只需发送一次。 - Kevalin - 举个栗子"><meta name="keywords" content="Linux, node.js,Node.js,nodejs,Nodejs,javasript,Javascript,Linux,linux,mysql,Mysql"><meta property="og:image" content="https://images.unsplash.com/photo-1523962389844-25940ebd2226?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3luY3xlbnwwfHwwfHw=&auto=format&fit=crop&w=800&q=60"><meta property="article:published_time" content="2023-02-22T15:48:29.000Z"><meta property="article:modified_time" content="2023-02-22T15:59:42.875Z"><meta property="og:updated_time" content="2023-02-22T15:59:42.875Z"><meta property="article:author" content="Kevalin"><meta property="article:tag" content="Linux, node.js,Node.js,nodejs,Nodejs,javasript,Javascript,Linux,linux,mysql,Mysql"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://images.unsplash.com/photo-1523962389844-25940ebd2226?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3luY3xlbnwwfHwwfHw=&auto=format&fit=crop&w=800&q=60">
+
+    
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="https://kevalin.github.io/2023/02/22/rsync/">
+
+    <meta name="generator" content="Hexo 5.4.0">
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+    <script>
+    var _mtac = {};
+    (function() {
+        var mta = document.createElement("script");
+        mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "theme.analytics.tencent_mta_id");
+
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+</script>
+
+
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "https://kevalin.github.io/2023/02/22/rsync/",
+    "@type": "BlogPosting",
+    "logo": "https://kevalin.github.io/img/android-chrome-192x192.png",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kevalin.github.io/2023/02/22/rsync/"
+    },
+    "headline": "rsync | 举个栗子",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1523962389844-25940ebd2226?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3luY3xlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+    },
+    
+    "datePublished": "2023-02-22T15:48:29.000Z",
+    "dateModified": "2023-02-22T15:59:42.875Z",
+    "author": {
+        "@type": "Person",
+        "name": "Kevalin",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://avatars.githubusercontent.com/u/3123807"
+        },
+        "description": "好读书，不求甚解"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "举个栗子",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://kevalin.github.io/img/android-chrome-192x192.png"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://kevalin.github.io/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "Linux, node.js,Node.js,nodejs,Nodejs,javasript,Javascript,Linux,linux,mysql,Mysql",
+    "description": "rsync是Unix下的一款应用软件，它能同步更新两处计算机的文件与目录，并适当利用差分编码以减少数据传输量。rsync中的一项同类软件不常见的重要特性是每个目标的镜像只需发送一次。 - Kevalin - 举个栗子"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+</head>
+
+    <body>
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">举个栗子</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                好读书，不求甚解
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/" class="navbar-link">首页</a>
+    
+    
+        <a href="/archives/" class="navbar-link">归档</a>
+    
+    
+        <a href="/search" class="navbar-link">搜索</a>
+    
+    
+        <a href="/tags/" class="navbar-link">标签</a>
+    
+        <a href="/about/" class="navbar-link">关于</a>
+    
+        <a href="/links/" class="navbar-link">友链</a>
+    
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    <div class="post-container">
+    <div id="post-card" class="card">
+        
+            <div class="card-image lazyload" data-bg="url('https://images.unsplash.com/photo-1523962389844-25940ebd2226?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3luY3xlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60')"></div>
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">rsync</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="https://avatars.githubusercontent.com/u/3123807" src="/img/suka-lazyload.gif" alt="Kevalin's Avatar">
+        <span>2023-02-22</span>
+        
+        
+            <!-- Busuanzi Post Views -->
+<span id="busuanzi_container_page_pv" hidden>
+    <span class="suka-devide-dot"></span>
+    <span></span>
+    <span id="busuanzi_value_page_pv"></span>
+    <span>Views</span>
+</span>
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">分享本文</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=rsync&url=https://kevalin.github.io/2023/02/22/rsync/&via=Kevalin" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://kevalin.github.io/2023/02/22/rsync/" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=https://kevalin.github.io/2023/02/22/rsync/&text=举个栗子" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB4UlEQVR42u3by27DMAxEUf//T6dbIxA5Q9UBRPp60yBt5GOA0WOkXp8DrwsUKFCgFqgrue5/8/36/t6qndXn5H1AjUEtiy6AOFjnIZZtgBqFiorUKf6o4Fc3T78MoF6FijpMt+hBgYoG1UpB/7TQQR2PigbK7wYiSPVL8q9ZAqjjUdmE/smfj61mQB2NkqHDorArN/1J6gLqaFTWaNTBquAi6lAVGNQMVNbhRQXvBGYRPmsL1AyUCrlUqJo9hJo8ynAfVFvUzkIhC1/VoqK0QgbVDpU1Ugm/nM/KBwA1AqVCfHfxUAn7QzCoMSgnhHAWB84Ank4WQY1DOQuJymsHD2ouyilM9/fuBM8K90G1Q2UFqzYcdw51pYEIqFEoN+DKbuocnLACDlCtUc4EzW1UFXx5xwFUS5QbwKqgzAn1y6kLqJYoZ5K2s0kkF56VDSNQ7VAOovIANiILOEC1R6lQdXdz0hmcQc1EVUJZtWlZOewFah5KHt4rbCw6Ezqr0EG1RlkHjUUQVpnklU4FgWqLUoevso3uNLAobgyAmoUqTcYu/U9jzoAM6r0oJ+R3OlC58AD1WtTugJxtYoKah4oGZGcR4ARoj07yQB2PcgdNd2B1C10eFATVEnXSBQoUKFC36w+jOZEg+bLv6wAAAABJRU5ErkJggg==" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                    <article id="post-content">
+                        <p>rsync是Unix下的一款应用软件，它能同步更新两处计算机的文件与目录，并适当利用差分编码以减少数据传输量。rsync中的一项同类软件不常见的重要特性是每个目标的镜像只需发送一次。<span id="more"></span>rsync可以拷贝／显示目录内容，以及拷贝文件，并可选压缩以及递归拷贝。 </p>
+<h2 id="服务器端rsync配置"><a href="#服务器端rsync配置" class="headerlink" title="服务器端rsync配置"></a>服务器端rsync配置</h2><blockquote>
+<p>此配置方法只适用于 Centos 7</p>
+</blockquote>
+<h3 id="安装rsync"><a href="#安装rsync" class="headerlink" title="安装rsync"></a>安装rsync</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 系统包安装</span></span><br><span class="line">yum install rsync -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译安装</span></span><br><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line"></span><br><span class="line">wget https://rsync.samba.org/ftp/rsync/src/rsync-3.2.3.tar.gz</span><br><span class="line">tar zvxf rsync-3.2.3.tar.gz</span><br><span class="line"><span class="built_in">cd</span> rsync-3.2.3</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/rsync</span><br><span class="line">make &amp;&amp;make install</span><br></pre></td></tr></table></figure>
+
+<p>一般系统都已经安装好了, 这里直接过</p>
+<h3 id="配置-etc-rsyncd-conf"><a href="#配置-etc-rsyncd-conf" class="headerlink" title="配置/etc/rsyncd.conf"></a>配置/etc/rsyncd.conf</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"># 全局配置 -----------------------------------------------------</span><br><span class="line"></span><br><span class="line">[global]</span><br><span class="line"></span><br><span class="line"># 日志</span><br><span class="line">log file &#x3D; &#x2F;var&#x2F;log&#x2F;rsyncd.log</span><br><span class="line">log format &#x3D; %t %a %m %f %b</span><br><span class="line"># 记录传输文件日志</span><br><span class="line">transfer logging &#x3D; yes</span><br><span class="line"></span><br><span class="line"># pid文件</span><br><span class="line">pid file&#x3D;&#x2F;var&#x2F;run&#x2F;rsyncd.pid</span><br><span class="line"># 支持max connections参数的锁文件</span><br><span class="line">lock file&#x3D;&#x2F;var&#x2F;run&#x2F;rsyncd.lock</span><br><span class="line"></span><br><span class="line"># 启动服务用户</span><br><span class="line">uid &#x3D; root</span><br><span class="line">gid &#x3D; root</span><br><span class="line"></span><br><span class="line"># 默认为true，修改为no，增加对目录文件软连接的备份</span><br><span class="line">use chroot &#x3D; no</span><br><span class="line"></span><br><span class="line"># 最大连接数</span><br><span class="line">max connections &#x3D; 1024</span><br><span class="line"></span><br><span class="line"># 超时时间</span><br><span class="line">timeout &#x3D; 600</span><br><span class="line"></span><br><span class="line">port &#x3D; 873</span><br><span class="line">address &#x3D; 172.29.241.184</span><br><span class="line"></span><br><span class="line"># 用户认证配置文件</span><br><span class="line"># 格式 用户名:密码</span><br><span class="line"># 权限必须为600</span><br><span class="line">secrets file &#x3D; &#x2F;etc&#x2F;rsync.pass</span><br><span class="line"></span><br><span class="line"># 是否为只读，如果是no的话，客服端可以上传文件给服务</span><br><span class="line">read only &#x3D; no</span><br><span class="line"></span><br><span class="line"># 设定白名单，可以指定IP段（172.18.50.1&#x2F;255.255.255.0）,各个Ip段用空格分开</span><br><span class="line">hosts allow &#x3D; 172.29.241.1&#x2F;255.255.240.0</span><br><span class="line">hosts deny &#x3D; *</span><br><span class="line"></span><br><span class="line"># 剔除某些文件或目录，不同步</span><br><span class="line">exclude &#x3D; lost+found&#x2F; .git</span><br><span class="line"></span><br><span class="line"># 设置不需要压缩的文件</span><br><span class="line">dont compress   &#x3D; *.gz *.tgz *.zip *.z *.Z *.rpm *.deb *.bz2</span><br><span class="line"></span><br><span class="line"># 模块配置 -----------------------------------------------------</span><br><span class="line"></span><br><span class="line"># 开发环境登录API日志同步模块</span><br><span class="line">[dev_dlz_auth]</span><br><span class="line">path &#x3D; &#x2F;data&#x2F;logs&#x2F;dev&#x2F;auth&#x2F;</span><br><span class="line">comment &#x3D; dev_dlz_auth</span><br><span class="line">list &#x3D; no</span><br><span class="line">ignore errors</span><br><span class="line">auth users &#x3D; dlz</span><br><span class="line"></span><br><span class="line"># 开发环境caddb API日志同步模块</span><br><span class="line">[dev_dlz_cad_db]</span><br><span class="line">path &#x3D; &#x2F;data&#x2F;logs&#x2F;dev&#x2F;cad_db&#x2F;</span><br><span class="line">comment &#x3D; dev_dlz_cad_db</span><br><span class="line">list &#x3D; no</span><br><span class="line">ignore errors</span><br><span class="line">auth users &#x3D; dlz</span><br><span class="line"></span><br><span class="line"># 开发环境main API日志同步模块</span><br><span class="line">[dev_dlz_main]</span><br><span class="line">path &#x3D; &#x2F;data&#x2F;logs&#x2F;dev&#x2F;main&#x2F;</span><br><span class="line">comment &#x3D; dev_dlz_main</span><br><span class="line">list &#x3D; no</span><br><span class="line">ignore errors</span><br><span class="line">auth users &#x3D; dlz</span><br><span class="line"></span><br><span class="line"># 测试环境登录API日志同步模块</span><br><span class="line">[test_dlz_auth]</span><br><span class="line">path &#x3D; &#x2F;data&#x2F;logs&#x2F;test&#x2F;auth&#x2F;</span><br><span class="line">comment &#x3D; test_dlz_auth</span><br><span class="line">list &#x3D; no</span><br><span class="line">ignore errors</span><br><span class="line">auth users &#x3D; dlz</span><br><span class="line"></span><br><span class="line"># 测试环境caddb API日志同步模块</span><br><span class="line">[test_dlz_cad_db]</span><br><span class="line">path &#x3D; &#x2F;data&#x2F;logs&#x2F;test&#x2F;cad_db&#x2F;</span><br><span class="line">comment &#x3D; test_dlz_cad_db</span><br><span class="line">list &#x3D; no</span><br><span class="line">ignore errors</span><br><span class="line">auth users &#x3D; dlz</span><br><span class="line"></span><br><span class="line"># 测试环境main API日志同步模块</span><br><span class="line">[test_dlz_main]</span><br><span class="line">path &#x3D; &#x2F;data&#x2F;logs&#x2F;test&#x2F;main&#x2F;</span><br><span class="line">comment &#x3D; test_dlz_main</span><br><span class="line">list &#x3D; no</span><br><span class="line">ignore errors</span><br><span class="line">auth users &#x3D; dlz</span><br><span class="line"></span><br><span class="line"># dwg转dxf RPC API日志同步模块</span><br><span class="line">[dwg_to_dxf]</span><br><span class="line">path &#x3D; &#x2F;data&#x2F;logs&#x2F;dwg_to_dxf</span><br><span class="line">comment &#x3D; dwg_to_dxf</span><br><span class="line">list &#x3D; no</span><br><span class="line">ignore errors</span><br><span class="line">auth users &#x3D; dlz</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置认证文件-etc-rsync-pass"><a href="#配置认证文件-etc-rsync-pass" class="headerlink" title="配置认证文件/etc/rsync.pass"></a>配置认证文件/etc/rsync.pass</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 格式 [用户名:密码] 一行一对</span><br><span class="line">dlz:GLiGZ8Y5bt7Z</span><br><span class="line"></span><br><span class="line"># 设置权限</span><br><span class="line">chmod 600 &#x2F;etc&#x2F;rsync.pass</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>/etc/rsyncd.conf 和 /etc/rsync.pass 的权限一定要设置为 600</p>
+</blockquote>
+<h3 id="rsyncd进程管理"><a href="#rsyncd进程管理" class="headerlink" title="rsyncd进程管理"></a>rsyncd进程管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start rsyncd   <span class="comment"># 启动服务</span></span><br><span class="line">systemctl stop rsyncd    <span class="comment"># 关闭服务</span></span><br><span class="line">systemctl restart rsyncd <span class="comment"># 重启服务</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="测试同步"><a href="#测试同步" class="headerlink" title="测试同步"></a>测试同步</h3><p>一般同步有两种情况:</p>
+<ul>
+<li>服务端 -&gt; 客户端 <strong>分发</strong></li>
+<li>客户端 -&gt; 服务端 <strong>收集</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务器 -&gt; 客户端</span></span><br><span class="line">rsync -avzP --delete dlz@172.29.241.184::dwg_to_dxf /home/node/dwg_to_dxf/logs/ --password-file=/etc/rsync.pass</span><br><span class="line"><span class="comment"># 客户端 -&gt; 服务器</span></span><br><span class="line">rsync -avzP --delete /home/node/dwg_to_dxf/logs/ dlz@172.29.241.184::dwg_to_dxf --password-file=/etc/rsync.pass</span><br><span class="line"></span><br><span class="line">rsync -auvzP --delete /home/node/dlz-cad-db/logs/ dlz@172.29.241.184::dev_dlz_cad_db --password-file=/etc/rsync_local.pass &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>我们的场景是收集日志, 所以是<code>客户端 -&gt; 服务器</code>的模式</p>
+<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><h3 id="安装sersync"><a href="#安装sersync" class="headerlink" title="安装sersync"></a>安装sersync</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">wget --no-check-certificate https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/sersync/sersync2.5.4_64bit_binary_stable_final.tar.gz</span><br><span class="line">tar zvxf sersync2.5.4_64bit_binary_stable_final.tar.gz</span><br><span class="line">mv GNU-Linux-x86/ /usr/<span class="built_in">local</span>/sersync</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/sersync</span><br><span class="line">cp confxml.xml confxml.xml.bak <span class="comment"># 备份一下初始配置</span></span><br></pre></td></tr></table></figure>
+
+<p>举个现在使用的配置例子:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">version</span>=<span class="string">&quot;2.5&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">host</span> <span class="attr">hostip</span>=<span class="string">&quot;localhost&quot;</span> <span class="attr">port</span>=<span class="string">&quot;8008&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">host</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">debug</span> <span class="attr">start</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fileSystem</span> <span class="attr">xfs</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter</span> <span class="attr">start</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclude</span> <span class="attr">expression</span>=<span class="string">&quot;(.*)\.svn&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclude</span> <span class="attr">expression</span>=<span class="string">&quot;(.*)\.gz&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclude</span> <span class="attr">expression</span>=<span class="string">&quot;(.*)\.git&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclude</span> <span class="attr">expression</span>=<span class="string">&quot;^info/*&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclude</span> <span class="attr">expression</span>=<span class="string">&quot;^static/*&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">inotify</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">delete</span> <span class="attr">start</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">createFolder</span> <span class="attr">start</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">createFile</span> <span class="attr">start</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">closeWrite</span> <span class="attr">start</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">moveFrom</span> <span class="attr">start</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">moveTo</span> <span class="attr">start</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">attrib</span> <span class="attr">start</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">modify</span> <span class="attr">start</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">inotify</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">sersync</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">localpath</span> <span class="attr">watch</span>=<span class="string">&quot;/home/node/dwg_to_dxf/logs&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">remote</span> <span class="attr">ip</span>=<span class="string">&quot;172.29.241.184&quot;</span> <span class="attr">name</span>=<span class="string">&quot;dwg_to_dxf&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">localpath</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rsync</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">commonParams</span> <span class="attr">params</span>=<span class="string">&quot;-auvzP&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">auth</span> <span class="attr">start</span>=<span class="string">&quot;true&quot;</span> <span class="attr">users</span>=<span class="string">&quot;dlz&quot;</span> <span class="attr">passwordfile</span>=<span class="string">&quot;/etc/rsync.pass&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">userDefinedPort</span> <span class="attr">start</span>=<span class="string">&quot;false&quot;</span> <span class="attr">port</span>=<span class="string">&quot;874&quot;</span>/&gt;</span><span class="comment">&lt;!-- port=874 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">timeout</span> <span class="attr">start</span>=<span class="string">&quot;false&quot;</span> <span class="attr">time</span>=<span class="string">&quot;100&quot;</span>/&gt;</span><span class="comment">&lt;!-- timeout=100 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ssh</span> <span class="attr">start</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">rsync</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">failLog</span> <span class="attr">path</span>=<span class="string">&quot;/tmp/rsync_fail_log.sh&quot;</span> <span class="attr">timeToExecute</span>=<span class="string">&quot;60&quot;</span>/&gt;</span><span class="comment">&lt;!--default every 60mins execute once--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">crontab</span> <span class="attr">start</span>=<span class="string">&quot;false&quot;</span> <span class="attr">schedule</span>=<span class="string">&quot;600&quot;</span>&gt;</span><span class="comment">&lt;!--600mins--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">crontabfilter</span> <span class="attr">start</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">exclude</span> <span class="attr">expression</span>=<span class="string">&quot;*.php&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">exclude</span> <span class="attr">expression</span>=<span class="string">&quot;info/*&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">crontabfilter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">crontab</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span> <span class="attr">start</span>=<span class="string">&quot;false&quot;</span> <span class="attr">name</span>=<span class="string">&quot;command&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">sersync</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>主要需要关注的地方</p>
+<ul>
+<li>&lt;localpath&gt;&lt;/localpath&gt; 监控本地目录或文件</li>
+<li>&lt;rsync&gt;&lt;/rsync&gt; 同步到远端的rsync服务器</li>
+</ul>
+<h3 id="管理sersync服务"><a href="#管理sersync服务" class="headerlink" title="管理sersync服务"></a>管理sersync服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 停止服务</span></span><br><span class="line">killall sersync2</span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">/usr/<span class="built_in">local</span>/sersync2 -r -d -o /usr/<span class="built_in">local</span>/sersync/conf/confxml.xml</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果服务器性能很差, 请使用 -n [Number] 合理降低线程数, /usr/local/sersync2 -r -d -n 2 -o /usr/local/sersync/conf/confxml.xml</p>
+</blockquote>
+
+                    </article>
+                    
+    <blockquote class="post-license">
+        <p>
+            <strong>本文作者&nbsp;:&nbsp;Kevalin</strong>
+            <br>
+            <strong>
+            
+                本文使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0)</a> 协议
+            </strong>
+            <br>
+            <strong>本文链接&nbsp;:&nbsp;</strong><a href="https://kevalin.github.io/2023/02/22/rsync/">https://kevalin.github.io/2023/02/22/rsync/</a>
+        </p>
+    </blockquote>
+
+
+
+
+<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2023-02-22T15:48:29.000Z" itemprop="datePublished">2023-02-22</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+<span class="post-tags-list mt-2">
+
+<a class="post-tags-list-item" href="/tags/Linux/" rel="tag">#&nbsp;Linux</a>
+
+</span>
+
+
+</p>
+
+                </div>
+                <div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/2023/02/22/Centos7-%E6%90%AD%E5%BB%BAL2TP-IPsec-VPN/" rel="next">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">Centos7 搭建L2TP+IPsec VPN</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                        <div class="card-footer post-comment">
+                            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://kevalin.github.io/2023/02/22/rsync/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://kevalin.github.io/2023/02/22/rsync/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script id="disqus-thread-script">
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//kevalin-github-io-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+                        </div>
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="https://kevalin.github.io">举个栗子</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+    <!-- Busuanzi User Views -->
+    <span id="busuanzi_container_site_uv" hidden>
+        <span></span>
+        <span id="busuanzi_value_site_uv"></span>
+        <span>Viewers</span>
+        
+            <span>|</span>
+        
+    </span>
+
+
+
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
+</footer>
+
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+
+    
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+
+(function() {
+    var copyrightNow = new Date().getFullYear();
+    var copyrightContent = document.getElementById('copyright-year');
+    var copyrightSince = 2016;
+    if (copyrightSince === copyrightNow) {
+        copyrightContent.textContent = copyrightNow;
+    } else {
+        copyrightContent.textContent = copyrightSince + ' - ' + copyrightNow;
+    }
+})();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="/lib/vanilla-lazyload/lazyload.min.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+<!-- Offset -->
+
+
+
+
+<!-- Comment -->
+
+    
+        <script id="dsq-count-scr" src="https://kevalin-github-io-1.disqus.com/count.js" async></script>
+
+    
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
+</html>
