@@ -935,9 +935,6 @@ video {
 .absolute {
   position: absolute;
 }
-.relative {
-  position: relative;
-}
 .bottom-2 {
   bottom: 0.5rem;
 }
@@ -1103,8 +1100,4 @@ pre[class*="language-"] {
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
-}
-
-.prose-img\:rounded-md :is(:where(img):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
-  border-radius: 0.375rem;
 }
