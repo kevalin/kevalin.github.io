@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-solarizedlight.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.min.css">
+  <link rel="stylesheet" href="/assets/style/main.css">
+  <title>举个栗子 - 告别信息过载：用 Tiny Tiny RSS 打造你的专属信息流</title>
+  <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
+</head>
+<body class="flex flex-col min-h-screen font-wenkai has-fixed-nav">
+    <nav class="nav-fixed">
+      <div class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl">
+        <div class="py-4 flex flex-col sm:flex-row justify-between items-center text-xl">
+          <div class="mb-4 sm:mb-0 sm:mr-auto">
+            <a class="text-gray-600 hover:text-gray-500 font-bold no-underline text-gradient hover-glow" href="/">举个栗子</a>
+          </div>
+          <div class="flex flex-wrap justify-center sm:justify-end space-x-4">
+            
+              <a
+                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
+                href="/"
+                
+              >Home</a>
+            
+              <a
+                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
+                href="/photos"
+                
+              >35mm</a>
+            
+              <a
+                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
+                href="/cafes"
+                
+              >Cafes</a>
+            
+              <a
+                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
+                href="/about"
+                
+              >About</a>
+            
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-20 sm:mt-10">
+      
+<div class="pt-10 pb-20">
+  <h1 id="%E5%91%8A%E5%88%AB%E4%BF%A1%E6%81%AF%E8%BF%87%E8%BD%BD%EF%BC%9A%E7%94%A8-tiny-tiny-rss-%E6%89%93%E9%80%A0%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9E%E4%BF%A1%E6%81%AF%E6%B5%81" tabindex="-1">告别信息过载：用 Tiny Tiny RSS 打造你的专属信息流</h1>
+<p>自从 Google Reader 在 2013 年&quot;退休&quot;后，RSS 爱好者们就像失去家园的游牧民族，四处寻找新的栖息地。作为资深信息&quot;囤积者&quot;，我先后尝试过 Feedly、Inoreader 等主流 RSS 阅读器，也折腾过 RSSHub 这样的神器。但随着时间推移，我逐渐意识到：我需要的只是一个纯粹的 RSS 订阅管理工具，而不是功能繁杂的&quot;瑞士军刀&quot;。</p>
+<p>于是，我决定把命运掌握在自己手中——自托管部署 Tiny Tiny RSS（简称 TT-RSS）。这款开源 RSS 阅读器就像数字时代的私人图书馆管理员，安静、高效且完全受你控制。</p>
+<h2 id="%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-tiny-tiny-rss%EF%BC%9F" tabindex="-1">为什么选择 Tiny Tiny RSS？</h2>
+<ol>
+<li><strong>数据自主权</strong>：你的订阅数据完全掌握在自己手中</li>
+<li><strong>轻量高效</strong>：资源占用小，响应速度快</li>
+<li><strong>高度可定制</strong>：插件系统满足各种进阶需求</li>
+<li><strong>跨平台支持</strong>：Web + 移动端全覆盖</li>
+</ol>
+<h2 id="%E6%89%8B%E6%8A%8A%E6%89%8B-docker-%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97" tabindex="-1">手把手 Docker 部署指南</h2>
+<blockquote>
+<p>温馨提示：建议先在服务器上创建专用目录（比如 ~/tt-rss），后续所有操作都在此目录进行，避免文件散落各处找不着北 😉</p>
+</blockquote>
+<h3 id="%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%AE%89%E8%A3%85-cosign-%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7" tabindex="-1">第一步：安装 cosign 验证工具</h3>
+<p>TT-RSS 官方推荐使用 cosign 验证 Docker 镜像签名，这是现代容器安全的重要实践。如果你的服务器还没安装 cosign，可以这样操作：</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># 创建项目目录并安装 cosign</span><br><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> ~/tt-rss <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> ~/tt-rss<br><span class="token function">curl</span> <span class="token parameter variable">-LO</span> <span class="token string">"https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64"</span><br><span class="token function">sudo</span> <span class="token function">install</span> <span class="token parameter variable">-o</span> root <span class="token parameter variable">-g</span> root <span class="token parameter variable">-m</span> <span class="token number">755</span> cosign-linux-amd64 /usr/local/bin/cosign</code></pre>
+<h3 id="%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%AA%8C%E8%AF%81%E9%95%9C%E5%83%8F%E7%AD%BE%E5%90%8D" tabindex="-1">第二步：验证镜像签名</h3>
+<p>安全无小事，我们来验证官方镜像的可靠性：</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># 创建公钥文件</span><br><span class="token function">cat</span> <span class="token operator">></span> cosign.pub <span class="token operator">&lt;&lt;</span><span class="token string">'EOF'<br>-----BEGIN PUBLIC KEY-----<br>MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEtoahWEy+L2JZCyDZ3+sKacGjhLCj<br>DDZpyS24bZzLoqZ3uEROqDusa9F9gNWP4sd3nbH02Tc0x89x5mM29wVg3w==<br>-----END PUBLIC KEY-----<br>EOF</span><br><br><span class="token comment"># 执行验证</span><br>cosign verify <span class="token parameter variable">--key</span> cosign.pub cthulhoo/ttrss-web-nginx:latest <span class="token punctuation">\</span><br>  --private-infrastructure<span class="token operator">=</span>true</code></pre>
+<p>看到&quot;Verified OK&quot;就说明镜像安全可信啦！</p>
+<h3 id="%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%87%86%E5%A4%87%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" tabindex="-1">第三步：准备配置文件</h3>
+<p>我们需要两个关键文件：<code>.env</code> 环境变量文件和 <code>docker-compose.yml</code> 编排文件。</p>
+<h4 id=".env-%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E8%A6%81%E7%82%B9" tabindex="-1">.env 文件配置要点</h4>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># 数据库配置（请务必修改密码！）</span><br><span class="token assign-left variable">TTRSS_DB_USER</span><span class="token operator">=</span>postgres<br><span class="token assign-left variable">TTRSS_DB_NAME</span><span class="token operator">=</span>postgres<br><span class="token assign-left variable">TTRSS_DB_PASS</span><span class="token operator">=</span>your_strong_password_here<br><br><span class="token comment"># 会话设置（我把cookie有效期设为30天，避免频繁登录）</span><br><span class="token assign-left variable">TTRSS_SESSION_COOKIE_LIFETIME</span><span class="token operator">=</span><span class="token number">2592000</span><br><br><span class="token comment"># 绑定到本地端口，配合反向代理更安全</span><br><span class="token assign-left variable">HTTP_PORT</span><span class="token operator">=</span><span class="token number">127.0</span>.0.1:8280</code></pre>
+<h4 id="docker-compose.yml-%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE" tabindex="-1">docker-compose.yml 完整配置</h4>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3"</span><br><br><span class="token key atrule">services</span><span class="token punctuation">:</span><br>  <span class="token key atrule">db</span><span class="token punctuation">:</span><br>    <span class="token key atrule">image</span><span class="token punctuation">:</span> postgres<span class="token punctuation">:</span>15<span class="token punctuation">-</span>alpine<br>    <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped<br>    <span class="token key atrule">env_file</span><span class="token punctuation">:</span> .env<br>    <span class="token key atrule">environment</span><span class="token punctuation">:</span><br>      <span class="token key atrule">POSTGRES_USER</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span>TTRSS_DB_USER<span class="token punctuation">}</span><br>      <span class="token key atrule">POSTGRES_PASSWORD</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span>TTRSS_DB_PASS<span class="token punctuation">}</span><br>      <span class="token key atrule">POSTGRES_DB</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span>TTRSS_DB_NAME<span class="token punctuation">}</span><br>    <span class="token key atrule">volumes</span><span class="token punctuation">:</span><br>      <span class="token punctuation">-</span> db<span class="token punctuation">:</span>/var/lib/postgresql/data<br><br>  <span class="token key atrule">app</span><span class="token punctuation">:</span><br>    <span class="token key atrule">image</span><span class="token punctuation">:</span> cthulhoo/ttrss<span class="token punctuation">-</span>fpm<span class="token punctuation">-</span>pgsql<span class="token punctuation">-</span>static<span class="token punctuation">:</span>latest<br>    <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped<br>    <span class="token key atrule">env_file</span><span class="token punctuation">:</span> .env<br>    <span class="token key atrule">volumes</span><span class="token punctuation">:</span><br>      <span class="token punctuation">-</span> app<span class="token punctuation">:</span>/var/www/html<br>      <span class="token punctuation">-</span> ./config.d<span class="token punctuation">:</span>/opt/tt<span class="token punctuation">-</span>rss/config.d<span class="token punctuation">:</span>ro<br>    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span><br>      <span class="token punctuation">-</span> db<br><br>  <span class="token key atrule">updater</span><span class="token punctuation">:</span><br>    <span class="token key atrule">image</span><span class="token punctuation">:</span> cthulhoo/ttrss<span class="token punctuation">-</span>fpm<span class="token punctuation">-</span>pgsql<span class="token punctuation">-</span>static<span class="token punctuation">:</span>latest<br>    <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped<br>    <span class="token key atrule">env_file</span><span class="token punctuation">:</span> .env<br>    <span class="token key atrule">volumes</span><span class="token punctuation">:</span><br>      <span class="token punctuation">-</span> app<span class="token punctuation">:</span>/var/www/html<br>      <span class="token punctuation">-</span> ./config.d<span class="token punctuation">:</span>/opt/tt<span class="token punctuation">-</span>rss/config.d<span class="token punctuation">:</span>ro<br>    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span><br>      <span class="token punctuation">-</span> app<br>    <span class="token key atrule">command</span><span class="token punctuation">:</span> /opt/tt<span class="token punctuation">-</span>rss/updater.sh<br><br>  <span class="token key atrule">web-nginx</span><span class="token punctuation">:</span><br>    <span class="token key atrule">image</span><span class="token punctuation">:</span> cthulhoo/ttrss<span class="token punctuation">-</span>web<span class="token punctuation">-</span>nginx<span class="token punctuation">:</span>latest<br>    <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped<br>    <span class="token key atrule">env_file</span><span class="token punctuation">:</span> .env<br>    <span class="token key atrule">ports</span><span class="token punctuation">:</span><br>      <span class="token punctuation">-</span> <span class="token string">"${HTTP_PORT}:80"</span><br>    <span class="token key atrule">volumes</span><span class="token punctuation">:</span><br>      <span class="token punctuation">-</span> app<span class="token punctuation">:</span>/var/www/html<span class="token punctuation">:</span>ro<br>    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span><br>      <span class="token punctuation">-</span> app<br><br><span class="token key atrule">volumes</span><span class="token punctuation">:</span><br>  <span class="token key atrule">db</span><span class="token punctuation">:</span><br>  <span class="token key atrule">app</span><span class="token punctuation">:</span></code></pre>
+<h3 id="%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1" tabindex="-1">第四步：启动服务</h3>
+<pre class="language-bash"><code class="language-bash"><span class="token function">docker</span> compose up <span class="token parameter variable">-d</span></code></pre>
+<p><img src="https://r2.rrust.org/images/2025/1750215498204.png" alt="TT-RSS 主界面"></p>
+<h2 id="%E8%BF%9B%E9%98%B6%E9%85%8D%E7%BD%AE%E6%8A%80%E5%B7%A7" tabindex="-1">进阶配置技巧</h2>
+<h3 id="%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE" tabindex="-1">反向代理设置</h3>
+<p>由于我们将服务绑定到 127.0.0.1，需要通过反向代理对外提供服务。我的配置方案是：</p>
+<ul>
+<li>服务器：RackNerd VPS，tt-rss部署在这里</li>
+<li>域名管理：Cloudflare</li>
+<li>证书：Cloudflare 免费证书</li>
+<li>DNS：Cloudflare DNS</li>
+</ul>
+<h3 id="%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%AE%BF%E9%97%AE" tabindex="-1">移动端访问</h3>
+<p>TT-RSS 官方提供安卓客户端，iOS 用户也可以在 App Store 找到<a href="https://apps.apple.com/cn/app/tiny-reader/id1430856926?l=en-GB&amp;mt=12">相关应用</a>。要使用移动端，记得开启 API 功能：</p>
+<p><img src="https://r2.rrust.org/images/2025/1750215748505.png" alt="开启 API 功能"></p>
+<h2 id="%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E" tabindex="-1">写在最后</h2>
+<p>自托管 TT-RSS 就像拥有了自己的数字信息花园，你可以：</p>
+<ul>
+<li>完全掌控数据流向</li>
+<li>自定义过滤规则</li>
+<li>按自己的节奏获取信息</li>
+</ul>
+<p>虽然初期部署需要一些技术投入，但换来的是长期的信息自由。当别人在各种信息流中迷失时，你已经建立起了高效的信息获取系统——这大概就是技术极客的快乐吧！</p>
+
+</div>
+
+    </content>
+
+    <footer class="py-4">
+      <div class="prose container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl text-center text-sm text-gray-500">
+        <p>© <span class="italic">2018 - 2025</span> Kevalin. All Rights Reserved.</p>
+      </div>
+    </footer>
+</body>
+</html>
