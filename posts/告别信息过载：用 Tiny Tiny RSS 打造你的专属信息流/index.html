@@ -5,52 +5,94 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-solarizedlight.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style/main.css">
   <title>举个栗子 - 用 Tiny Tiny RSS 打造专属信息流</title>
   <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
 </head>
-<body class="flex flex-col min-h-screen font-wenkai has-fixed-nav">
-    <nav class="nav-fixed">
-      <div class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl">
-        <div class="py-4 flex flex-col sm:flex-row justify-between items-center text-xl">
-          <div class="mb-4 sm:mb-0 sm:mr-auto">
-            <a class="text-gray-600 hover:text-gray-500 font-bold no-underline text-gradient hover-glow" href="/">举个栗子</a>
-          </div>
-          <div class="flex flex-wrap justify-center sm:justify-end space-x-4">
-            
-              <a
-                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
-                href="/"
-                
-              >Home</a>
-            
-              <a
-                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
-                href="/photos"
-                
-              >35mm</a>
-            
-              <a
-                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
-                href="/cafes"
-                
-              >Cafes</a>
-            
-              <a
-                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
-                href="/about"
-                
-              >About</a>
-            
-          </div>
+<body class="flex flex-col min-h-screen font-serif has-fixed-nav">
+    <nav class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+      <div class="liquid-glass p-1.5 flex justify-between items-center">
+        <!-- Brand -->
+        <a class="flex items-center gap-3 hover:opacity-80 transition-opacity" href="/">
+          <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover border border-white/20 shadow-sm" />
+          <span class="text-xl font-bold text-gradient">举个栗子</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center gap-2">
+          
+            <a
+              class="nav-link text-sm" 
+              href="/"
+              
+            >Home</a>
+          
+            <a
+              class="nav-link text-sm" 
+              href="/photos"
+              
+            >35mm</a>
+          
+            <a
+              class="nav-link text-sm" 
+              href="/cafes"
+              
+            >Cafes</a>
+          
+            <a
+              class="nav-link text-sm" 
+              href="/about"
+              
+            >About</a>
+          
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 text-gray-600 hover:text-gray-900 focus:outline-none" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 right-0 mt-2">
+        <div class="liquid-glass p-4 flex flex-col gap-2">
+          
+            <a
+              class="nav-link block text-center" 
+              href="/"
+              
+            >Home</a>
+          
+            <a
+              class="nav-link block text-center" 
+              href="/photos"
+              
+            >35mm</a>
+          
+            <a
+              class="nav-link block text-center" 
+              href="/cafes"
+              
+            >Cafes</a>
+          
+            <a
+              class="nav-link block text-center" 
+              href="/about"
+              
+            >About</a>
+          
         </div>
       </div>
     </nav>
 
-    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-20 sm:mt-10">
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28">
       
-<div class="pt-10 pb-20">
+<div class="pb-20">
   <h1 id="%E7%94%A8-tiny-tiny-rss-%E6%89%93%E9%80%A0%E4%B8%93%E5%B1%9E%E4%BF%A1%E6%81%AF%E6%B5%81" tabindex="-1">用 Tiny Tiny RSS 打造专属信息流</h1>
 <p>自从 Google Reader 在 2013 年&quot;退休&quot;后，RSS 爱好者们就像失去家园的游牧民族，四处寻找新的栖息地。作为资深信息&quot;囤积者&quot;，我先后尝试过 Feedly、Inoreader 等主流 RSS 阅读器，也折腾过 RSSHub 这样的神器。但随着时间推移，我逐渐意识到：我需要的只是一个纯粹的 RSS 订阅管理工具，而不是功能繁杂的&quot;瑞士军刀&quot;。</p>
 <p>于是，我决定把命运掌握在自己手中——自托管部署 Tiny Tiny RSS（简称 TT-RSS）。这款开源 RSS 阅读器就像数字时代的私人图书馆管理员，安静、高效且完全受你控制。</p>
@@ -108,8 +150,42 @@
 
     <footer class="py-4">
       <div class="prose container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl text-center text-sm text-gray-500">
-        <p>© <span class="italic">2018 - 2025</span> Kevalin. All Rights Reserved.</p>
+        <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
       </div>
     </footer>
+  <script>
+    (function() {
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      
+      if (btn && menu) {
+        btn.addEventListener('click', () => {
+          const isHidden = menu.classList.contains('hidden');
+          if (isHidden) {
+            menu.classList.remove('hidden');
+            menu.classList.add('mobile-menu-enter');
+            requestAnimationFrame(() => {
+              menu.classList.add('mobile-menu-enter-active');
+              menu.classList.remove('mobile-menu-enter');
+            });
+          } else {
+            menu.classList.add('mobile-menu-exit');
+            menu.classList.add('mobile-menu-exit-active');
+            menu.addEventListener('transitionend', () => {
+              menu.classList.add('hidden');
+              menu.classList.remove('mobile-menu-exit', 'mobile-menu-exit-active');
+            }, { once: true });
+          }
+        });
+
+        // Close on click outside
+        document.addEventListener('click', (e) => {
+          if (!menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('hidden')) {
+            menu.classList.add('hidden');
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

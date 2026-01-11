@@ -5,52 +5,98 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-solarizedlight.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style/main.css">
   <title>举个栗子 - photos</title>
   <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
 </head>
-<body class="flex flex-col min-h-screen font-wenkai has-fixed-nav">
-    <nav class="nav-fixed">
-      <div class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl">
-        <div class="py-4 flex flex-col sm:flex-row justify-between items-center text-xl">
-          <div class="mb-4 sm:mb-0 sm:mr-auto">
-            <a class="text-gray-600 hover:text-gray-500 font-bold no-underline text-gradient hover-glow" href="/">举个栗子</a>
-          </div>
-          <div class="flex flex-wrap justify-center sm:justify-end space-x-4">
-            
-              <a
-                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
-                href="/"
-                
-              >Home</a>
-            
-              <a
-                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
-                href="/photos"
-                
-              >35mm</a>
-            
-              <a
-                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
-                href="/cafes"
-                
-              >Cafes</a>
-            
-              <a
-                class="no-underline text-blue-500 hover:text-blue-400 mb-2 sm:mb-0" 
-                href="/about"
-                
-              >About</a>
-            
-          </div>
+<body class="flex flex-col min-h-screen font-serif has-fixed-nav">
+    <nav class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+      <div class="liquid-glass p-1.5 flex justify-between items-center">
+        <!-- Brand -->
+        <a class="flex items-center gap-3 hover:opacity-80 transition-opacity" href="/">
+          <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover border border-white/20 shadow-sm" />
+          <span class="text-xl font-bold text-gradient">举个栗子</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center gap-2">
+          
+            <a
+              class="nav-link text-sm" 
+              href="/"
+              
+            >Home</a>
+          
+            <a
+              class="nav-link text-sm" 
+              href="/photos"
+              
+                data-state="active" aria-current="page"
+              
+            >35mm</a>
+          
+            <a
+              class="nav-link text-sm" 
+              href="/cafes"
+              
+            >Cafes</a>
+          
+            <a
+              class="nav-link text-sm" 
+              href="/about"
+              
+            >About</a>
+          
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 text-gray-600 hover:text-gray-900 focus:outline-none" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 right-0 mt-2">
+        <div class="liquid-glass p-4 flex flex-col gap-2">
+          
+            <a
+              class="nav-link block text-center" 
+              href="/"
+              
+            >Home</a>
+          
+            <a
+              class="nav-link block text-center" 
+              href="/photos"
+              
+                data-state="active" aria-current="page"
+              
+            >35mm</a>
+          
+            <a
+              class="nav-link block text-center" 
+              href="/cafes"
+              
+            >Cafes</a>
+          
+            <a
+              class="nav-link block text-center" 
+              href="/about"
+              
+            >About</a>
+          
         </div>
       </div>
     </nav>
 
-    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-20 sm:mt-10">
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28">
       
-<div class="pt-10 max-w-4xl mx-auto">
+<div class="max-w-4xl mx-auto">
 <h1 class="text-3xl font-bold mb-4">35mm</h1>
   <blockquote class="border-l-4 border-gray-200 pl-4 mb-8">
     <p class="text-gray-600 italic">一台老Nikon和一枚35mm定焦镜头 ... 📷</p>
@@ -60,364 +106,440 @@
   <div class="flex flex-wrap justify-center gap-8">
     
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 rotate-6 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1756630490000.JPG"
-            alt="1756630490000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
-            古城，夕阳
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: 2deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1756630490000.JPG"
+               alt="1756630490000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Aug 31, 2025
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
+            南头古城，夕阳
+          </div>
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Aug 31, 2025
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 -rotate-6 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1756528181000.JPG"
-            alt="1756528181000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: -1deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1756528181000.JPG"
+               alt="1756528181000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             早上好，Kuddo Coffee
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Aug 30, 2025
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Aug 30, 2025
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 -rotate-3 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1741510296000.JPG"
-            alt="1741510296000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: 3deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1741510296000.JPG"
+               alt="1741510296000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             楼上的人在看楼下的人，楼下的人在看楼上的人
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Mar 09, 2025
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Mar 09, 2025
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 rotate-3 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1739603004000.JPG"
-            alt="1739603004000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: -2deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1739603004000.JPG"
+               alt="1739603004000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             春意盎然
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Feb 15, 2025
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Feb 15, 2025
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 rotate-6 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1737977451000.JPG"
-            alt="1737977451000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: 1.5deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1737977451000.JPG"
+               alt="1737977451000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             烟火灿烂，又是新年
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Jan 27, 2025
-        </div>
-      </div>
-    
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 -rotate-6 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2024/1733102565000.JPG"
-            alt="1733102565000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
-            上班早高峰，有人蹲在角落打电话
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Jan 27, 2025
           </div>
         </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Dec 02, 2024
+      </div>
+    
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: -2.5deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2024/1733102565000.JPG"
+               alt="1733102565000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
+            上班早高峰，在角落打电话的人
+          </div>
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Dec 02, 2024
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 -rotate-3 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1753711915000.jpg"
-            alt="1753711915000.jpg"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: 0.5deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1753711915000.jpg"
+               alt="1753711915000.jpg"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             午休的人
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          May 27, 2024
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            May 27, 2024
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 rotate-3 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1753711899000.jpg"
-            alt="1753711899000.jpg"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: -1.5deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1753711899000.jpg"
+               alt="1753711899000.jpg"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             坚尼地城
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          May 01, 2024
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            May 01, 2024
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 rotate-6 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2024/1710566979000.JPG"
-            alt="1710566979000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: 2.5deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2024/1710566979000.JPG"
+               alt="1710566979000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             星期六，阳光明媚，在咖啡店写代码
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Mar 16, 2024
-        </div>
-      </div>
-    
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 -rotate-6 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2024/1707523750000.JPG"
-            alt="1707523750000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
-            2024年大年初一清晨，大雾大雪，和父亲、弟弟一起上坟，我拍下了弟弟的背影
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Mar 16, 2024
           </div>
         </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Feb 10, 2024
+      </div>
+    
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: -3deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2024/1707523750000.JPG"
+               alt="1707523750000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
+            2024年大年初一清晨，大雾大雪，我拍下了弟弟的背影
+          </div>
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Feb 10, 2024
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 -rotate-3 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2024/1704079575000.JPG"
-            alt="1704079575000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: 1deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2024/1704079575000.JPG"
+               alt="1704079575000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             2024年元旦，To Be Nice
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Jan 01, 2024
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Jan 01, 2024
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 rotate-3 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2023/1700988410000.JPG"
-            alt="1700988410000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: -3.5deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2023/1700988410000.JPG"
+               alt="1700988410000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             在LAVAZZA咖啡店，第一次尝试Espresso
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Nov 26, 2023
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Nov 26, 2023
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 rotate-6 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2023/1700990753000.JPG"
-            alt="1700990753000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: 4deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2023/1700990753000.JPG"
+               alt="1700990753000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             带儿子看摩天轮
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Nov 26, 2023
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Nov 26, 2023
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 -rotate-6 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1753711934000.jpg"
-            alt="1753711934000.jpg"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: -0.5deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1753711934000.jpg"
+               alt="1753711934000.jpg"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             线条
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Nov 26, 2023
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Nov 26, 2023
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 -rotate-3 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1753711780000.jpg"
-            alt="1753711780000.jpg"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: 2deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1753711780000.jpg"
+               alt="1753711780000.jpg"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             水珠
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Nov 04, 2023
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Nov 04, 2023
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 rotate-3 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1753712843000.jpg"
-            alt="1753712843000.jpg"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: -1deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2025/1753712843000.jpg"
+               alt="1753712843000.jpg"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             集福咖啡
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Oct 29, 2023
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Oct 29, 2023
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 rotate-6 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2023/1697958169000.JPG"
-            alt="1697958169000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: 3deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2023/1697958169000.JPG"
+               alt="1697958169000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             在一家唱片行看到了Eagles，高中时K同学给我推荐这支乐队，一直听到现在
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Oct 22, 2023
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Oct 22, 2023
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 -rotate-6 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2023/1696139680000.JPG"
-            alt="1696139680000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: -2deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2023/1696139680000.JPG"
+               alt="1696139680000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             2023年国庆长假，和老婆儿子去云南旅行，我们在丽江古城里的一家咖啡店休息，喝咖啡
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Oct 01, 2023
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Oct 01, 2023
+          </div>
         </div>
       </div>
     
-      <div class="item group relative w-[420px] inline-block mt-8 transition-all duration-300
-         scale-90 -rotate-3 
-        hover:scale-100 hover:rotate-0 z-10">
-        <div class="polaroid bg-white rounded-[10px] shadow-[0_0.2rem_1.2rem_rgba(0,0,0,0.2)] p-8 pb-16 flex flex-col items-center relative">
-          <img
-            src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2021/1618446676000.JPG"
-            alt="1618446676000.JPG"
-            class="not-prose max-w-full h-auto mx-auto filter grayscale group-hover:filter-none transition duration-500 rounded"
-            style="display:block;"
-          />
-          <div class="caption text-[1rem] text-center leading-8 mt-4 w-full">
+      
+      
+      <div class="item group relative w-[360px] inline-block mt-8 transition-all duration-300
+        scale-90 transform
+        hover:scale-100 hover:!rotate-0 z-10"
+        style="--tw-rotate: 1.5deg;">
+        <div class="polaroid polaroid-texture rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.15)] p-[18px] pb-[94px] flex flex-col items-center relative transition-shadow duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
+          <div class="w-full aspect-square overflow-hidden bg-gray-100 mb-5 shadow-[inset_0_1px_4px_rgba(0,0,0,0.1)] outline outline-1 outline-gray-200/50" style="aspect-ratio: 1/1;">
+             <img
+               src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/photos/2021/1618446676000.JPG"
+               alt="1618446676000.JPG"
+               class="not-prose w-full h-full object-cover filter contrast-[1.05] brightness-[1.02] grayscale-[10%] group-hover:filter-none transition duration-500 block"
+             />
+          </div>
+          <div class="caption text-[0.95rem] text-center font-serif text-gray-800 tracking-wide w-full px-2 mt-1 leading-snug">
             在DLZ上班的时候，每天都会经过这个天桥洞
           </div>
-        </div>
-        <div class="mt-2 text-center text-gray-400 text-base font-mono">
-          Apr 15, 2021
+          <div class="absolute bottom-8 left-0 right-0 text-center text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase opacity-70">
+            Apr 15, 2021
+          </div>
         </div>
       </div>
     
@@ -427,8 +549,42 @@
 
     <footer class="py-4">
       <div class="prose container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl text-center text-sm text-gray-500">
-        <p>© <span class="italic">2018 - 2025</span> Kevalin. All Rights Reserved.</p>
+        <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
       </div>
     </footer>
+  <script>
+    (function() {
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      
+      if (btn && menu) {
+        btn.addEventListener('click', () => {
+          const isHidden = menu.classList.contains('hidden');
+          if (isHidden) {
+            menu.classList.remove('hidden');
+            menu.classList.add('mobile-menu-enter');
+            requestAnimationFrame(() => {
+              menu.classList.add('mobile-menu-enter-active');
+              menu.classList.remove('mobile-menu-enter');
+            });
+          } else {
+            menu.classList.add('mobile-menu-exit');
+            menu.classList.add('mobile-menu-exit-active');
+            menu.addEventListener('transitionend', () => {
+              menu.classList.add('hidden');
+              menu.classList.remove('mobile-menu-exit', 'mobile-menu-exit-active');
+            }, { once: true });
+          }
+        });
+
+        // Close on click outside
+        document.addEventListener('click', (e) => {
+          if (!menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('hidden')) {
+            menu.classList.add('hidden');
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
