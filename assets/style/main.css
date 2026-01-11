@@ -1659,6 +1659,12 @@ pre[class*="language-"] {
   transition: all 0.3s ease;
 }
 
+@media (max-width: 768px) {
+  .nav-fixed .liquid-glass {
+    border-radius: 20px;
+  }
+}
+
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) or (-webkit-backdrop-filter: none) {
   .liquid-glass {
     background: rgba(255, 255, 255, 0.65);
