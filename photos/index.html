@@ -13,25 +13,18 @@
   <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
 </head>
 <body class="flex flex-col min-h-screen font-serif has-fixed-nav">
-    <nav class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-      <div class="liquid-glass p-1.5 flex justify-between items-center">
-        <!-- Brand -->
-        <a class="flex items-center gap-3 hover:opacity-80 transition-opacity" href="/">
+    <nav class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none">
+      <div class="relative pointer-events-auto w-full flex items-center justify-between">
+        <!-- Avatar -->
+        <a href="/" class="liquid-glass p-1.5 rounded-full hover:opacity-90 transition-opacity">
           <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover border border-white/20 shadow-sm" />
-          <span class="text-xl font-bold text-gradient">举个栗子</span>
         </a>
 
-        <!-- Desktop Links -->
-        <div class="hidden md:flex items-center gap-2">
+         <!-- Static Pill Menu -->
+        <div class="liquid-glass p-1.5 flex items-center gap-1 shadow-lg rounded-full">
           
             <a
-              class="nav-link text-sm" 
-              href="/"
-              
-            >Home</a>
-          
-            <a
-              class="nav-link text-sm" 
+              class="nav-link block text-base font-bold tracking-wider px-4 py-1.5 rounded-full transition-colors duration-300 bg-white text-black shadow-sm ring-1 ring-black/5" 
               href="/photos"
               
                 data-state="active" aria-current="page"
@@ -39,53 +32,13 @@
             >35mm</a>
           
             <a
-              class="nav-link text-sm" 
+              class="nav-link block text-base font-bold tracking-wider px-4 py-1.5 rounded-full transition-colors duration-300 text-gray-600 hover:text-black hover:bg-white/50" 
               href="/cafes"
               
             >Cafes</a>
           
             <a
-              class="nav-link text-sm" 
-              href="/about"
-              
-            >About</a>
-          
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="md:hidden p-1.5 text-gray-600 hover:text-gray-900 focus:outline-none" aria-label="Toggle menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Mobile Menu Dropdown -->
-      <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 right-0 mt-2 px-4 sm:px-6">
-        <div class="liquid-glass p-4 flex flex-col gap-2">
-          
-            <a
-              class="nav-link block text-center" 
-              href="/"
-              
-            >Home</a>
-          
-            <a
-              class="nav-link block text-center" 
-              href="/photos"
-              
-                data-state="active" aria-current="page"
-              
-            >35mm</a>
-          
-            <a
-              class="nav-link block text-center" 
-              href="/cafes"
-              
-            >Cafes</a>
-          
-            <a
-              class="nav-link block text-center" 
+              class="nav-link block text-base font-bold tracking-wider px-4 py-1.5 rounded-full transition-colors duration-300 text-gray-600 hover:text-black hover:bg-white/50" 
               href="/about"
               
             >About</a>
@@ -757,39 +710,5 @@ document.addEventListener("DOMContentLoaded", () => {
         <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
       </div>
     </footer>
-  <script>
-    (function() {
-      const btn = document.getElementById('mobileMenuBtn');
-      const menu = document.getElementById('mobileMenu');
-      
-      if (btn && menu) {
-        btn.addEventListener('click', () => {
-          const isHidden = menu.classList.contains('hidden');
-          if (isHidden) {
-            menu.classList.remove('hidden');
-            menu.classList.add('mobile-menu-enter');
-            requestAnimationFrame(() => {
-              menu.classList.add('mobile-menu-enter-active');
-              menu.classList.remove('mobile-menu-enter');
-            });
-          } else {
-            menu.classList.add('mobile-menu-exit');
-            menu.classList.add('mobile-menu-exit-active');
-            menu.addEventListener('transitionend', () => {
-              menu.classList.add('hidden');
-              menu.classList.remove('mobile-menu-exit', 'mobile-menu-exit-active');
-            }, { once: true });
-          }
-        });
-
-        // Close on click outside
-        document.addEventListener('click', (e) => {
-          if (!menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('hidden')) {
-            menu.classList.add('hidden');
-          }
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
