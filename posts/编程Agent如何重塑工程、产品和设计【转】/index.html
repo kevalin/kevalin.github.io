@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-solarizedlight.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style/main.css">
+  <title>举个栗子 - 编程 Agent 如何重塑工程、产品和设计【转】</title>
+  <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
+</head>
+<body class="flex flex-col min-h-screen font-serif has-fixed-nav">
+    <nav class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0 translate-x-0">
+      <div class="container mx-auto max-w-3xl flex items-center justify-between w-full relative">
+        <!-- Mobile/Tablet Top Bar -->
+        <div class="flex sm:hidden items-center justify-between w-full pointer-events-auto py-4 px-1">
+          <a href="/" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:opacity-90 transition-all shrink-0 z-10 active:scale-95 duration-200">
+            <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-[30px] h-[30px] rounded-full object-cover pointer-events-none" />
+          </a>
+          <div class="relative">
+            <button id="mobile-menu-btn" aria-label="Toggle Menu" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-gray-600 hover:text-black hover:bg-white transition-all focus:outline-none active:scale-95">
+              <svg id="menu-icon-open" class="w-6 h-6 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12h.01M12 12h.01M19 12h.01"></path></svg>
+              <svg id="menu-icon-close" class="w-6 h-6 hidden transition-all duration-300 scale-50 opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- Floating Mobile Menu -->
+            <div id="mobile-menu-dropdown" class="absolute right-0 mt-4 w-36 bg-white/95 backdrop-blur-xl border border-black/5 rounded-2xl shadow-2xl pb-3 pt-3 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[1100]">
+              <div class="flex flex-col gap-1 px-3">
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/posts"
+                  >Blog</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/photos"
+                  >35mm</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/cafes"
+                  >Cafes</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/about"
+                  >About</a>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Centered Pill -->
+        <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
+          <div class="flex items-center">
+            <a href="/" class="hover:opacity-90 transition-transform shrink-0 z-10 active:scale-95 duration-200 pr-3">
+              <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
+            </a>
+            <div class="flex items-center gap-1">
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/posts"
+                  
+                >Blog</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/photos"
+                  
+                >35mm</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/cafes"
+                  
+                >Cafes</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/about"
+                  
+                >About</a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('mobile-menu-btn');
+        const dropdown = document.getElementById('mobile-menu-dropdown');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+        
+        let isOpen = false;
+        
+        if (btn) {
+          btn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            if (isOpen) {
+              dropdown.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+              dropdown.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              
+              iconOpen.classList.add('hidden', 'scale-50', 'opacity-0');
+              iconClose.classList.remove('hidden', 'scale-50', 'opacity-0');
+              iconClose.classList.add('scale-100', 'opacity-100');
+            } else {
+              dropdown.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+              dropdown.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              
+              iconClose.classList.add('hidden', 'scale-50', 'opacity-0');
+              iconOpen.classList.remove('hidden', 'scale-50', 'opacity-0');
+              iconOpen.classList.add('scale-100', 'opacity-100');
+            }
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener('click', (e) => {
+            if (isOpen && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+              btn.click();
+            }
+          });
+        }
+    
+        window.addEventListener('resize', () => {
+          if(window.innerWidth >= 640 && isOpen) {
+            btn.click();
+          }
+        });
+      });
+    </script>
+
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words">
+      
+<div class="pb-20">
+  <h1 class="!mb-0">编程 Agent 如何重塑工程、产品和设计【转】</h1>
+  
+    <div class="italic text-gray-500 text-xs mt-5">Mar 10, 2026</div>
+  
+  <blockquote>
+<p>原文链接：<a href="https://x.com/dotey/status/2031841027112517742">https://x.com/dotey/status/2031841027112517742</a></p>
+</blockquote>
+<p>软件公司的 EPD（工程、产品、设计）存在的意义就是做出好软件。虽然分了不同角色，但最终目标一样：做出能解决业务问题、用户用得上的功能软件。说到底，产出就是代码。这一点必须认清——因为编程 Agent 突然让写代码变得异常简单。那么，EPD 的角色定位会怎么变？</p>
+<p>流程的变化：</p>
+<ul>
+<li>PRD 已死</li>
+<li>瓶颈从实现转向评审</li>
+<li>PRD 万岁</li>
+</ul>
+<p>对角色的影响：</p>
+<ul>
+<li>通才比以往更有价值</li>
+<li>使用编程 Agent 是必选项</li>
+<li>好的 PM 更好，差的 PM 更差</li>
+<li>每个人都需要产品意识</li>
+<li>专业化的门槛更高了</li>
+<li>你要么是建设者，要么是评审者</li>
+<li>每个人都觉得自己的角色从编程 Agent 中受益最大——而且都没说错</li>
+</ul>
+<h2 id="prd-%E5%B7%B2%E6%AD%BB" tabindex="-1">PRD 已死</h2>
+<p>PRD（产品需求文档）曾是 Claude 时代之前软件开发的核心枢纽。EPD 的流程大致是这样的：</p>
+<ul>
+<li>有人（通常是产品经理）冒出一个想法</li>
+<li>产品经理写一份 PRD</li>
+<li>设计师拿着 PRD 做出设计稿</li>
+<li>工程师把设计稿变成代码</li>
+</ul>
+<p><img src="https://pbs.twimg.com/media/HDKIkUQWEAExnD9?format=png&amp;name=large" alt="图像"></p>
+<p>这并不是铁律（在初创公司，这些步骤往往混在一起，最强的人能同时做好几件事），但这就是教科书式的标准做法。</p>
+<p>之所以需要这套流程，是因为写软件（和做设计稿）要花大量时间和精力。于是就有了专门的分工。分工越细，跨部门沟通的需求就越大。PRD 就是一切的起点，把整个流程串了起来。接力棒传到设计，把文字变成漂亮的 UI 和流畅的交互体验。最后工程师把这些变成现实。</p>
+<p>编程 Agent 颠覆了这一切。编程 Agent 能把一个想法直接变成可运行的软件。当我（以及很多人）说&quot;PRD 已死&quot;时，真正的意思是：这种从写 PRD 开始的传统软件开发方式，终结了。</p>
+<h2 id="%E7%93%B6%E9%A2%88%E4%BB%8E%E5%AE%9E%E7%8E%B0%E8%BD%AC%E5%90%91%E8%AF%84%E5%AE%A1" tabindex="-1">瓶颈从实现转向评审</h2>
+<p>现在谁都能写代码，意味着谁都能把东西做出来。但这不代表做出来的东西架构合理、解决了正确的问题、或者好用。工程、产品和设计应该成为这些方面的评审者和把关人。问题在于，Agent 生成的代码并不总是&quot;足够好&quot;。EPD 要做的事变成了评审，确保代码&quot;足够好&quot;。这里的&quot;足够好&quot;有几层含义：</p>
+<ul>
+<li>从工程系统角度看架构是否合理：代码是否可扩展、高性能、足够健壮？</li>
+<li>从产品角度看思考是否到位：这真的解决了用户的痛点吗？</li>
+<li>从设计角度看是否好用：界面是否易用、直观？</li>
+</ul>
+<p>初版代码的生成成本极低，大量原型涌现出来。这些原型成了大家讨论评审的中心，产品、工程和设计都围着它们转。</p>
+<p><img src="https://pbs.twimg.com/media/HDKImrZXYAAySZy?format=png&amp;name=large" alt="图像"></p>
+<p>问题是——生成代码实在太容易了。过去写代码需要很长时间，作为评审者，手上需要看的项目不会太多。但现在谁都能写代码，在做的项目数量急剧增加。所有三个职能的瓶颈都转移到了评审——拿到原型后确保它们够好。</p>
+<h2 id="prd-%E4%B8%87%E5%B2%81" tabindex="-1">PRD 万岁</h2>
+<p>Claude 之前的软件开发方式（从 PRD 开始）已经成为过去。但描述产品需求的文档依然不可或缺。</p>
+<p>假设有人想到一个点子，快速做出了原型。接下来怎么上线？需要 EPD 其他成员来评审。在这个过程中，一份文字说明总是有帮助的，而且往往必不可少。其他人评审时，怎么知道代码里某个地方是有意为之还是偶然写成的？得看意图。总得有办法把意图传达清楚。</p>
+<p>我认为传统的 PRD 流程（PRD → 设计稿 → 代码）已经死了。但描述产品需求的文字本身活得好好的。在交付评审之前，这份文档应该是原型的必备搭档。</p>
+<p>最标准的形式是一份文档，但也有一些有意思的想法——比如把生成功能所用的 prompt 分享出来作为沟通方式。如果未来的 PRD 就是结构化的、带版本管理的 prompt 呢？</p>
+<p><img src="https://pbs.twimg.com/media/HDKIpCzWYAEskoh?format=png&amp;name=large" alt="图像"></p>
+<h2 id="%E9%80%9A%E6%89%8D%E6%AF%94%E4%BB%A5%E5%BE%80%E6%9B%B4%E6%9C%89%E4%BB%B7%E5%80%BC" tabindex="-1">通才比以往更有价值</h2>
+<p>这里说的通才，是指在产品、工程和设计三方面都有不错感觉的人。这些人一直都很有价值、很有影响力——但有了编程 Agent，他们更加如鱼得水。为什么？</p>
+<p>沟通是所有事情中最难的部分，它拖慢一切。一个人如果能同时搞定产品、设计和工程，就比三个人的团队快，因为省掉了沟通开销。</p>
+<p>过去实现本身是瓶颈，通才也得和别人沟通才能把事情做完。现在他们只需要和 Agent 沟通就行。这意味着一个人单打独斗的影响力比以往任何时候都大。</p>
+<h2 id="%E4%BD%BF%E7%94%A8%E7%BC%96%E7%A8%8B-agent-%E6%98%AF%E5%BF%85%E9%80%89%E9%A1%B9" tabindex="-1">使用编程 Agent 是必选项</h2>
+<p>编程 Agent 让实现成本极低，使用它们就是必选项。能用好编程 Agent 的人可以独自完成更多事情：</p>
+<ul>
+<li>产品经理可以直接做原型验证想法，不用写需求文档然后干等</li>
+<li>设计师可以直接在代码里迭代，而不只是在 Figma 里画图</li>
+<li>工程师可以把时间从实现转向系统思考</li>
+</ul>
+<p>用编程 Agent 是必选项，因为上手并不难，而且你不用的话，就会被用的人替代。</p>
+<h2 id="%E5%A5%BD%E7%9A%84-pm-%E6%9B%B4%E5%A5%BD%EF%BC%8C%E5%B7%AE%E7%9A%84-pm-%E6%9B%B4%E5%B7%AE" tabindex="-1">好的 PM 更好，差的 PM 更差</h2>
+<p>好的产品思维比以往更有价值——你能做出真正有用的东西。差的产品思维比以往更浪费。如果某人有一个糟糕的产品想法，他可以带着一个原型出现——但这个原型展示的是一个无用的、或者没想清楚的功能。这些原型现在需要更多人来评审——工程、产品、设计都得看。这会吞噬大量时间和资源。而且上线的惯性更大了（&quot;东西都做出来了！直接合并吧！&quot;）。产品很可能因此变得更差或更臃肿。</p>
+<p><img src="https://pbs.twimg.com/media/HDKIrYpbcAAzpxY?format=png&amp;name=large" alt="图像"></p>
+<h2 id="%E7%B3%BB%E7%BB%9F%E6%80%9D%E7%BB%B4%E6%98%AF%E9%9C%80%E8%A6%81%E7%A3%A8%E7%BB%83%E7%9A%84%E6%A0%B8%E5%BF%83%E6%8A%80%E8%83%BD" tabindex="-1">系统思维是需要磨练的核心技能</h2>
+<p>在一个执行成本极低的世界里，系统思维成了真正的差异化能力。你应该专注于磨练系统思维，建立起自己所在领域的清晰心智模型：</p>
+<ul>
+<li>工程：对如何设计服务架构、API 和数据库有清晰的心智模型</li>
+<li>产品：对用户真正需要什么（而非他们嘴上说想要什么）有清晰的心智模型</li>
+<li>设计：对为什么某个东西用起来看着感觉就是对的有清晰的心智模型</li>
+</ul>
+<p>系统思维一直都很重要——那变化在哪？实现成本大幅下降了。做出东西比以往更容易——但不代表做出来的就好。好的系统思维让你在动手之前就能确保方向正确，也让你评审别人的工作时更有判断力。两方面都说明，系统思维的重要性提升了。</p>
+<h2 id="%E6%AF%8F%E4%B8%AA%E4%BA%BA%E9%83%BD%E9%9C%80%E8%A6%81%E4%BA%A7%E5%93%81%E6%84%8F%E8%AF%86" tabindex="-1">每个人都需要产品意识</h2>
+<p>编程 Agent 仍然需要有人来给它下指令，告诉它该做什么。如果你让它做了错误的东西——你就是在给别人制造更多待评审的垃圾。知道该让 Agent 做什么（也就是&quot;产品意识&quot;），是一项基本要求，否则你会拖累整个组织。这对工程、设计和（显然）产品都适用。</p>
+<p>EPD 现在有很大一部分工作是评审原型。有产品意识，评审起来更容易，哪怕评审的是设计或工程方面的内容。没有产品意识，就需要一份超级详细的产品文档来配合原型。有产品意识，只需要一份简要说明就能理解功能的意图，加速沟通、评审和交付。</p>
+<h2 id="%E4%B8%93%E4%B8%9A%E5%8C%96%E7%9A%84%E9%97%A8%E6%A7%9B%E6%9B%B4%E9%AB%98%E4%BA%86" tabindex="-1">专业化的门槛更高了</h2>
+<p>你需要会用编程 Agent。你需要有产品意识。所有角色都在融合。</p>
+<p>角色之间一直有重叠。设计和产品向来紧密相连——在 Apple 和 Airbnb 这样的公司，设计师本身就兼任产品经理。&quot;设计工程师&quot;（Design Engineer，兼具设计和工程能力的角色）在 Vercel 等公司也越来越流行。</p>
+<p>但专业化仍然有它的空间。一个专注系统架构的资深工程师仍然很有价值。一个没学凭感觉编程（Vibe Coding）但对客户问题和该做什么有超清晰心智模型的 PM 也是如此。一个能理解和设计用户旅程与交互的设计师也一样，哪怕还是在 Figma 里工作。</p>
+<p>只是专业化的门槛高多了。你不仅要在自己的领域出类拔萃，还要评审速度极快、沟通能力极强。而且这类角色在任何公司里都不会太多。</p>
+<h2 id="%E4%BD%A0%E8%A6%81%E4%B9%88%E6%98%AF%E5%BB%BA%E8%AE%BE%E8%80%85%EF%BC%8C%E8%A6%81%E4%B9%88%E6%98%AF%E8%AF%84%E5%AE%A1%E8%80%85" tabindex="-1">你要么是建设者，要么是评审者</h2>
+<p>我们看到 EPD 中正在形成两类角色。</p>
+<p>第一类：建设者。这类人有不错的产品思维，能用编程 Agent，具备基本的设计直觉。有了护栏（测试套件、组件库），他们可以把小功能从想法做到上线，把大功能做出可用的原型。</p>
+<p>第二类：评审者。对于大型复杂的功能，需要 EPD 层面的深度评审。门槛很高——你必须是自己领域的顶尖系统思维者。而且你得快——要评审的东西太多了。</p>
+<p>如果你现在是工程师——要么把系统设计练到极致，能从容评审架构，朝评审者方向发展；要么提升产品和设计能力，成为建设者。</p>
+<p>如果你做产品或设计——要么建立起顶级的产品/设计心智模型，主要做评审；要么投入编程 Agent，提升自己的编程功底。</p>
+<p><img src="https://pbs.twimg.com/media/HDKIt1sWIAEDD5N?format=jpg&amp;name=large" alt="图像"></p>
+<p>有意思的是，角色正在坍缩，从上面的图可以看到所有 EPD 的人都分布在这张图的某个位置。角色开始融合——工程师有了更多时间，可以更多地思考产品和设计；产品和设计也能写代码了。</p>
+<h2 id="%E6%AF%8F%E4%B8%AA%E4%BA%BA%E9%83%BD%E8%A7%89%E5%BE%97%E8%87%AA%E5%B7%B1%E7%9A%84%E8%A7%92%E8%89%B2%E4%BB%8E%E7%BC%96%E7%A8%8B-agent-%E4%B8%AD%E5%8F%97%E7%9B%8A%E6%9C%80%E5%A4%A7%E2%80%94%E2%80%94%E8%80%8C%E4%B8%94%E9%83%BD%E6%B2%A1%E8%AF%B4%E9%94%99" tabindex="-1">每个人都觉得自己的角色从编程 Agent 中受益最大——而且都没说错</h2>
+<p>Twitter 上有一条<a href="https://x.com/signulll/status/2030404483897815089">很好的帖子</a>，讲的是什么样的人从编程 Agent 中受益最大：</p>
+<blockquote>
+<p>一个对现有产品有直觉般理解的人——知道哪里是短板、哪里是亮点、以及如何迭代让产品变得更锋利。 这种人最稀有的版本，站在文化与深度技术的交叉点上。真正的&quot;双语者&quot;。他们既知道技术上什么是可能的，又能分辨哪些文化潮流是真实的而非昙花一现。正是这种组合，决定了一个产品让人感觉&quot;理应如此&quot;还是&quot;拼凑而成&quot;。</p>
+</blockquote>
+<p>这条帖子精准概括了这个新世界，引发了不小的传播。它之所以传开，部分原因是每个读到的人都觉得说的就是自己或自己的角色。我看到产品人在转发，设计师也在转，设计工程师也在转，创始人也在转……每个人都觉得说的就是自己。</p>
+<p>而他们很可能都没说错！我觉得这个新世界令人兴奋的地方在于，出身背景不那么重要了。我真心相信这种人可以来自产品、设计或工程中的任何一个方向。但这不意味着每个人都能成为这样的人——说起来容易做起来难。真正的全才少之又少。</p>
+<p>这是一个做建设者的好时代 :)</p>
+
+</div>
+
+    </content>
+
+    <footer class="py-4">
+      <div class="prose container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl text-center text-sm text-gray-500">
+        <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+      </div>
+    </footer>
+</body>
+</html>

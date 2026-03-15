@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style/main.css">
-  <title>举个栗子 - Blogs</title>
+  <title>举个栗子 - 开发 APISIX Lua 插件</title>
   <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
 </head>
 <body class="flex flex-col min-h-screen font-serif has-fixed-nav">
@@ -31,7 +31,7 @@
               <div class="flex flex-col gap-1 px-3">
                 
                   <a
-                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 bg-white border border-black/10 text-black shadow-sm" 
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
                     href="/posts"
                   >Blog</a>
                 
@@ -64,10 +64,8 @@
             <div class="flex items-center gap-1">
               
                 <a
-                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 bg-[#111] text-white shadow-sm scale-100" 
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
                   href="/posts"
-                  
-                    data-state="active" aria-current="page"
                   
                 >Blog</a>
               
@@ -142,78 +140,11 @@
 
     <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words">
       
-<h1>Posts</h1>
-<div class="pt-2 flex flex-col space-y-2 mt-4">
+<div class="pb-20">
+  <h1 class="!mb-0">开发 APISIX Lua 插件</h1>
   
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/从自动化到流程-现代技术组织的一个哲学悖论/">从自动化到流程：现代技术组织的一个哲学悖论</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Mar 14, 2026</span>
-    </div>
+    <div class="italic text-gray-500 text-xs mt-5">Sep 09, 2024</div>
   
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/编程Agent如何重塑工程、产品和设计【转】/">编程 Agent 如何重塑工程、产品和设计【转】</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Mar 10, 2026</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/告别信息过载用TinyTinyRSS打造你的专属信息流/">用 Tiny Tiny RSS 打造专属信息流</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">May 10, 2025</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/开发APISIXLua插件/">开发 APISIX Lua 插件</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Sep 09, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/敏捷开发实作教程四/">敏捷开发实作教程四</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Sep 05, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/敏捷开发实作教程三/">敏捷开发实作教程三</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Sep 04, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/敏捷开发实作教程二/">敏捷开发实作教程二</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Sep 03, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/敏捷开发实作教程一/">敏捷开发实作教程一</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Sep 02, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/我的macOS生产力工具栈/">我的 macOS 生产力工具栈</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Jul 30, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/ksmd占用太多CPU资源问题/">ksmd 占用太多 CPU 资源问题</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Feb 22, 2023</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/从电纸书到电子书/">从电纸书到电子书</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Jan 04, 2020</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/了解MySQL中的utf8和utf8mb4/">了解 MySQL 中的 utf8 和 utf8mb4</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Dec 26, 2019</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/认识Stack与Heap/">认识 Stack 与 Heap</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Nov 13, 2019</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/tcpretransmission/">TCP Retransmission</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Mar 15, 2018</span>
-    </div>
   
 </div>
 

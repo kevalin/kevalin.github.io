@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style/main.css">
-  <title>举个栗子 - Blogs</title>
+  <title>举个栗子 - 认识 Stack 与 Heap</title>
   <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
 </head>
 <body class="flex flex-col min-h-screen font-serif has-fixed-nav">
@@ -31,7 +31,7 @@
               <div class="flex flex-col gap-1 px-3">
                 
                   <a
-                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 bg-white border border-black/10 text-black shadow-sm" 
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
                     href="/posts"
                   >Blog</a>
                 
@@ -64,10 +64,8 @@
             <div class="flex items-center gap-1">
               
                 <a
-                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 bg-[#111] text-white shadow-sm scale-100" 
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
                   href="/posts"
-                  
-                    data-state="active" aria-current="page"
                   
                 >Blog</a>
               
@@ -142,79 +140,47 @@
 
     <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words">
       
-<h1>Posts</h1>
-<div class="pt-2 flex flex-col space-y-2 mt-4">
+<div class="pb-20">
+  <h1 class="!mb-0">认识 Stack 与 Heap</h1>
   
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/从自动化到流程-现代技术组织的一个哲学悖论/">从自动化到流程：现代技术组织的一个哲学悖论</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Mar 14, 2026</span>
-    </div>
+    <div class="italic text-gray-500 text-xs mt-5">Nov 13, 2019</div>
   
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/编程Agent如何重塑工程、产品和设计【转】/">编程 Agent 如何重塑工程、产品和设计【转】</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Mar 10, 2026</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/告别信息过载用TinyTinyRSS打造你的专属信息流/">用 Tiny Tiny RSS 打造专属信息流</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">May 10, 2025</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/开发APISIXLua插件/">开发 APISIX Lua 插件</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Sep 09, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/敏捷开发实作教程四/">敏捷开发实作教程四</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Sep 05, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/敏捷开发实作教程三/">敏捷开发实作教程三</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Sep 04, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/敏捷开发实作教程二/">敏捷开发实作教程二</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Sep 03, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/敏捷开发实作教程一/">敏捷开发实作教程一</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Sep 02, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/我的macOS生产力工具栈/">我的 macOS 生产力工具栈</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Jul 30, 2024</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/ksmd占用太多CPU资源问题/">ksmd 占用太多 CPU 资源问题</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Feb 22, 2023</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/从电纸书到电子书/">从电纸书到电子书</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Jan 04, 2020</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/了解MySQL中的utf8和utf8mb4/">了解 MySQL 中的 utf8 和 utf8mb4</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Dec 26, 2019</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/认识Stack与Heap/">认识 Stack 与 Heap</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Nov 13, 2019</span>
-    </div>
-  
-    <div class="flex justify-between items-center gap-4">
-      <a class="hover:text-gray-500 no-underline flex-1 leading-snug" href="/posts/tcpretransmission/">TCP Retransmission</a>
-      <span class="italic text-gray-500 text-xs whitespace-nowrap shrink-0">Mar 15, 2018</span>
-    </div>
-  
+  <h2 id="the-stack" tabindex="-1">The Stack</h2>
+<p>什么是堆栈？它是计算机内存中的一个特殊区域，存储着被函数（包括main()函数）创建的临时变量。它由CPU非常紧密的管理和优化，是一种 <code>LIFO</code> （后进先出）的数据结构。函数每一次定义一个新的变量，它都会被放进堆栈中。当函数执行完成退出时，被这个函数放到堆栈里的变量都会被释放，也就是从堆栈中被删除。一旦堆栈变量被释放，对于其他的堆栈变量而言，这个特殊的内存区域就变的可用。</p>
+<p>使用堆栈来存储变量的好处是内存是由系统来管理，你不必手动的分配和释放内存。更重要的是，CPU管理堆栈内存非常的高效，从里面读写变量都是非常快速的。</p>
+<p>对于堆栈还有一个要注意的地方，堆栈是有小大限制的，并且随着底层操作系统的不同，这个大小也是不同的。</p>
+<p>总结一下：</p>
+<ul>
+<li>堆栈占用的大小会随着函数push和pop局部变量而增加和减小</li>
+<li>堆栈内存不需要自己手动管理，它的分配和释放都是自动</li>
+<li>堆栈有大小限制</li>
+<li>堆栈变量仅在创建它们的函数运行时存在</li>
+</ul>
+<h2 id="the-heap" tabindex="-1">The Heap</h2>
+<p>堆是计算机内存中不会自动为您管理的区域，并且不受CPU严格管理。它是内存中更自由浮动的区域（并且更大）。要在堆上分配内存，必须使用内置的C函数 <code>malloc()</code> 或 <code>calloc()</code> 。在堆上分配内存后，一旦不再需要，要使用 <code>free()</code> 释放该内存。如果不这样做，程序将发生所谓的内存泄漏，也就是说，堆上的内存仍将被保留（并且其他进程将无法使用）。</p>
+<p>与堆栈不同，堆对变量大小没有限制（除了计算机物理内存限制以外）。相比于堆栈，堆内存的读写要稍慢一些，因为必须使用指针来访问堆上的内存数据。</p>
+<p>还有一点和堆栈不同的是，在堆上创建的变量可以在程序中任何位置的任何函数访问。堆变量本质上是全局的。</p>
+<h2 id="%E5%88%A9%E5%BC%8A%E4%B9%8B%E5%88%86" tabindex="-1">利弊之分</h2>
+<h3 id="stack" tabindex="-1">Stack</h3>
+<ul>
+<li>非常快的访问速度</li>
+<li>不必显示的取消分配的变量</li>
+<li>内存空间由CPU高效的管理，因而不会变的碎片化</li>
+<li>只能局部变量</li>
+<li>变量不能调整大小</li>
+</ul>
+<h3 id="heap" tabindex="-1">Heap</h3>
+<ul>
+<li>变量可以被全局访问</li>
+<li>没有内存大小的限制</li>
+<li>访问速度相对于堆栈要慢一些</li>
+<li>无法保证有效利用空间，随着时间的推移，内存块可能会随着内存块的分配而碎片化，然后释放</li>
+<li>必须手动的管理内存（分配和释放）</li>
+<li>变量可以使用 <code>realloc()</code> 调整大小</li>
+</ul>
+<h2 id="%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%A0%86%EF%BC%8C%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%A0%86%E6%A0%88%EF%BC%9F" tabindex="-1">什么时候应该使用堆，什么时候应该使用堆栈？</h2>
+<p>如果您需要分配一个大的内存块（例如，一个大 <code>array</code> 或一个大的 <code>struct</code> ），并且需要长时间保持该变量（例如全局变量），则应该在堆上分配它。如果您要处理的变量相对较小，并且只要使用它们的函数时使用，那么您应该使用堆栈，它更容易，更快捷。如果您需要像数组和结构这样的变量可以动态更改大小（例如，可以根据需要增加或缩小的数组），则可能需要在堆上分配它们，并使用动态内存分配函数，如 <code>malloc()</code> ， <code>calloc()</code> ， <code>realloc()</code> 和 <code>free()</code> 来“手动“管理该内存。</p>
+
 </div>
 
     </content>

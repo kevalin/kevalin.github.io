@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-solarizedlight.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style/main.css">
+  <title>举个栗子 - 了解 MySQL 中的 utf8 和 utf8mb4</title>
+  <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
+</head>
+<body class="flex flex-col min-h-screen font-serif has-fixed-nav">
+    <nav class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0 translate-x-0">
+      <div class="container mx-auto max-w-3xl flex items-center justify-between w-full relative">
+        <!-- Mobile/Tablet Top Bar -->
+        <div class="flex sm:hidden items-center justify-between w-full pointer-events-auto py-4 px-1">
+          <a href="/" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:opacity-90 transition-all shrink-0 z-10 active:scale-95 duration-200">
+            <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-[30px] h-[30px] rounded-full object-cover pointer-events-none" />
+          </a>
+          <div class="relative">
+            <button id="mobile-menu-btn" aria-label="Toggle Menu" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-gray-600 hover:text-black hover:bg-white transition-all focus:outline-none active:scale-95">
+              <svg id="menu-icon-open" class="w-6 h-6 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12h.01M12 12h.01M19 12h.01"></path></svg>
+              <svg id="menu-icon-close" class="w-6 h-6 hidden transition-all duration-300 scale-50 opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- Floating Mobile Menu -->
+            <div id="mobile-menu-dropdown" class="absolute right-0 mt-4 w-36 bg-white/95 backdrop-blur-xl border border-black/5 rounded-2xl shadow-2xl pb-3 pt-3 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[1100]">
+              <div class="flex flex-col gap-1 px-3">
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/posts"
+                  >Blog</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/photos"
+                  >35mm</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/cafes"
+                  >Cafes</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-2xl transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/about"
+                  >About</a>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Centered Pill -->
+        <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
+          <div class="flex items-center">
+            <a href="/" class="hover:opacity-90 transition-transform shrink-0 z-10 active:scale-95 duration-200 pr-3">
+              <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
+            </a>
+            <div class="flex items-center gap-1">
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/posts"
+                  
+                >Blog</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/photos"
+                  
+                >35mm</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/cafes"
+                  
+                >Cafes</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/about"
+                  
+                >About</a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('mobile-menu-btn');
+        const dropdown = document.getElementById('mobile-menu-dropdown');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+        
+        let isOpen = false;
+        
+        if (btn) {
+          btn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            if (isOpen) {
+              dropdown.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+              dropdown.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              
+              iconOpen.classList.add('hidden', 'scale-50', 'opacity-0');
+              iconClose.classList.remove('hidden', 'scale-50', 'opacity-0');
+              iconClose.classList.add('scale-100', 'opacity-100');
+            } else {
+              dropdown.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+              dropdown.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              
+              iconClose.classList.add('hidden', 'scale-50', 'opacity-0');
+              iconOpen.classList.remove('hidden', 'scale-50', 'opacity-0');
+              iconOpen.classList.add('scale-100', 'opacity-100');
+            }
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener('click', (e) => {
+            if (isOpen && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+              btn.click();
+            }
+          });
+        }
+    
+        window.addEventListener('resize', () => {
+          if(window.innerWidth >= 640 && isOpen) {
+            btn.click();
+          }
+        });
+      });
+    </script>
+
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words">
+      
+<div class="pb-20">
+  <h1 class="!mb-0">了解 MySQL 中的 utf8 和 utf8mb4</h1>
+  
+    <div class="italic text-gray-500 text-xs mt-5">Dec 26, 2019</div>
+  
+  <p><a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> 使用一至六个 <a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E8%8A%82">字节</a> 为每个字符编码（尽管如此，2003年11月UTF-8被RFC 3629重新规范，只能使用原来Unicode定义的区域，U+0000到U+10FFFF，也就是说最多 <strong>四个字节</strong> ）。然而在MySQL的utf8编码的每个符号最多 <strong>三个字节</strong> ，所以它的别名也叫 <code>utf8mb3</code> ，它支持的范围只有U+000000到U+00FFFF，当我们存入一个正常UTF-8编码的字符但有超过MySQL的utf8字符编码范围的内容时就会有问题了，例如Emoji表情。</p>
+<p>我们要清楚的知道，MySQL的utf8是不能等同于我们一般认为的UTF-8的，它不能提供完整的Unicode支持，所以是有可能导致数据丢失或安全性问题。</p>
+<p>MySQL在5.5.3之后提供了一个新的编码方式── <code>utf8mb4</code> ，它支持正常的UTF-8和完整的Unicode，甚至是星座符号，例如♈，哈哈，是不是强大了不少。因此，我们在使用MySQL时，最好使用utf8mb4这个编码方式。</p>
+<h2 id="%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8Dmysql%E5%AD%97%E7%AC%A6%E9%9B%86" tabindex="-1">查看当前MySQL字符集</h2>
+<pre class="language-sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">SHOW</span> VARIABLES <span class="token keyword">WHERE</span> Variable_name <span class="token operator">LIKE</span> <span class="token string">'character\_set\_%'</span> <span class="token operator">OR</span> Variable_name <span class="token operator">LIKE</span> <span class="token string">'collation%'</span><span class="token punctuation">;</span><br><br><span class="token operator">+</span><span class="token comment">--------------------------+--------------------+</span><br><span class="token operator">|</span> Variable_name            <span class="token operator">|</span> <span class="token keyword">Value</span>              <span class="token operator">|</span><br><span class="token operator">+</span><span class="token comment">--------------------------+--------------------+</span><br><span class="token operator">|</span> character_set_client     <span class="token operator">|</span> utf8mb4            <span class="token operator">|</span><br><span class="token operator">|</span> character_set_connection <span class="token operator">|</span> utf8mb4            <span class="token operator">|</span><br><span class="token operator">|</span> character_set_database   <span class="token operator">|</span> utf8mb4            <span class="token operator">|</span><br><span class="token operator">|</span> character_set_filesystem <span class="token operator">|</span> <span class="token keyword">binary</span>             <span class="token operator">|</span><br><span class="token operator">|</span> character_set_results    <span class="token operator">|</span> utf8mb4            <span class="token operator">|</span><br><span class="token operator">|</span> character_set_server     <span class="token operator">|</span> utf8mb4            <span class="token operator">|</span><br><span class="token operator">|</span> character_set_system     <span class="token operator">|</span> utf8               <span class="token operator">|</span><br><span class="token operator">|</span> collation_connection     <span class="token operator">|</span> utf8mb4_unicode_ci <span class="token operator">|</span><br><span class="token operator">|</span> collation_database       <span class="token operator">|</span> utf8mb4_unicode_ci <span class="token operator">|</span><br><span class="token operator">|</span> collation_server         <span class="token operator">|</span> utf8mb4_unicode_ci <span class="token operator">|</span><br><span class="token operator">+</span><span class="token comment">--------------------------+--------------------+</span><br><br><span class="token number">10</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span></code></pre>
+<p>上面展示的参数还是很多的，它们是什么意思，相互之间又有什么关系呢？</p>
+<p>MySQL有两个字符集概念：一个就是字符集本身（character开头的），一个是字符集校验规则（collation开头的）。字符集影响数据在传输和存储过程中的处理方式，而字符集校验则影响ORDER BY和GROUP BY这些排序方式。</p>
+<ul>
+<li><code>character_set_client</code> 客户端使用的字符集，相当于网页中的字符集设置</li>
+<li><code>character_set_connection </code> 连接数据库的字符集设置类型，如果代码中没有指明连接数据库使用的字符集类型就按照服务器端默认的字符设置</li>
+<li><code>character_set_database</code> 数据库服务器中某个库使用的字符集设定，如果建库时没有指明，将使用服务器安装时指定的字符集设置</li>
+<li><code>character_set_filesystem</code> 文件系统格式</li>
+<li><code>character_set_results</code> 数据库给客户端返回时使用的字符集设定，如果没有指明，使用服务器默认的字符集</li>
+<li><code>character_set_server</code> 服务器安装时指定的默认字符集设定</li>
+<li><code>character_set_system</code> 数据库系统使用的字符集设定</li>
+<li><code>collation_connection</code> 连接字符集的校对规则</li>
+<li><code>collation_database</code> 默认数据库使用的校对规则。当默认数据库改变时服务器则设置该变量。如果没有默认数据库，变量的值同collation_server</li>
+<li><code>collation_server</code> 服务器的默认校对规则</li>
+</ul>
+<blockquote>
+<p>如果你的数据库还不是5.5.3+版本，请先升级你的MySQL。当然升级前备份一下你的数据库啦，以防万一。</p>
+</blockquote>
+<h2 id="%E4%BF%AE%E6%94%B9databases%EF%BC%8Ctables%E5%92%8Ccolumns%E5%AD%97%E7%AC%A6%E9%9B%86%E7%9A%84%E6%96%B9%E6%B3%95" tabindex="-1">修改databases，tables和columns字符集的方法</h2>
+<pre class="language-sql"><code class="language-sql"><span class="token comment"># For each database:</span><br><span class="token keyword">ALTER</span> <span class="token keyword">DATABASE</span> database_name <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> <span class="token operator">=</span> utf8mb4 <span class="token keyword">COLLATE</span> <span class="token operator">=</span> utf8mb4_unicode_ci<span class="token punctuation">;</span><br><span class="token comment"># For each table:</span><br><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> table_name <span class="token keyword">CONVERT</span> <span class="token keyword">TO</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_unicode_ci<span class="token punctuation">;</span><br><span class="token comment"># For each column:</span><br><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> table_name CHANGE column_name column_name <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">191</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_unicode_ci<span class="token punctuation">;</span><br><span class="token comment"># (Don’t blindly copy-paste this! The exact statement depends on the column type, maximum length, and other properties. The above line is just an example for a \`VARCHAR\` column.)</span></code></pre>
+<blockquote>
+<p>还有一点要注意的是 <code>utf8mb4</code> 是向下兼容 <code>utf8</code> 的，所以也不用担心改变字符集导致数据丢失的问题。</p>
+</blockquote>
+<h2 id="%E4%BF%AE%E6%94%B9%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AD%97%E7%AC%A6%E9%9B%86" tabindex="-1">修改连接，客户端和服务器字符集</h2>
+<p>在代码中可以通过简单的 <code>SET NAMES utf8mb4</code> 来完成更换。当使用 <code>SET NAMES utf8mb4</code> 时，其实就是执行了下面三句：</p>
+<pre class="language-sql"><code class="language-sql"><span class="token keyword">SET</span> character_set_client <span class="token operator">=</span> utf8mb4<span class="token punctuation">;</span><br><span class="token keyword">SET</span> character_set_results <span class="token operator">=</span> utf8mb4<span class="token punctuation">;</span><br><span class="token keyword">SET</span> character_set_connection <span class="token operator">=</span> utf8mb4<span class="token punctuation">;</span></code></pre>
+<p>而服务器的字符集一般是在启动配置 <code>/etc/my.cnf</code> 中配置的，例如：</p>
+<pre class="language-bash"><code class="language-bash"><span class="token punctuation">[</span>client<span class="token punctuation">]</span><br>default-character-set <span class="token operator">=</span> utf8mb4<br><span class="token punctuation">[</span>mysql<span class="token punctuation">]</span><br>default-character-set <span class="token operator">=</span> utf8mb4<br><span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span><br>character-set-client-handshake <span class="token operator">=</span> FALSE<br>character-set-server <span class="token operator">=</span> utf8mb4<br>collation-server <span class="token operator">=</span> utf8mb4_unicode_ci</code></pre>
+<p>总而言之，从现在开始，我们 尽量在MySQL中使用 <code>utf8mb4</code> 而不要再使用 <code>utf8</code> 啦！！！</p>
+<h2 id="%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99" tabindex="-1">参考资料</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/30074492/what-is-the-difference-between-utf8mb4-and-utf8-charsets-in-mysql">What is the difference between utf8mb4 and utf8 charsets in MySQL?</a></li>
+<li><a href="https://mathiasbynens.be/notes/mysql-utf8mb4">How to support full Unicode in MySQL databases</a></li>
+<li><a href="http://www.linuxfly.org/post/388/">MySQL字符集设定总结</a></li>
+<li><a href="https://www.cnblogs.com/chyingp/p/mysql-character-set-collation.html">再见乱码：5分钟读懂MySQL字符集设置</a></li>
+<li><a href="http://mysql.taobao.org/monthly/2015/05/07/">set names 都做了什么</a></li>
+</ul>
+
+</div>
+
+    </content>
+
+    <footer class="py-4">
+      <div class="prose container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl text-center text-sm text-gray-500">
+        <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+      </div>
+    </footer>
+</body>
+</html>
