@@ -1236,8 +1236,8 @@ video {
   height: 2.25rem;
 }
 
-.h-\[30px\]{
-  height: 30px;
+.h-\[38px\]{
+  height: 38px;
 }
 
 .h-full{
@@ -1264,16 +1264,16 @@ video {
   width: 2.25rem;
 }
 
-.w-\[30px\]{
-  width: 30px;
-}
-
 .w-\[320px\]{
   width: 320px;
 }
 
 .w-\[360px\]{
   width: 360px;
+}
+
+.w-\[38px\]{
+  width: 38px;
 }
 
 .w-full{
