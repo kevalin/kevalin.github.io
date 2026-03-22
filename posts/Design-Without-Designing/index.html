@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-solarizedlight.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style/main.css">
+  <title>举个栗子 - Design Without Designing【译】</title>
+  <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
+</head>
+<body class="flex flex-col min-h-screen font-serif has-fixed-nav">
+    <nav class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0 translate-x-0">
+      <div class="container mx-auto max-w-3xl flex items-center justify-between w-full relative">
+        <!-- Mobile/Tablet Top Bar -->
+        <div class="flex sm:hidden items-center justify-between w-full pointer-events-auto py-4 px-1">
+          <a href="/" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:opacity-90 transition-all shrink-0 z-10 active:scale-95 duration-200">
+            <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-[38px] h-[38px] rounded-full object-cover pointer-events-none" />
+          </a>
+          <div class="relative">
+            <button id="mobile-menu-btn" aria-label="Toggle Menu" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-gray-600 hover:text-black hover:bg-white transition-all focus:outline-none active:scale-95">
+              <svg id="menu-icon-open" class="w-6 h-6 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12h.01M12 12h.01M19 12h.01"></path></svg>
+              <svg id="menu-icon-close" class="w-6 h-6 hidden transition-all duration-300 scale-50 opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- Floating Mobile Menu -->
+            <div id="mobile-menu-dropdown" class="absolute right-0 mt-4 w-36 bg-white/95 backdrop-blur-xl border border-black/5 shadow-2xl pb-3 pt-3 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[1100]" style="border-radius: 2.1rem;">
+              <div class="flex flex-col gap-1 px-3">
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/posts"
+                  >Blog</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/photos"
+                  >35mm</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/cafes"
+                  >Cafes</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/about"
+                  >About</a>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Centered Pill -->
+        <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
+          <div class="flex items-center">
+            <a href="/" class="hover:opacity-90 transition-transform shrink-0 z-10 active:scale-95 duration-200 pr-3">
+              <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
+            </a>
+            <div class="flex items-center gap-1">
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/posts"
+                  
+                >Blog</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/photos"
+                  
+                >35mm</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/cafes"
+                  
+                >Cafes</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/about"
+                  
+                >About</a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('mobile-menu-btn');
+        const dropdown = document.getElementById('mobile-menu-dropdown');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+        
+        let isOpen = false;
+        
+        if (btn) {
+          btn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            if (isOpen) {
+              dropdown.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+              dropdown.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              
+              iconOpen.classList.add('hidden', 'scale-50', 'opacity-0');
+              iconClose.classList.remove('hidden', 'scale-50', 'opacity-0');
+              iconClose.classList.add('scale-100', 'opacity-100');
+            } else {
+              dropdown.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+              dropdown.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              
+              iconClose.classList.add('hidden', 'scale-50', 'opacity-0');
+              iconOpen.classList.remove('hidden', 'scale-50', 'opacity-0');
+              iconOpen.classList.add('scale-100', 'opacity-100');
+            }
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener('click', (e) => {
+            if (isOpen && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+              btn.click();
+            }
+          });
+        }
+    
+        window.addEventListener('resize', () => {
+          if(window.innerWidth >= 640 && isOpen) {
+            btn.click();
+          }
+        });
+      });
+    </script>
+
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words">
+      
+<div class="pb-20">
+  <h1 class="!mb-0">Design Without Designing【译】</h1>
+  
+    <div class="italic text-gray-500 text-xs mt-5">Mar 20, 2026</div>
+  
+  <blockquote>
+<p>原文链接：<a href="https://x.com/neethanwu/status/2034786360356204934">https://x.com/neethanwu/status/2034786360356204934</a></p>
+</blockquote>
+<p>我是一名 Engineer，直到三个月前还没碰过 UI/UX Design。最终我搭建了一套用于 Design 的 Agent Harness，这让我能够端到端（End to End）地交付 Design。</p>
+<p>Agents 正在改变一个人能覆盖的范畴。我一直在把自己推向 Generalist 领域，去承担那些我以前无法完成的工作。Design 曾是最大的障碍：Pixels, Spacing, Typography, Color。这些是在用户阅读任何文字之前，就能让他们产生信任感的东西。</p>
+<p>我以前完全没有这些 Skill set。所以我搭建了一套用于 Design 的 Harness：它包含三个层级，让我无需成为一名 Designer 就能拥有真正的 Design 能力。</p>
+<p>以下是它的核心内容。</p>
+<h2 id="%E7%AC%AC%E4%B8%80%E5%B1%82%EF%BC%9Askills%EF%BC%88%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86%EF%BC%89" tabindex="-1">第一层：Skills（专业知识）</h2>
+<p>Skills 是你安装到 AI Agent（无论是 Claude Code, Cursor, Codex 还是其他工具）中的指令文件。它们将别人的 Design expertise 转移到你的 Workflow 中。本质上，你是在借用资深 Designers 的审美（Taste）。</p>
+<p><a href="https://impeccable.style/">Impeccable</a> <strong>(</strong><a href="https://x.com/@pbakaus">@pbakaus</a><strong>)</strong> 这是我最常用的 Skill，由 jQuery UI 的原作者打造。它拥有 20 多个命令：<code>/audit</code>, <code>/polish</code>, <code>/animate</code>, <code>/typeset</code>, <code>/arrange</code>。它能识别出那些让 AI 生成的 UI 看起来充满“AI 味”的 Anti-patterns：过度使用的 Fonts、Gray-on-color 文本、Pure blacks 以及 Nested cards。</p>
+<p><img src="https://pbs.twimg.com/media/HDwj9hEa8AAKvsx?format=jpg&amp;name=large" alt="图像"></p>
+<p><code>/delight</code> 是我目前最喜欢的命令。我经常使用它，每次它都会引入一些令我惊艳的元素，并提升产品的整体质感。这个命令几乎一夜之间改变了我的产出质量。<a href="https://emilkowal.ski/skill">Emil Kowalski's Design Engineer Skill</a> <strong>(</strong><a href="https://x.com/@emilkowalski">@emilkowalski</a> <strong>)</strong> Emil 是 Linear 的 Design Engineer（曾就职于 Vercel），他创建了 Sonner 和 Vaul（每周 npm 下载量超过 1500 万）。他的 Skill 编码了他对 Animations, UI Polish 以及大多数人会忽略的细节的思考方式。</p>
+<p>我使用免费版本来借用 Emil 的思维方式，并偶尔将其应用到我的 Design 工作中。完整版附带了他的 <a href="https://animations.dev/">animations.dev</a> 课程。<a href="https://interface-design.dev/">Interface Design</a> <strong>(</strong><a href="https://x.com/@Dammyjay93">@Dammyjay93</a><strong>)</strong> 这个工具解决了 AI 辅助 Design 中最烦人的问题：你的 Agent 在不同 Session 之间会遗忘 Design 决策。这个 Plugin 将你的 Specs（Spacing grids, Color palettes, Depth strategies, Component patterns）存储在一个持久化的 <a href="http://system.md">system.md</a> 文件中，并自动加载。</p>
+<p><a href="https://ui-skills.com/">UI Skills</a> <strong>(</strong><a href="https://x.com/@ibelick">@ibelick</a><strong>)</strong> 由 Julien Thibeaut 创建（他也构建了 motion-primitives）。15 个开源 Skills，涵盖了 Baseline UI, Accessibility, Motion performance 和 Metadata。为广泛的覆盖面奠定了坚实的基础。我使用它的频率没有 Impeccable 高，但在需要时它就在那里。</p>
+<h2 id="%E7%AC%AC%E4%BA%8C%E5%B1%82%EF%BC%9Aagent-canvas%EF%BC%88%E6%93%8D%E4%BD%9C%E7%95%8C%E9%9D%A2%EF%BC%89" tabindex="-1">第二层：Agent Canvas（操作界面）</h2>
+<p>我也称之为 Agent Shells。它们是本身没有内置 Agent 的 Design surfaces。它们使用的是你的 Agents：Claude Code, Codex 或本地运行的任何工具。</p>
+<p>Canvas 是 Shell（壳），你的 Agent 是 Kernel（核）。</p>
+<p><a href="https://paper.design/">Paper</a> <strong>(</strong><a href="https://x.com/@paper">@paper</a><strong>)</strong> 这是我近期使用频率最高的一个。Canvas 是基于真实的 HTML 和 CSS 构建的，而不是私有格式。你 Design 的内容就是实际的代码，没有 Translation layer，没有 Handoff。</p>
+<p><img src="https://pbs.twimg.com/media/HDwjx0La4AAOxjV?format=jpg&amp;name=large" alt="图像"></p>
+<p>它暴露了具有完全读写权限的 MCP 工具。由于不需要格式转换，它与本地 Agents 配合得非常出色。</p>
+<p>大多数时候我将 Paper 用于 Design systems, Design tokens 和页面 Design 迭代，然后在构建产品的同时将其作为 Source of truth 和 Design reference。Paper 有一个包含有限 MCP 调用配额的免费档位。</p>
+<p><a href="https://pencil.dev/">Pencil</a> <strong>(</strong><a href="https://x.com/@tomkrcha">@tomkrcha</a><strong>)</strong> 采取了不同的策略。它使用基于 JSON 的 .pen 格式，是 Git-diffable 的，且可以通过 MCP 让 Agent 进行操控。我的 Design 文件存放在 Repo 中，像代码一样进行版本管理。</p>
+<p><img src="https://pbs.twimg.com/media/HDwjtyAbAAAWg61?format=jpg&amp;name=large" alt="图像"></p>
+<p>Pencil 还有一个 Swarm mode，我可以同时启动多个 Agents（最多 6 个）在 Canvas 上工作：一个处理 Typography，一个负责 Layout，第三个负责同步 Design system。第一次看到 Agent swarm 在 Canvas 上视觉化协作时，那种感觉非常震撼。</p>
+<p>Pencil 目前是免费的，我经常同时使用 Pencil 和 Paper。</p>
+<h2 id="%E7%AC%AC%E4%B8%89%E5%B1%82%EF%BC%9Ainspiration-and-taste%EF%BC%88%E5%AE%A1%E7%BE%8E%E4%B9%8B%E7%9C%BC%EF%BC%89" tabindex="-1">第三层：Inspiration and taste（审美之眼）</h2>
+<p>Skills 给我 Expertise。Canvases 给我 Surface。但我仍需要训练我的眼睛，在要求 Agent 制作之前，先知道什么是“好”。</p>
+<p><a href="https://variant.ai/">Variant</a> <strong>(</strong><a href="https://x.com/@variantui">@variantui</a><strong>)</strong> 输入一个想法，滚动浏览无尽的、不重复的 Design 诠释。最出色的功能是 Style Dropper：你将其指向任何 Design，它就能吸收视觉基因（Color palette, Typographic rhythm, Spatial density）并转移到另一个 Design 上。</p>
+<p>我每天花大约 20 分钟在上面滚动浏览。这已经成为我在进行任何 Design 工作前训练眼力的一部分。</p>
+<p>但对我来说，Variant 不仅仅是 Inspiration。我会从社区挑选喜欢的东西，提示它生成 Variants，探索不同方向。当我选中满意的作品时，我可以复制代码、导出为 React，或者拷贝带有 HTML references 的 Prompts 并直接交给我的 Coding agents 进行实现。</p>
+<p><img src="https://pbs.twimg.com/media/HDwj6NBbkAAUPqd?format=jpg&amp;name=large" alt="图像"></p>
+<p>从那里我提取 Tokens 或 Components，并开始构建更多的 Views 和 Pages。这是从 Inspiration 到实际产品之间一段惊人顺滑的桥梁。</p>
+<p><a href="https://mobbin.com/">Mobbin</a> <strong>(</strong><a href="https://x.com/@mobbin">@mobbin</a><strong>) &amp;</strong> <a href="https://awwwards.com/">Awwwards</a> <strong>(</strong><a href="https://x.com/@awwwards">@awwwards</a><strong>)</strong> 这些在 Design 界早已闻名。我用它们来吸收那些最顶尖的、经过策划的作品并学习审美。</p>
+<p>Mobbin 覆盖了 Mobile apps 和 Websites。当我需要查看顶尖 App 如何处理 Onboarding, Settings 或 Checkout 时，就会去那里。他们最近发布了一个 Figma plugin 来让你直接提取参考，尽管我不用 Figma（也不会用）所以还没测试过。</p>
+<p>Awwwards 是通过评委打分，覆盖了 Web craft 的前沿。他们还举办会议和学院。</p>
+<p><a href="https://cosmos.so/">Cosmos</a> <strong>(</strong><a href="https://x.com/@thecosmos">@thecosmos</a><strong>)</strong> 这是我收集所有灵感和想法的地方，也在这里探索别人的 Collection。Web design, Interiors, Typography, Photography, Architecture，只要吸引我的眼球，我都会收藏。</p>
+<p>我通过他们的十六进制颜色搜索甚至模糊的描述来不断发现新事物。它能以令我惊讶的方式找到我想要的东西。我用它来建立视觉参考集群（Clusters），这些集群慢慢塑造了我对 Design 的思考。</p>
+<h2 id="%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93" tabindex="-1">模式总结</h2>
+<p>三层结构。Skills 提供专业知识，Canvases 提供 Agent 工作界面，Inspiration 训练审美。</p>
+<p>我不是 Designer。我没有经过长年累月的直觉训练，我的审美也仍在发展。我每天都在学习。但我为自己扫清了障碍。我从完全不会 Design，变成了现在每周都能交付产品，并对自己产出的东西感到满意。三个月前，这一切还不存在。</p>
+<p>你不需要成为一名 Designer。你需要的是一套合适的 Harness。</p>
+
+</div>
+
+    </content>
+
+    <footer class="py-4">
+      <div class="prose container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl text-center text-sm text-gray-500">
+        <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+      </div>
+    </footer>
+</body>
+</html>
