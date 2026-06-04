@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-solarizedlight.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style/main.css">
+  <title>举个栗子 - Notion 创始人：Jazz Mode、杠铃结构与 AI 时代的组织重启【转】</title>
+  <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
+</head>
+<body class="flex flex-col min-h-screen font-serif has-fixed-nav">
+    <nav class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0 translate-x-0">
+      <div class="container mx-auto max-w-3xl flex items-center justify-between w-full relative">
+        <!-- Mobile/Tablet Top Bar -->
+        <div class="flex sm:hidden items-center justify-between w-full pointer-events-auto py-4 px-1">
+          <a href="/" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:opacity-90 transition-all shrink-0 z-10 active:scale-95 duration-200">
+            <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-[38px] h-[38px] rounded-full object-cover pointer-events-none" />
+          </a>
+          <div class="relative">
+            <button id="mobile-menu-btn" aria-label="Toggle Menu" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-gray-600 hover:text-black hover:bg-white transition-all focus:outline-none active:scale-95">
+              <svg id="menu-icon-open" class="w-6 h-6 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12h.01M12 12h.01M19 12h.01"></path></svg>
+              <svg id="menu-icon-close" class="w-6 h-6 hidden transition-all duration-300 scale-50 opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- Floating Mobile Menu -->
+            <div id="mobile-menu-dropdown" class="absolute right-0 mt-4 w-36 bg-white/95 backdrop-blur-xl border border-black/5 shadow-2xl pb-3 pt-3 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[1100]" style="border-radius: 2.1rem;">
+              <div class="flex flex-col gap-1 px-3">
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/posts"
+                  >Blog</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/photos"
+                  >35mm</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/cafes"
+                  >Cafes</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/about"
+                  >About</a>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Centered Pill -->
+        <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
+          <div class="flex items-center">
+            <a href="/" class="hover:opacity-90 transition-transform shrink-0 z-10 active:scale-95 duration-200 pr-3">
+              <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
+            </a>
+            <div class="flex items-center gap-1">
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/posts"
+                  
+                >Blog</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/photos"
+                  
+                >35mm</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/cafes"
+                  
+                >Cafes</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  href="/about"
+                  
+                >About</a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('mobile-menu-btn');
+        const dropdown = document.getElementById('mobile-menu-dropdown');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+        
+        let isOpen = false;
+        
+        if (btn) {
+          btn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            if (isOpen) {
+              dropdown.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+              dropdown.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              
+              iconOpen.classList.add('hidden', 'scale-50', 'opacity-0');
+              iconClose.classList.remove('hidden', 'scale-50', 'opacity-0');
+              iconClose.classList.add('scale-100', 'opacity-100');
+            } else {
+              dropdown.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+              dropdown.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              
+              iconClose.classList.add('hidden', 'scale-50', 'opacity-0');
+              iconOpen.classList.remove('hidden', 'scale-50', 'opacity-0');
+              iconOpen.classList.add('scale-100', 'opacity-100');
+            }
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener('click', (e) => {
+            if (isOpen && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+              btn.click();
+            }
+          });
+        }
+    
+        window.addEventListener('resize', () => {
+          if(window.innerWidth >= 640 && isOpen) {
+            btn.click();
+          }
+        });
+      });
+    </script>
+
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words">
+      
+<div class="pb-20">
+  <h1 class="!mb-0">Notion 创始人：Jazz Mode、杠铃结构与 AI 时代的组织重启【转】</h1>
+  
+    <div class="italic text-gray-500 text-xs mt-5">Jun 04, 2026</div>
+  
+  <blockquote>
+<p>原文链接：<a href="https://x.com/xiaogaifun/status/2060298550123385304">https://x.com/xiaogaifun/status/2060298550123385304</a></p>
+</blockquote>
+<p><img src="https://pbs.twimg.com/media/HJemhXTbcAAI6qN.jpg?name=orig" alt="cover"></p>
+<p>Notion 创始人这期分享确实很精彩。</p>
+<p>大家千万别错过 Notion CEO Ivan Zhao 在红杉聊的这期播客，观点特别有见地。</p>
+<p>甚至我觉得，这是近半年来所有创业者都应该认真精读的一期内容。</p>
+<p>相当解惑。Ivan 把 AI 时代里一个组织正在发生的变化，用一种特别形象的方式串了起来。</p>
+<h2 id="1.-jazz-mode%EF%BC%9A%E4%BB%8E-marching-band-%E5%88%B0-jazz-band" tabindex="-1">1. Jazz Mode：从 marching band 到 jazz band</h2>
+<p>Ivan 提到一个非常有意思的概念，叫 Jazz Mode。传统公司像 marching band（行进乐队），队形整齐，节奏固定，指挥说什么大家做什么。</p>
+<p>Notion 想做的是 jazz band，有基本结构，但更强调即兴、互相接住、每个人都能主动发挥。</p>
+<p>Ivan 觉得 AI 时代变化太快，太像 marching band 的组织会跟不上，所以 Notion 这几年在刻意招那种高主动性、高好奇心、能自己找路的人。</p>
+<h2 id="2.-%E6%89%BF%E8%AE%A4%E5%B1%82%E7%BA%A7%EF%BC%8C%E8%AE%BE%E8%AE%A1%E5%8D%8F%E4%BD%9C%E6%96%B9%E5%BC%8F" tabindex="-1">2. 承认层级，设计协作方式</h2>
+<p>公司并不存在完美的扁平结构，人和人之间的层级关系始终存在，在这一点上他选择承认现实。</p>
+<p>真正能设计的是一起工作的方式，把公司组织得更像一支可以即兴合奏的爵士乐队，而不是一支只会整齐队列表演的军乐队。</p>
+<h2 id="3.-%E4%B8%BB%E6%97%8B%E5%BE%8B%E8%A6%81%E6%B8%85%E6%A5%9A%EF%BC%8C%E5%8D%B3%E5%85%B4%E6%89%8D%E6%9C%89%E6%96%B9%E5%90%91" tabindex="-1">3. 主旋律要清楚，即兴才有方向</h2>
+<p>爵士模式的前提是主旋律要清楚，相当于愿景、产品方向和少数几条铁律，类似底层和声结构。</p>
+<p>团队在这个主旋律之上拥有较大的即兴空间，可以根据用户反馈和技术变化自己处理段落，而不是在每一个决策点都往上递审批。</p>
+<h2 id="4.-%E5%85%AD%E5%8D%81%E4%B8%AA%E5%89%8D%E5%88%9B%E5%A7%8B%E4%BA%BA%EF%BC%9A%E5%88%BB%E6%84%8F%E8%90%A5%E9%80%A0%E7%9A%84%E4%BA%BA%E6%89%8D%E7%BB%93%E6%9E%84" tabindex="-1">4. 六十个前创始人：刻意营造的人才结构</h2>
+<p>Notion 现在大约有六十个曾经做过创始人的员工，这是他刻意营造的人才结构。</p>
+<p>他更愿意招对 0 到 1 负过全责的人，这类人习惯自己发现问题、搭框架、推进落地，也更愿意在模糊地带主动出手。</p>
+<p>公司需要的是能自己写歌、也能听懂别人演奏的人，而不是只会照谱子执行任务的演奏员。</p>
+<h2 id="5.-%E6%9D%A0%E9%93%83%E7%BB%93%E6%9E%84%EF%BC%9A%E4%B8%A4%E5%A4%B4%E9%87%8D%E3%80%81%E4%B8%AD%E9%97%B4%E7%98%A6%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%9B%A2%E9%98%9F" tabindex="-1">5. 杠铃结构：两头重、中间瘦的工程团队</h2>
+<p>在工程组织上，他把 Notion 重构成一个杠铃结构。</p>
+<p>一端是非常 junior 的工程师，刚毕业或者职业早期；另一端是少数非常 senior 的架构师和技术带头人。</p>
+<p>中间那类常规中高级工程师反而被刻意压缩，整个分布像一根两头重、中间瘦的杠铃。</p>
+<h2 id="6.-%E6%9D%A0%E9%93%83%E7%BB%93%E6%9E%84%E7%9A%84%E9%80%BB%E8%BE%91" tabindex="-1">6. 杠铃结构的逻辑</h2>
+<p>年轻工程师可塑性强，不会被旧时代的大规模工程实践和工具链束缚思路，在大模型快速变化的环境里能更容易接受全新的开发范式。</p>
+<p>资深架构师负责定义系统级的分工和抽象，比如哪些部分交给模型，哪些部分坚持规则，如何组织数据和服务，确保整个产品作为一个系统是连贯的，而不是东一块西一块的功能拼盘。</p>
+<h2 id="7.-%E6%B8%A9%E6%B0%B4%E7%8A%B6%E6%80%81%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%AD%E9%97%B4%E5%B1%82%E6%9C%80%E5%8D%B1%E9%99%A9" tabindex="-1">7. 温水状态：为什么中间层最危险</h2>
+<p>当一个工程团队里大多数人都停在经验不浅、但也谈不上顶尖的这个档位时，整个组织很容易陷入一种温水状态：事情都有人做，但缺少敢颠覆旧方案的人，也少了愿意疯狂尝试新东西的人。</p>
+<p>年轻人缺少全局视角，只能局部优化，老一辈如果人数太少，声音又容易被流程淹没，这种结构在 AI 时代会变得非常迟钝。</p>
+<h2 id="8.-%E4%BF%AE%E6%A1%A5-vs-%E9%85%BF%E5%95%A4%E9%85%92%EF%BC%9A%E4%B8%A4%E7%A7%8D%E4%BA%A7%E5%93%81%E8%8C%83%E5%BC%8F" tabindex="-1">8. 修桥 vs 酿啤酒：两种产品范式</h2>
+<p>他用一个很有画面感的比喻来解释大模型产品开发。传统软件工程更像修桥，强调确定性的结构分析和数学推演，只要按照规范搭建，结果会高度可预测。</p>
+<p>基于大语言模型做产品更接近酿啤酒，需要在原有配方和工艺上不断试验，调整温度、时间和原料比例，最后的标准来自人的口感而不是单一技术指标，用户体验是第一参照系。</p>
+<h2 id="9.-ai-%E6%98%AF%E5%AF%B9%E4%BA%A7%E5%93%81%E7%9A%84%E5%86%8D%E5%88%9B%E4%BD%9C%EF%BC%8C%E4%B8%8D%E6%98%AF%E8%B4%B4%E4%B8%80%E4%B8%AA%E6%8C%89%E9%92%AE" tabindex="-1">9. AI 是对产品的再创作，不是贴一个按钮</h2>
+<p>他把 Notion 的 AI 能力视作对产品的再创作，而不是简单给旧界面贴一个智能按钮。</p>
+<p>在拿到 GPT-4 的早期访问时，他的直觉是，工具本身的工作方式需要重想，如果从公司一开始就可以假设存在这样的模型，那么 Notion 的交互结构、功能边界和价值主张应该是完全不一样的一套设计，这需要以重启思维来对待，而不是做一个插件。</p>
+<h2 id="10.-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%87%8D%E5%90%AF%EF%BC%9A%E4%BA%AC%E9%83%BD%E5%B0%8F%E5%85%AC%E5%AF%93%E9%87%8C%E7%9A%84%E3%80%8C%E6%8B%BF%E6%8E%89%E5%8C%85%E8%A2%B1%E3%80%8D" tabindex="-1">10. 第一次重启：京都小公寓里的「拿掉包袱」</h2>
+<p>他的职业生涯里出现过两次真正意义上的重启。</p>
+<p>第一次发生在公司最困难的时候，团队被压缩到只剩几个核心成员，几个人躲在京都的小公寓里，用近乎白纸的心态重新问自己。</p>
+<p>Notion 还要不要继续存在，如果要继续，哪些东西必须放弃，哪些能力哪怕再难也要保留。这一轮更偏向拿掉包袱、守住本质。</p>
+<h2 id="11.-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E9%87%8D%E5%90%AF%EF%BC%9Agpt-4-%E8%A7%A6%E5%8F%91%E7%9A%84%E3%80%8C%E5%90%91%E5%89%8D%E8%B7%B3%E3%80%8D" tabindex="-1">11. 第二次重启：GPT-4 触发的「向前跳」</h2>
+<p>第二次重启发生在他拿到 GPT-4 早期权限之后。</p>
+<p>当模型能力跃迁时，他意识到自己这家公司可能会失去原本的位置，也可能借此进化成下一代生产力工具，关键在于有没有勇气承认旧的产品假设正在过期。</p>
+<p>这一次的重启更偏向向前跳，是把 Notion 推向 AI 原生路线的转折点，从「文档+数据库」升级成「有理解能力的工作空间」的起点。</p>
+<h2 id="12.-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E8%AF%A5%E9%87%8D%E5%90%AF%EF%BC%9A%E7%9C%8B%E9%94%99%E4%BD%8D%EF%BC%8C%E4%B8%8D%E7%9C%8B%E6%8A%A5%E8%A1%A8" tabindex="-1">12. 什么时候该重启：看错位，不看报表</h2>
+<p>关于什么时候该重启，他给的判断标准非常实际。</p>
+<p>并不是等到财务报表撑不住，更多是看组织与时代之间的错位：技术和市场环境已经明显往前走了，内部流程、产品形态和人才结构还停在旧逻辑里。</p>
+<p>同时创始人对当下这家公司明显提不起兴趣，每天更像在维护一台运转正常但没有灵魂的机器，这种状态持续存在，基本就到了需要重启的阶段。</p>
+<h2 id="13.-%E5%88%9B%E5%A7%8B%E4%BA%BA%E8%83%BD%E9%87%8F%EF%BC%9A%E4%B8%8D%E6%98%AF%E6%8B%8D%E6%9D%BF%EF%BC%8C%E6%98%AF%E5%8F%91%E5%B0%84%E9%A2%91%E7%8E%87" tabindex="-1">13. 创始人能量：不是拍板，是发射频率</h2>
+<p>他谈创始人角色时，把重心放在创始人能量上。</p>
+<p>创始人在公司里最关键的价值不只是最后拍板，更是持续发射出一套稳定的频率，这套频率包括对产品审美的标准，对什么算好体验的直觉，对哪些细节不能妥协的执念，以及面对不确定性时愿不愿意亲自下场试。</p>
+<p>只要这股能量还在线，团队就知道自己在跟随一位有风格的乐手，不是在为一个抽象的 KPI 系统打工。</p>
+<h2 id="14.-%E7%AE%80%E5%8E%86%E6%98%AF%E5%99%AA%E9%9F%B3%EF%BC%8C%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F%E6%89%8D%E6%98%AF%E4%BF%A1%E5%8F%B7" tabindex="-1">14. 简历是噪音，思考方式才是信号</h2>
+<p>在人才选拔上，他逐步弱化简历本身的重要性。</p>
+<p>Notion 的第一轮面试已经不再以简历为核心材料，更关注候选人在开放问题前的思考方式，对产品的直觉，对工具和工作方式的理解。</p>
+<p>名校和大厂的履历在他眼里容易变成噪音，他更在意一个人能不能提出自己的看法，能不能在真实的情境下把事情推进，而不仅是在纸面上合格。</p>
+<h2 id="15.-%E9%94%80%E5%94%AE%E8%A6%81%E5%85%88%E5%90%AC%E6%87%82%E5%AE%A2%E6%88%B7%E7%9A%84%E8%8A%82%E5%A5%8F" tabindex="-1">15. 销售要先听懂客户的节奏</h2>
+<p>在销售文化上，他没有把销售放在产品的对立面。</p>
+<p>他希望 Notion 的销售像懂音乐的乐手，先听清楚客户现在那首歌的节奏，再思考 Notion 这件乐器应该在什么位置加入，是主旋律，是伴奏，还是间奏，而不是一上来就把音量拉到最大只追逐签约数字。</p>
+<p>真正重要的是建立长期合作关系，帮助对方把 Notion 用深、用广，而不是满足一次性收入目标。</p>
+<h2 id="16.-%E6%B0%B8%E8%BF%9C%E6%98%AF%E4%B8%80%E6%94%AF%E7%88%B5%E5%A3%AB%E4%B9%90%E9%98%9F%EF%BC%8C%E4%B8%8D%E6%98%AF%E6%B5%81%E6%B0%B4%E7%BA%BF" tabindex="-1">16. 永远是一支爵士乐队，不是流水线</h2>
+<p>他反复把组织、产品和 AI 放在同一个坐标系里思考。</p>
+<p>组织设计要适配新的技术范式，人才结构要为试错和即兴留出空间，产品要在模型能力和用户体验之间找到新的平衡点，销售和商业化则负责把这套东西带到更大的市场里。</p>
+<p>整套思路的底层前提很简单：这家公司永远是一支在不断改编曲目的爵士乐队，而不是一台固定工序的流水线。</p>
+
+</div>
+
+    </content>
+
+    <footer class="py-4">
+      <div class="prose container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl text-center text-sm text-gray-500">
+        <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+      </div>
+    </footer>
+</body>
+</html>
