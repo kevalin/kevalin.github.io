@@ -709,6 +709,67 @@
 
           <!-- Photo Slider Container (Supports 1 or Multiple Photos with Left/Right Controls) -->
           
+            <div class="cafe-slider relative mt-2 mb-2 overflow-hidden rounded-xl not-prose group/slider" data-current-index="0" data-total-photos="3">
+              <!-- Photos Stack -->
+              <div class="slider-track relative w-full">
+                
+                  <img
+                    src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546281.jpg"
+                    alt="虎牙咖啡 1"
+                    class="slider-img w-full h-auto rounded-xl border border-black/5 block transition-all duration-300 !my-0 "
+                    data-index="0"
+                    loading="lazy"
+                  />
+                
+                  <img
+                    src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546300.jpg"
+                    alt="虎牙咖啡 2"
+                    class="slider-img w-full h-auto rounded-xl border border-black/5 block transition-all duration-300 !my-0 hidden"
+                    data-index="1"
+                    loading="lazy"
+                  />
+                
+                  <img
+                    src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546311.jpg"
+                    alt="虎牙咖啡 3"
+                    class="slider-img w-full h-auto rounded-xl border border-black/5 block transition-all duration-300 !my-0 hidden"
+                    data-index="2"
+                    loading="lazy"
+                  />
+                
+              </div>
+
+              <!-- Controls for Multi-Photo Sliders -->
+              
+                <!-- Left Prev Button -->
+                <button
+                  type="button"
+                  class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-md flex items-center justify-center transition-all opacity-0 group-hover/slider:opacity-100 z-10"
+                  aria-label="Previous photo"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+
+                <!-- Right Next Button -->
+                <button
+                  type="button"
+                  class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-md flex items-center justify-center transition-all opacity-0 group-hover/slider:opacity-100 z-10"
+                  aria-label="Next photo"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+
+                <!-- Photo Counter Badge -->
+                <div class="slider-counter absolute bottom-2 right-2 px-2 py-0.5 rounded-full bg-black/50 text-white text-[10px] font-mono backdrop-blur-md z-10">
+                  1 / 3
+                </div>
+              
+            </div>
+          
 
           <!-- Impression / Review -->
           <p class="text-xs sm:text-sm text-gray-600 font-serif leading-relaxed !my-0">
