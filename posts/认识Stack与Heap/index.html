@@ -252,14 +252,13 @@
       });
     </script>
 
-    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words animate-fade-in-up">
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 mb-16 sm:mb-20 break-words animate-fade-in-up">
       
-<div class="pb-20">
-  <h1 class="!mb-0">认识 Stack 与 Heap</h1>
-  
-    <div class="italic text-gray-500 text-xs mt-5">Nov 13, 2019</div>
-  
-  <h2 id="the-stack" tabindex="-1">The Stack</h2>
+<h1 class="!mb-0">认识 Stack 与 Heap</h1>
+
+  <div class="italic text-gray-500 text-xs mt-5 mb-8">Nov 13, 2019</div>
+
+<h2 id="the-stack" tabindex="-1">The Stack</h2>
 <p>什么是堆栈？它是计算机内存中的一个特殊区域，存储着被函数（包括main()函数）创建的临时变量。它由CPU非常紧密的管理和优化，是一种 <code>LIFO</code> （后进先出）的数据结构。函数每一次定义一个新的变量，它都会被放进堆栈中。当函数执行完成退出时，被这个函数放到堆栈里的变量都会被释放，也就是从堆栈中被删除。一旦堆栈变量被释放，对于其他的堆栈变量而言，这个特殊的内存区域就变的可用。</p>
 <p>使用堆栈来存储变量的好处是内存是由系统来管理，你不必手动的分配和释放内存。更重要的是，CPU管理堆栈内存非常的高效，从里面读写变量都是非常快速的。</p>
 <p>对于堆栈还有一个要注意的地方，堆栈是有小大限制的，并且随着底层操作系统的不同，这个大小也是不同的。</p>
@@ -295,13 +294,14 @@
 <h2 id="%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%A0%86%EF%BC%8C%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%BA%94%E8%AF%A5%E4%BD%BF%E7%94%A8%E5%A0%86%E6%A0%88%EF%BC%9F" tabindex="-1">什么时候应该使用堆，什么时候应该使用堆栈？</h2>
 <p>如果您需要分配一个大的内存块（例如，一个大 <code>array</code> 或一个大的 <code>struct</code> ），并且需要长时间保持该变量（例如全局变量），则应该在堆上分配它。如果您要处理的变量相对较小，并且只要使用它们的函数时使用，那么您应该使用堆栈，它更容易，更快捷。如果您需要像数组和结构这样的变量可以动态更改大小（例如，可以根据需要增加或缩小的数组），则可能需要在堆上分配它们，并使用动态内存分配函数，如 <code>malloc()</code> ， <code>calloc()</code> ， <code>realloc()</code> 和 <code>free()</code> 来“手动“管理该内存。</p>
 
-</div>
 
     </content>
 
-    <footer class="py-4">
-      <div class="prose container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl text-center text-sm text-gray-500">
-        <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+    <footer class="mt-auto">
+      <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl">
+        <div class="border-t border-black/[0.06] pt-8 pb-12 text-center text-xs text-gray-400 font-serif tracking-wider">
+          <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+        </div>
       </div>
     </footer>
 

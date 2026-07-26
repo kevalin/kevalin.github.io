@@ -252,14 +252,13 @@
       });
     </script>
 
-    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words animate-fade-in-up">
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 mb-16 sm:mb-20 break-words animate-fade-in-up">
       
-<div class="pb-20">
-  <h1 class="!mb-0">TCP Retransmission</h1>
-  
-    <div class="italic text-gray-500 text-xs mt-5">Mar 15, 2018</div>
-  
-  <blockquote>
+<h1 class="!mb-0">TCP Retransmission</h1>
+
+  <div class="italic text-gray-500 text-xs mt-5 mb-8">Mar 15, 2018</div>
+
+<blockquote>
 <p>为什么tcp会存在retransmission？tcp协议是一个可靠的协议。它通过重新发送(retransmission)来实现tcp片段传输的可靠性。简单来说，tcp会不断重复发送tcp片段，直到片段被正确接收。</p>
 </blockquote>
 <h2 id="%E8%B6%85%E6%97%B6%E9%87%8D%E6%96%B0%E5%8F%91%E9%80%81" tabindex="-1">超时重新发送</h2>
@@ -314,13 +313,14 @@ define TCP_RTO_MIN     ((unsigned)(HZ/5))
 <li><a href="https://www.orczhou.com/index.php/2011/10/tcpip-protocol-start-rto/">TCP/IP重传超时–RTO</a></li>
 </ul>
 
-</div>
 
     </content>
 
-    <footer class="py-4">
-      <div class="prose container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl text-center text-sm text-gray-500">
-        <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+    <footer class="mt-auto">
+      <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl">
+        <div class="border-t border-black/[0.06] pt-8 pb-12 text-center text-xs text-gray-400 font-serif tracking-wider">
+          <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+        </div>
       </div>
     </footer>
 

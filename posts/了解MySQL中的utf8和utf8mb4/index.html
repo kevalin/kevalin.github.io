@@ -252,14 +252,13 @@
       });
     </script>
 
-    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words animate-fade-in-up">
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 mb-16 sm:mb-20 break-words animate-fade-in-up">
       
-<div class="pb-20">
-  <h1 class="!mb-0">了解 MySQL 中的 utf8 和 utf8mb4</h1>
-  
-    <div class="italic text-gray-500 text-xs mt-5">Dec 26, 2019</div>
-  
-  <p><a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> 使用一至六个 <a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E8%8A%82">字节</a> 为每个字符编码（尽管如此，2003年11月UTF-8被RFC 3629重新规范，只能使用原来Unicode定义的区域，U+0000到U+10FFFF，也就是说最多 <strong>四个字节</strong> ）。然而在MySQL的utf8编码的每个符号最多 <strong>三个字节</strong> ，所以它的别名也叫 <code>utf8mb3</code> ，它支持的范围只有U+000000到U+00FFFF，当我们存入一个正常UTF-8编码的字符但有超过MySQL的utf8字符编码范围的内容时就会有问题了，例如Emoji表情。</p>
+<h1 class="!mb-0">了解 MySQL 中的 utf8 和 utf8mb4</h1>
+
+  <div class="italic text-gray-500 text-xs mt-5 mb-8">Dec 26, 2019</div>
+
+<p><a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> 使用一至六个 <a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E8%8A%82">字节</a> 为每个字符编码（尽管如此，2003年11月UTF-8被RFC 3629重新规范，只能使用原来Unicode定义的区域，U+0000到U+10FFFF，也就是说最多 <strong>四个字节</strong> ）。然而在MySQL的utf8编码的每个符号最多 <strong>三个字节</strong> ，所以它的别名也叫 <code>utf8mb3</code> ，它支持的范围只有U+000000到U+00FFFF，当我们存入一个正常UTF-8编码的字符但有超过MySQL的utf8字符编码范围的内容时就会有问题了，例如Emoji表情。</p>
 <p>我们要清楚的知道，MySQL的utf8是不能等同于我们一般认为的UTF-8的，它不能提供完整的Unicode支持，所以是有可能导致数据丢失或安全性问题。</p>
 <p>MySQL在5.5.3之后提供了一个新的编码方式── <code>utf8mb4</code> ，它支持正常的UTF-8和完整的Unicode，甚至是星座符号，例如♈，哈哈，是不是强大了不少。因此，我们在使用MySQL时，最好使用utf8mb4这个编码方式。</p>
 <h2 id="%E6%9F%A5%E7%9C%8B%E5%BD%93%E5%89%8Dmysql%E5%AD%97%E7%AC%A6%E9%9B%86" tabindex="-1">查看当前MySQL字符集</h2>
@@ -301,13 +300,14 @@
 <li><a href="http://mysql.taobao.org/monthly/2015/05/07/">set names 都做了什么</a></li>
 </ul>
 
-</div>
 
     </content>
 
-    <footer class="py-4">
-      <div class="prose container mx-auto px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl text-center text-sm text-gray-500">
-        <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+    <footer class="mt-auto">
+      <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl">
+        <div class="border-t border-black/[0.06] pt-8 pb-12 text-center text-xs text-gray-400 font-serif tracking-wider">
+          <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+        </div>
       </div>
     </footer>
 
