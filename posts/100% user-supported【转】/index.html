@@ -9,11 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style/main.css">
-  <title>举个栗子 - About Me</title>
+  <title>举个栗子 - 100&#92;% user-supported【转】</title>
   <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
 </head>
 <body class="flex flex-col min-h-screen font-serif has-fixed-nav">
-    <nav id="main-nav" class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0 translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
+    <nav class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0 translate-x-0">
       <div class="container mx-auto max-w-3xl flex items-center justify-between w-full relative">
         <!-- Mobile/Tablet Top Bar -->
         <div class="flex sm:hidden items-center justify-between w-full pointer-events-auto py-4 px-1">
@@ -46,7 +46,7 @@
                   >Cafes</a>
                 
                   <a
-                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 bg-white border border-black/10 text-black shadow-sm" 
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
                     href="/about"
                   >About</a>
                 
@@ -56,36 +56,34 @@
         </div>
 
         <!-- Desktop Centered Pill -->
-        <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
+        <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
           <div class="flex items-center">
-            <a href="/" class="hover:opacity-90 shrink-0 z-10 duration-200 pr-3">
+            <a href="/" class="hover:opacity-90 transition-transform shrink-0 z-10 active:scale-95 duration-200 pr-3">
               <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
             </a>
             <div class="flex items-center gap-1">
               
                 <a
-                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
                   href="/posts"
                   
                 >Blog</a>
               
                 <a
-                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
                   href="/photos"
                   
                 >35mm</a>
               
                 <a
-                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
                   href="/cafes"
                   
                 >Cafes</a>
               
                 <a
-                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 bg-[#111] text-white shadow-sm" 
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
                   href="/about"
-                  
-                    data-state="active" aria-current="page"
                   
                 >About</a>
               
@@ -137,71 +135,42 @@
             btn.click();
           }
         });
-
-        // Smart Auto-Hiding Navbar Handler
-        const mainNav = document.getElementById('main-nav');
-        let lastScrollY = window.scrollY;
-
-        const handleNavScroll = () => {
-          const currentScrollY = window.scrollY;
-          if (isOpen) return;
-
-          if (currentScrollY > 100 && currentScrollY > lastScrollY) {
-            // Scrolling down -> hide navbar
-            mainNav.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
-            mainNav.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
-          } else {
-            // Scrolling up or near top -> show navbar
-            mainNav.classList.remove('-translate-y-full', 'opacity-0', 'pointer-events-none');
-            mainNav.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
-          }
-          lastScrollY = currentScrollY;
-        };
-
-        window.addEventListener('scroll', handleNavScroll);
-
-        // Back to Top Button Handler
-        const backToTopBtn = document.getElementById('back-to-top-btn');
-        if (backToTopBtn) {
-          const toggleBackToTop = () => {
-            if (window.scrollY > 100) {
-              backToTopBtn.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
-              backToTopBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-            } else {
-              backToTopBtn.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-              backToTopBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-            }
-          };
-
-          window.addEventListener('scroll', toggleBackToTop);
-          toggleBackToTop();
-
-          backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          });
-        }
       });
     </script>
 
-    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words animate-fade-in-up">
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words">
       
 <div class="pb-20">
-  <h1 class="!mb-0">About Me</h1>
+  <h1 class="!mb-0">100&#92;% user-supported【转】</h1>
   
-    <div class="mb-10"></div>
+    <div class="italic text-gray-500 text-xs mt-5">Jun 04, 2026</div>
   
-  <p>I am an &quot;older novice&quot; programmer. If you have anything to tell me, please send me an email at <strong>IGtldmFsaW4xMjNAZ21haWwuY29t</strong>.</p>
-<h2 id="vibe-coding" tabindex="-1">Vibe coding</h2>
-<p>Just for fun, I build some interesting side projects.</p>
-<h3 id="let's-rework" tabindex="-1"><a href="https://www.letsrework.com">Let's REWORK</a></h3>
-<p>This project was entirely driven by love for the book &quot;REWORK&quot;, and of course I am a huge fan of @<a href="https://world.hey.com/dhh">DHH</a>.</p>
-<h3 id="%E9%A5%AE%E8%8C%B6" tabindex="-1"><a href="https://www.teafiy.com">饮茶</a></h3>
-<p>My younger brother is particularly interested in and knowledgeable about &quot;tea&quot;, so I made this website to showcase the knowledge and culture of &quot;tea&quot;.</p>
-<h3 id="mermaid.nvim" tabindex="-1"><a href="https://github.com/kevalin/mermaid.nvim">mermaid.nvim</a></h3>
-<p>Yes, I wrote a neovim plugin for myself that makes it easier for me to write charts using <a href="https://mermaid.js.org/">mermaid</a>.</p>
-<h3 id="lofi-music" tabindex="-1"><a href="https://www.lofimusic.xyz/">Lofi Music</a></h3>
-<p>24/7 cyberpunk-themed radio station with chill beats and pixel art visuals.</p>
-<h3 id="to-be-continued-%E2%80%A6" tabindex="-1">To be continued …</h3>
+  <blockquote>
+<p>原文地址：<a href="https://stephango.com/vcware">https://stephango.com/vcware</a></p>
+</blockquote>
+<p>Why Obsidian is 100% user-supported and not backed by venture capital investors:</p>
+<p>为什么 Obsidian 100% 由用户支持而不是由风险投资支持：</p>
+<ol>
+<li>We want to stay small, we don't need to hire lots of people / 我们想保持小规模，不需要招很多人</li>
+<li>We follow strict principles that we do not want to compromise / 我们遵循严格的原则，不想妥协</li>
+<li>Our users are happy to support us, we don't need VC money / 我们的用户乐意支持我们，我们不需要 VC 的钱</li>
+</ol>
+<p>Obsidian will not exist forever, no app will. However, the files you create in Obsidian are yours, and can hopefully last for generations. VCware is built with a five year horizon, it is not built to live on for decades.</p>
+<p>Obsidian 不会永远存在，没有任何应用会。然而，你在 Obsidian 中创建的文件是属于你的，并且有望传承数代。VCware 是以五年视野构建的，它不是为存在数十年而建的。</p>
+<p>Many startup founders raise VC money because they need the upfront capital to build their product, or they see it as a shortcut to growth. For some products the capital truly is necessary, but too often it's fueled by impatience and the inertia of Silicon Valley.</p>
+<p>许多创业公司创始人筹集 VC 资金，是因为他们需要前期资本来构建产品，或者他们将其视为增长的捷径。对某些产品来说，资本确实是必要的，但更多时候它是由急躁和硅谷的惯性驱动的。</p>
+<p>In the short term, VCware tends to subsidize pricing to acquire users. It's easier to grow if your product is cheap or free. But this generally comes at the cost of hoarding user data, and locking in customers. Once you're in you can't get out.</p>
+<p>在短期内，VCware 倾向于补贴定价以获取用户。如果你的产品便宜或免费，增长会更容易。但这通常以囤积用户数据和锁定客户为代价。一旦进去就出不来了。</p>
+<p>To keep raising money, VCware startups must paint an increasingly enormous vision of their future, which becomes impossible to live up to. This leads to increasingly disparate priorities that gradually make the product worse. What starts off as a useful app becomes burdened with crap.</p>
+<p>为了持续融资，VCware 创业公司必须描绘一个越来越宏大的未来愿景，但这变得不可能兑现。这导致越来越分散的优先级，逐渐让产品变得更糟。最初作为一个有用的应用，最终被垃圾所累。</p>
+<p>Eventually all VCware must exit. That means being acquired or going public to pay back investors. It's expected that 9 out 10 startups will fail. That's just part of the math in a VC portfolio. The startups that have big exits pay for the ones that fail. Venture capital creates the unavoidable pressure to go big or go broke.</p>
+<p>最终所有 VCware 必须退出。这意味着被收购或上市以回报投资者。预计 10 家创业公司中有 9 家会失败。这只是 VC 投资组合数学的一部分。那些有大额退出的公司为失败的公司买单。风险投资创造了做大或破产的不可避免的压力。</p>
+<p>It is now possible for tiny teams to make principled software that millions of people use, unburdened by investors. Principled apps that put people in control of their data, their privacy, their wellbeing. These principles can be irrevocably built into the architecture of the app.</p>
+<p>现在，小团队有可能做出有原则的软件，被数百万人使用，不受投资者的拖累。有原则的应用让人们掌控自己的数据、隐私和福祉。这些原则可以不可撤销地构建到应用的架构中。</p>
+<p>Principled people have always been able to make principled software. The difference is that now you need far less money and far fewer employees to reach far more customers. That wave is only just beginning.</p>
+<p>有原则的人一直都能做出有原则的软件。区别在于，现在你需要少得多的钱和少得多的员工来触达多得多的客户。这波浪潮才刚刚开始。</p>
+<p>If you have principles and enough patience, being 100% user-supported is by far the most fun way to build.</p>
+<p>如果你有原则和足够的耐心，100% 由用户支持是迄今为止最有乐趣的构建方式。</p>
 
 </div>
 
@@ -212,16 +181,5 @@
         <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
       </div>
     </footer>
-
-    <!-- Back to Top Floating Button -->
-    <button
-      id="back-to-top-btn"
-      aria-label="回到顶部"
-      class="!fixed bottom-6 right-6 z-[990] w-11 h-11 flex items-center justify-center liquid-glass rounded-full text-gray-700 hover:text-black hover:bg-white/95 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 shadow-lg active:scale-95 cursor-pointer"
-    >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 15l7-7 7 7"></path>
-      </svg>
-    </button>
 </body>
 </html>

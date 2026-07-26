@@ -13,7 +13,7 @@
   <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
 </head>
 <body class="flex flex-col min-h-screen font-serif has-fixed-nav">
-    <nav class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0 translate-x-0">
+    <nav id="main-nav" class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0 translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
       <div class="container mx-auto max-w-3xl flex items-center justify-between w-full relative">
         <!-- Mobile/Tablet Top Bar -->
         <div class="flex sm:hidden items-center justify-between w-full pointer-events-auto py-4 px-1">
@@ -56,33 +56,33 @@
         </div>
 
         <!-- Desktop Centered Pill -->
-        <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
+        <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
           <div class="flex items-center">
-            <a href="/" class="hover:opacity-90 transition-transform shrink-0 z-10 active:scale-95 duration-200 pr-3">
+            <a href="/" class="hover:opacity-90 shrink-0 z-10 duration-200 pr-3">
               <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
             </a>
             <div class="flex items-center gap-1">
               
                 <a
-                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
                   href="/posts"
                   
                 >Blog</a>
               
                 <a
-                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
                   href="/photos"
                   
                 >35mm</a>
               
                 <a
-                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
                   href="/cafes"
                   
                 >Cafes</a>
               
                 <a
-                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 active:scale-95" 
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
                   href="/about"
                   
                 >About</a>
@@ -135,10 +135,53 @@
             btn.click();
           }
         });
+
+        // Smart Auto-Hiding Navbar Handler
+        const mainNav = document.getElementById('main-nav');
+        let lastScrollY = window.scrollY;
+
+        const handleNavScroll = () => {
+          const currentScrollY = window.scrollY;
+          if (isOpen) return;
+
+          if (currentScrollY > 100 && currentScrollY > lastScrollY) {
+            // Scrolling down -> hide navbar
+            mainNav.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
+            mainNav.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          } else {
+            // Scrolling up or near top -> show navbar
+            mainNav.classList.remove('-translate-y-full', 'opacity-0', 'pointer-events-none');
+            mainNav.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          }
+          lastScrollY = currentScrollY;
+        };
+
+        window.addEventListener('scroll', handleNavScroll);
+
+        // Back to Top Button Handler
+        const backToTopBtn = document.getElementById('back-to-top-btn');
+        if (backToTopBtn) {
+          const toggleBackToTop = () => {
+            if (window.scrollY > 100) {
+              backToTopBtn.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+              backToTopBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            } else {
+              backToTopBtn.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+              backToTopBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            }
+          };
+
+          window.addEventListener('scroll', toggleBackToTop);
+          toggleBackToTop();
+
+          backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
       });
     </script>
 
-    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words">
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 break-words animate-fade-in-up">
       
 <div class="pb-20">
   <h1 class="!mb-0">敏捷开发实作教程四</h1>
@@ -158,5 +201,16 @@
         <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
       </div>
     </footer>
+
+    <!-- Back to Top Floating Button -->
+    <button
+      id="back-to-top-btn"
+      aria-label="回到顶部"
+      class="!fixed bottom-6 right-6 z-[990] w-11 h-11 flex items-center justify-center liquid-glass rounded-full text-gray-700 hover:text-black hover:bg-white/95 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 shadow-lg active:scale-95 cursor-pointer"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 15l7-7 7 7"></path>
+      </svg>
+    </button>
 </body>
 </html>

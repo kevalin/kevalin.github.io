@@ -1099,6 +1099,10 @@ video {
   pointer-events: auto;
 }
 
+.\!fixed{
+  position: fixed !important;
+}
+
 .fixed{
   position: fixed;
 }
@@ -1119,6 +1123,10 @@ video {
   bottom: 0.75rem;
 }
 
+.bottom-6{
+  bottom: 1.5rem;
+}
+
 .bottom-8{
   bottom: 2rem;
 }
@@ -1131,6 +1139,10 @@ video {
   right: 0px;
 }
 
+.right-6{
+  right: 1.5rem;
+}
+
 .z-10{
   z-index: 10;
 }
@@ -1141,6 +1153,10 @@ video {
 
 .z-\[1100\]{
   z-index: 1100;
+}
+
+.z-\[990\]{
+  z-index: 990;
 }
 
 .mx-auto{
@@ -1228,6 +1244,10 @@ video {
   height: 2.75rem;
 }
 
+.h-5{
+  height: 1.25rem;
+}
+
 .h-6{
   height: 1.5rem;
 }
@@ -1254,6 +1274,10 @@ video {
 
 .w-36{
   width: 9rem;
+}
+
+.w-5{
+  width: 1.25rem;
 }
 
 .w-6{
@@ -1304,6 +1328,11 @@ video {
   flex-grow: 1;
 }
 
+.-translate-y-full{
+  --tw-translate-y: -100%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .translate-x-0{
   --tw-translate-x: 0px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1316,6 +1345,11 @@ video {
 
 .translate-y-2{
   --tw-translate-y: 0.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-4{
+  --tw-translate-y: 1rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1339,6 +1373,10 @@ video {
 
 .transform{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }
 
 .resize{
@@ -1693,6 +1731,11 @@ video {
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
+.text-gray-700{
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
 .text-gray-800{
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
@@ -1816,6 +1859,12 @@ video {
   transition-duration: 150ms;
 }
 
+.transition-colors{
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .transition-shadow{
   transition-property: box-shadow;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1825,6 +1874,10 @@ video {
 .transition-transform{
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-150{
   transition-duration: 150ms;
 }
 
@@ -1840,8 +1893,21 @@ video {
   transition-duration: 500ms;
 }
 
+.ease-\[cubic-bezier\(0\.16\2c 1\2c 0\.3\2c 1\)\]{
+  transition-timing-function: cubic-bezier(0.16,1,0.3,1);
+}
+
 .ease-\[cubic-bezier\(0\.34\2c 1\.56\2c 0\.64\2c 1\)\]{
   transition-timing-function: cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.ease-out{
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
 }
 
 .lg-scope:root,
@@ -1960,6 +2026,42 @@ pre[class*="language-"] {
   }
 }
 
+/* Animation Keyframes & Micro-Interactions */
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-slide-down {
+    animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
 .hover\:\!rotate-0:hover{
   --tw-rotate: 0deg !important;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
@@ -1978,6 +2080,10 @@ pre[class*="language-"] {
 .hover\:bg-white:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-white\/95:hover{
+  background-color: rgb(255 255 255 / 0.95);
 }
 
 .hover\:text-black:hover{
@@ -2013,6 +2119,16 @@ pre[class*="language-"] {
 
 .active\:bg-black\/10:active{
   background-color: rgb(0 0 0 / 0.1);
+}
+
+.group:hover .group-hover\:translate-x-1{
+  --tw-translate-x: 0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.group:hover .group-hover\:translate-x-1\.5{
+  --tw-translate-x: 0.375rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .group:hover .group-hover\:filter-none{
