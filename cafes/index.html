@@ -401,23 +401,19 @@
             華洋咖啡
           </h3>
 
-          <!-- Photo Slider Container (Supports 1 or Multiple Photos with Left/Right Controls) -->
+          <!-- Photo Slider Container (Scroll Lazy-Loaded, Zero Scale on Hover) -->
           
             <div class="cafe-slider relative mt-2 mb-2 overflow-hidden rounded-xl not-prose group/slider" data-current-index="0" data-total-photos="1">
-              <!-- Photos Stack -->
-              <div class="slider-track relative w-full">
-                
+              
+                <div class="slider-track relative w-full">
                   <img
                     src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1773548674552.jpg"
-                    alt="華洋咖啡 1"
-                    class="slider-img w-full h-auto rounded-xl border border-black/5 block transition-all duration-300 !my-0 "
-                    data-index="0"
+                    alt="華洋咖啡"
+                    class="w-full h-auto rounded-xl border border-black/5 block !my-0"
                     loading="lazy"
+                    decoding="async"
                   />
-                
-              </div>
-
-              <!-- Controls for Multi-Photo Sliders -->
+                </div>
               
             </div>
           
@@ -467,7 +463,7 @@
             集福咖啡
           </h3>
 
-          <!-- Photo Slider Container (Supports 1 or Multiple Photos with Left/Right Controls) -->
+          <!-- Photo Slider Container (Scroll Lazy-Loaded, Zero Scale on Hover) -->
           
 
           <!-- Impression / Review -->
@@ -515,7 +511,7 @@
             菁咖啡·Enrich Café
           </h3>
 
-          <!-- Photo Slider Container (Supports 1 or Multiple Photos with Left/Right Controls) -->
+          <!-- Photo Slider Container (Scroll Lazy-Loaded, Zero Scale on Hover) -->
           
 
           <!-- Impression / Review -->
@@ -563,7 +559,7 @@
             梧桐村BLLB图书咖啡
           </h3>
 
-          <!-- Photo Slider Container (Supports 1 or Multiple Photos with Left/Right Controls) -->
+          <!-- Photo Slider Container (Scroll Lazy-Loaded, Zero Scale on Hover) -->
           
 
           <!-- Impression / Review -->
@@ -611,7 +607,7 @@
             友时咖啡馆
           </h3>
 
-          <!-- Photo Slider Container (Supports 1 or Multiple Photos with Left/Right Controls) -->
+          <!-- Photo Slider Container (Scroll Lazy-Loaded, Zero Scale on Hover) -->
           
 
           <!-- Impression / Review -->
@@ -659,7 +655,7 @@
             屋顶咖啡
           </h3>
 
-          <!-- Photo Slider Container (Supports 1 or Multiple Photos with Left/Right Controls) -->
+          <!-- Photo Slider Container (Scroll Lazy-Loaded, Zero Scale on Hover) -->
           
 
           <!-- Impression / Review -->
@@ -707,47 +703,56 @@
             虎牙咖啡
           </h3>
 
-          <!-- Photo Slider Container (Supports 1 or Multiple Photos with Left/Right Controls) -->
+          <!-- Photo Slider Container (Scroll Lazy-Loaded, Zero Scale on Hover) -->
           
             <div class="cafe-slider relative mt-2 mb-2 overflow-hidden rounded-xl not-prose group/slider" data-current-index="0" data-total-photos="3">
-              <!-- Photos Stack -->
-              <div class="slider-track relative w-full">
-                
-                  <img
-                    src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546281.jpg"
-                    alt="虎牙咖啡 1"
-                    class="slider-img w-full h-auto rounded-xl border border-black/5 block transition-all duration-300 !my-0 "
-                    data-index="0"
-                    loading="lazy"
-                  />
-                
-                  <img
-                    src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546300.jpg"
-                    alt="虎牙咖啡 2"
-                    class="slider-img w-full h-auto rounded-xl border border-black/5 block transition-all duration-300 !my-0 hidden"
-                    data-index="1"
-                    loading="lazy"
-                  />
-                
-                  <img
-                    src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546311.jpg"
-                    alt="虎牙咖啡 3"
-                    class="slider-img w-full h-auto rounded-xl border border-black/5 block transition-all duration-300 !my-0 hidden"
-                    data-index="2"
-                    loading="lazy"
-                  />
-                
-              </div>
-
-              <!-- Controls for Multi-Photo Sliders -->
               
+                <!-- Multi-Photo Stack with On-Demand Lazy Load & No-Zoom Static Hover -->
+                <div class="slider-track relative w-full aspect-[16/10] overflow-hidden rounded-xl bg-black/5">
+                  
+                    <img
+                      
+                        src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546281.jpg"
+                      
+                      alt="虎牙咖啡 1"
+                      class="slider-img absolute inset-0 w-full h-full object-cover rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-100 z-10"
+                      data-index="0"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  
+                    <img
+                      
+                        data-src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546300.jpg"
+                      
+                      alt="虎牙咖啡 2"
+                      class="slider-img absolute inset-0 w-full h-full object-cover rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-0 z-0 pointer-events-none"
+                      data-index="1"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  
+                    <img
+                      
+                        data-src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546311.jpg"
+                      
+                      alt="虎牙咖啡 3"
+                      class="slider-img absolute inset-0 w-full h-full object-cover rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-0 z-0 pointer-events-none"
+                      data-index="2"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  
+                </div>
+
+                <!-- Controls for Multi-Photo Sliders -->
                 <!-- Left Prev Button -->
                 <button
                   type="button"
-                  class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-md flex items-center justify-center transition-all opacity-0 group-hover/slider:opacity-100 z-10"
+                  class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-md flex items-center justify-center transition-all opacity-0 group-hover/slider:opacity-100 z-20 cursor-pointer"
                   aria-label="Previous photo"
                 >
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                   </svg>
                 </button>
@@ -755,16 +760,16 @@
                 <!-- Right Next Button -->
                 <button
                   type="button"
-                  class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-md flex items-center justify-center transition-all opacity-0 group-hover/slider:opacity-100 z-10"
+                  class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-md flex items-center justify-center transition-all opacity-0 group-hover/slider:opacity-100 z-20 cursor-pointer"
                   aria-label="Next photo"
                 >
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                   </svg>
                 </button>
 
                 <!-- Photo Counter Badge -->
-                <div class="slider-counter absolute bottom-2 right-2 px-2 py-0.5 rounded-full bg-black/50 text-white text-[10px] font-mono backdrop-blur-md z-10">
+                <div class="slider-counter absolute bottom-2 right-2 px-2 py-0.5 rounded-full bg-black/50 text-white text-[10px] font-mono backdrop-blur-md z-20">
                   1 / 3
                 </div>
               
@@ -816,7 +821,7 @@
             湖边咖啡铺（涠洲岛店）
           </h3>
 
-          <!-- Photo Slider Container (Supports 1 or Multiple Photos with Left/Right Controls) -->
+          <!-- Photo Slider Container (Scroll Lazy-Loaded, Zero Scale on Hover) -->
           
 
           <!-- Impression / Review -->
@@ -864,7 +869,7 @@
             涠洲岛初遇长风咖啡店
           </h3>
 
-          <!-- Photo Slider Container (Supports 1 or Multiple Photos with Left/Right Controls) -->
+          <!-- Photo Slider Container (Scroll Lazy-Loaded, Zero Scale on Hover) -->
           
 
           <!-- Impression / Review -->
@@ -892,7 +897,7 @@
   </div>
 </div>
 
-<!-- Interactive Filtering, Balancing & Photo Slider Script -->
+<!-- Interactive Filtering, Balancing & On-Demand Lazy Loaded Photo Slider Script -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const colLeft = document.getElementById('col-left');
@@ -900,19 +905,31 @@
     const pool = document.getElementById('cafe-cards-pool');
     const allCards = Array.from(pool.querySelectorAll('.cafe-card'));
 
+    let currentActiveCity = 'all';
+
     // Smart Column Height Balancer
     function balanceAndFilter(targetCity = 'all') {
       colLeft.innerHTML = '';
       colRight.innerHTML = '';
 
+      let leftHeight = 0;
+      let rightHeight = 0;
+
       allCards.forEach(card => {
         const cardCity = card.getAttribute('data-city-id');
         if (targetCity === 'all' || cardCity === targetCity) {
           card.classList.remove('hidden');
-          // On mobile screens, colRight is stacked under colLeft, so simple append works.
-          // On desktop (window >= 640px), append to shorter column so right column gets filled!
-          if (window.innerWidth >= 640 && colRight.offsetHeight < colLeft.offsetHeight) {
-            colRight.appendChild(card);
+          
+          if (window.innerWidth >= 640) {
+            if (rightHeight < leftHeight) {
+              colRight.appendChild(card);
+              const cardH = card.offsetHeight > 50 ? card.offsetHeight : 350;
+              rightHeight += cardH;
+            } else {
+              colLeft.appendChild(card);
+              const cardH = card.offsetHeight > 50 ? card.offsetHeight : 350;
+              leftHeight += cardH;
+            }
           } else {
             colLeft.appendChild(card);
           }
@@ -924,9 +941,26 @@
 
     // Initial Distribution
     balanceAndFilter('all');
-    window.addEventListener('resize', () => balanceAndFilter(currentActiveCity));
 
-    let currentActiveCity = 'all';
+    // Re-balance when window fully loads
+    window.addEventListener('load', () => {
+      balanceAndFilter(currentActiveCity);
+    });
+
+    // Re-balance when any card image finishes loading
+    allCards.forEach(card => {
+      const imgs = card.querySelectorAll('img');
+      imgs.forEach(img => {
+        if (!img.complete) {
+          img.addEventListener('load', () => {
+            balanceAndFilter(currentActiveCity);
+          });
+        }
+      });
+    });
+
+    // Window resize handler
+    window.addEventListener('resize', () => balanceAndFilter(currentActiveCity));
 
     // City Filter Buttons
     const filterBtns = document.querySelectorAll('.cafe-filter-btn');
@@ -949,47 +983,48 @@
       });
     });
 
-    // Photo Slider Controls
-    const sliders = document.querySelectorAll('.cafe-slider');
-    sliders.forEach(slider => {
-      const prevBtn = slider.querySelector('.slider-prev');
-      const nextBtn = slider.querySelector('.slider-next');
-      const counter = slider.querySelector('.slider-counter');
+    // On-Demand Lazy Loaded Photo Slider Controls
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.slider-prev, .slider-next');
+      if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      const slider = btn.closest('.cafe-slider');
+      if (!slider) return;
+
       const imgs = slider.querySelectorAll('.slider-img');
       const total = imgs.length;
-
       if (total <= 1) return;
 
-      let currentIndex = 0;
+      let currentIndex = parseInt(slider.getAttribute('data-current-index') || '0', 10);
+      if (btn.classList.contains('slider-prev')) {
+        currentIndex = (currentIndex - 1 + total) % total;
+      } else {
+        currentIndex = (currentIndex + 1) % total;
+      }
+      slider.setAttribute('data-current-index', currentIndex);
 
-      const updateSlider = (newIndex) => {
-        currentIndex = (newIndex + total) % total;
-        imgs.forEach((img, idx) => {
-          if (idx === currentIndex) {
-            img.classList.remove('hidden');
-          } else {
-            img.classList.add('hidden');
-          }
-        });
-        if (counter) {
-          counter.textContent = `${currentIndex + 1} / ${total}`;
-        }
-      };
-
-      if (prevBtn) {
-        prevBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          updateSlider(currentIndex - 1);
-        });
+      // On-demand lazy load photo if data-src exists
+      const targetImg = imgs[currentIndex];
+      if (targetImg && targetImg.hasAttribute('data-src')) {
+        targetImg.setAttribute('src', targetImg.getAttribute('data-src'));
+        targetImg.removeAttribute('data-src');
       }
 
-      if (nextBtn) {
-        nextBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          updateSlider(currentIndex + 1);
-        });
+      imgs.forEach((img, idx) => {
+        if (idx === currentIndex) {
+          img.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+          img.classList.add('opacity-100', 'z-10');
+        } else {
+          img.classList.remove('opacity-100', 'z-10');
+          img.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+        }
+      });
+
+      const counter = slider.querySelector('.slider-counter');
+      if (counter) {
+        counter.textContent = `${currentIndex + 1} / ${total}`;
       }
     });
   });
