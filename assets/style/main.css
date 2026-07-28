@@ -1302,10 +1302,6 @@ video {
   display: none;
 }
 
-.aspect-\[16\/10\]{
-  aspect-ratio: 16/10;
-}
-
 .h-11{
   height: 2.75rem;
 }
