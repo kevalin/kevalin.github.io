@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Core Meta -->
+  <title>举个栗子 - 我们正处于数字文艺复兴之中，请抓住它【译】</title>
+  <meta name="description" content="Kevalin的个人博客，分享软件工程、Go、Node.js、Rust、Neovim、Arch Linux、35mm摄影与咖啡文化。">
+  <meta name="author" content="Kevalin">
+  <link rel="canonical" href="https://kevalin.github.io/posts/我们正处于数字文艺复兴之中，请抓住它【译】/">
+
+  <!-- GEO Location Meta -->
+  <meta name="geo.region" content="CN-GD">
+  <meta name="geo.placename" content="Shenzhen">
+  <meta name="geo.position" content="22.5431;114.0579">
+  <meta name="ICBM" content="22.5431, 114.0579">
+
+  <!-- Open Graph / Facebook / WeChat -->
+  <meta property="og:site_name" content="举个栗子 - Kevalin&#39;s Blog">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="举个栗子 - 我们正处于数字文艺复兴之中，请抓住它【译】">
+  <meta property="og:description" content="Kevalin的个人博客，分享软件工程、Go、Node.js、Rust、Neovim、Arch Linux、35mm摄影与咖啡文化。">
+  <meta property="og:url" content="https://kevalin.github.io/posts/我们正处于数字文艺复兴之中，请抓住它【译】/">
+  <meta property="og:image" content="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="举个栗子 - 我们正处于数字文艺复兴之中，请抓住它【译】">
+  <meta name="twitter:description" content="Kevalin的个人博客，分享软件工程、Go、Node.js、Rust、Neovim、Arch Linux、35mm摄影与咖啡文化。">
+  <meta name="twitter:image" content="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg">
+
+  <!-- Schema.org JSON-LD (Search Engines & Generative AI Engines) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://kevalin.github.io/#website",
+        "url": "https://kevalin.github.io",
+        "name": "举个栗子 - Kevalin&#39;s Blog",
+        "description": "Kevalin的个人博客，分享软件工程、Go、Node.js、Rust、Neovim、Arch Linux、35mm摄影与咖啡文化。",
+        "inLanguage": "zh-CN"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://kevalin.github.io/#author",
+        "name": "Kevalin",
+        "image": "https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg",
+        "jobTitle": "Software Engineer",
+        "knowsAbout": ["Software Engineering", "Go", "Node.js", "Rust", "Neovim", "Arch Linux", "Photography", "Cafe Culture"],
+        "homeLocation": {
+          "@type": "Place",
+          "name": "Shenzhen, Guangdong, China",
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 22.5431,
+            "longitude": 114.0579
+          }
+        }
+      }
+      ,
+      {
+        "@type": "BlogPosting",
+        "@id": "https://kevalin.github.io/posts/我们正处于数字文艺复兴之中，请抓住它【译】/#article",
+        "isPartOf": { "@id": "https://kevalin.github.io/#website" },
+        "headline": "我们正处于数字文艺复兴之中，请抓住它【译】",
+        "url": "https://kevalin.github.io/posts/我们正处于数字文艺复兴之中，请抓住它【译】/",
+        "datePublished": "Sep 04, 2026",
+        "author": { "@id": "https://kevalin.github.io/#author" },
+        "description": "Kevalin的个人博客，分享软件工程、Go、Node.js、Rust、Neovim、Arch Linux、35mm摄影与咖啡文化。",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://kevalin.github.io/posts/我们正处于数字文艺复兴之中，请抓住它【译】/"
+        }
+      }
+      
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-solarizedlight.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style/main.css">
+  <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
+</head>
+<body class="flex flex-col min-h-screen font-serif has-fixed-nav">
+    <nav id="main-nav" class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0 translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
+      <div class="container mx-auto max-w-3xl flex items-center justify-between w-full relative">
+        <!-- Mobile/Tablet Top Bar -->
+        <div class="flex sm:hidden items-center justify-between w-full pointer-events-auto py-4 px-1">
+          <a href="/" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:opacity-90 transition-all shrink-0 z-10 active:scale-95 duration-200">
+            <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-[38px] h-[38px] rounded-full object-cover pointer-events-none" />
+          </a>
+          <div class="relative">
+            <button id="mobile-menu-btn" aria-label="Toggle Menu" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-gray-600 hover:text-black hover:bg-white transition-all focus:outline-none active:scale-95">
+              <svg id="menu-icon-open" class="w-6 h-6 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12h.01M12 12h.01M19 12h.01"></path></svg>
+              <svg id="menu-icon-close" class="w-6 h-6 hidden transition-all duration-300 scale-50 opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- Floating Mobile Menu -->
+            <div id="mobile-menu-dropdown" class="absolute right-0 mt-4 w-36 bg-white/95 backdrop-blur-xl border border-black/5 shadow-2xl pb-3 pt-3 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[1100]" style="border-radius: 2.1rem;">
+              <div class="flex flex-col gap-1 px-3">
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/posts"
+                  >Blog</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/photos"
+                  >35mm</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/cafes"
+                  >Cafes</a>
+                
+                  <a
+                    class="block px-4 py-2.5 text-center text-[15px] font-bold tracking-tight rounded-full transition-all duration-200 text-gray-500 hover:text-black hover:bg-black/5" 
+                    href="/about"
+                  >About</a>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desktop Centered Pill -->
+        <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
+          <div class="flex items-center">
+            <a href="/" class="hover:opacity-90 shrink-0 z-10 duration-200 pr-3">
+              <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
+            </a>
+            <div class="flex items-center gap-1">
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
+                  href="/posts"
+                  
+                >Blog</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
+                  href="/photos"
+                  
+                >35mm</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
+                  href="/cafes"
+                  
+                >Cafes</a>
+              
+                <a
+                  class="nav-link block text-base font-bold tracking-wider px-6 py-1.5 rounded-full transition-colors duration-150 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10" 
+                  href="/about"
+                  
+                >About</a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('mobile-menu-btn');
+        const dropdown = document.getElementById('mobile-menu-dropdown');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+        
+        let isOpen = false;
+        
+        if (btn) {
+          btn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            if (isOpen) {
+              dropdown.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+              dropdown.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              
+              iconOpen.classList.add('hidden', 'scale-50', 'opacity-0');
+              iconClose.classList.remove('hidden', 'scale-50', 'opacity-0');
+              iconClose.classList.add('scale-100', 'opacity-100');
+            } else {
+              dropdown.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+              dropdown.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+              
+              iconClose.classList.add('hidden', 'scale-50', 'opacity-0');
+              iconOpen.classList.remove('hidden', 'scale-50', 'opacity-0');
+              iconOpen.classList.add('scale-100', 'opacity-100');
+            }
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener('click', (e) => {
+            if (isOpen && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+              btn.click();
+            }
+          });
+        }
+    
+        window.addEventListener('resize', () => {
+          if(window.innerWidth >= 640 && isOpen) {
+            btn.click();
+          }
+        });
+
+        // Smart Auto-Hiding Navbar Handler
+        const mainNav = document.getElementById('main-nav');
+        let lastScrollY = window.scrollY;
+
+        const handleNavScroll = () => {
+          const currentScrollY = window.scrollY;
+          if (isOpen) return;
+
+          if (currentScrollY > 100 && currentScrollY > lastScrollY) {
+            // Scrolling down -> hide navbar
+            mainNav.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
+            mainNav.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          } else {
+            // Scrolling up or near top -> show navbar
+            mainNav.classList.remove('-translate-y-full', 'opacity-0', 'pointer-events-none');
+            mainNav.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          }
+          lastScrollY = currentScrollY;
+        };
+
+        window.addEventListener('scroll', handleNavScroll);
+
+        // Back to Top Button Handler
+        const backToTopBtn = document.getElementById('back-to-top-btn');
+        if (backToTopBtn) {
+          const toggleBackToTop = () => {
+            if (window.scrollY > 100) {
+              backToTopBtn.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+              backToTopBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            } else {
+              backToTopBtn.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+              backToTopBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            }
+          };
+
+          window.addEventListener('scroll', toggleBackToTop);
+          toggleBackToTop();
+
+          backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
+      });
+    </script>
+
+    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 mb-16 sm:mb-20 break-words animate-fade-in-up">
+      
+
+  <h1 class="!mb-0">我们正处于数字文艺复兴之中，请抓住它【译】</h1>
+  <div class="italic text-gray-500 text-xs mt-3 mb-6">Sep 04, 2026</div>
+
+<blockquote>
+<p>原文：<a href="https://x.com/thedankoe/status/2093051293078261973">https://x.com/thedankoe/status/2093051293078261973</a></p>
+</blockquote>
+<p><img src="https://pub-b0cbd598b48a4f7ea23ab38a626aa292.r2.dev/interpreter-image/x_dankoe-0.jpg" alt=""></p>
+<p>未来会有三种人。</p>
+<p>他们之间的鸿沟每天都在拉大。</p>
+<p>如果你想在未来 5-10 年胜出，关键就是别成为第 1 种或第 2 种人。</p>
+<p><strong>1) 纯粹主义者</strong></p>
+<p>「我们是保持干净的那群人。」</p>
+<p>他们拒绝 AI，退回自然、简朴和无屏幕的生活。</p>
+<p>这是一种平静的生活，直到他们遇到一个使用任何科技的人，然后他们会爆发无法控制的激烈反应，因为那威胁到他们对这个新宗教的认同。</p>
+<p>你看一个纯粹主义者时，分不清他是认真的，还是只是觉得这样叛逆、这样酷。</p>
+<p><strong>2) 自动机</strong></p>
+<p>把每个决定都外包的人。</p>
+<p>他们对摩擦过敏，又沉迷于优化。眼睛不盯着屏幕，就觉得自己在一场看不见的比赛里落后了。脑子里的每一个念头，都要先过一遍 Claude。</p>
+<p>他们不知道 AI 在哪里结束、生活从哪里开始。</p>
+<p>大多数人以为必须选一边站。</p>
+<p>但我喜欢和大多数人不一样。也许这是性格缺陷，也许听起来很矫情。可我就是从中得到乐趣。过一种没几个人在过的生活，本身就是一种创造性的挑战，而且我发现，成长（以及随之而来的意义和满足感）从不来自随大流。</p>
+<p>我确信两边都是错的。</p>
+<p>纯粹主义者拒绝现实的一整块（外部进步），诋毁它，并假设它无法跟优先级和努力健康地共存。</p>
+<p><img src="https://pub-b0cbd598b48a4f7ea23ab38a626aa292.r2.dev/interpreter-image/x_dankoe-1.jpg" alt=""></p>
+<p>现实有四个象限。</p>
+<p>就像游戏里的技能树。</p>
+<p>你随着经验和等级提升往每一格加点。这些项目互相连通。你可以试着把钱这一项拉满，但如果你的心智、身体、精神毫无长进，钱能起的作用也就到此为止了。人生最丰厚的果实，属于那些愿意接受挑战、在生活所有维度上持续发展的人。</p>
+<p>纯粹主义者把内心世界（心智和精神）当作最高的真实，拒绝外部世界及其一切。</p>
+<p>这是一条灾难之路。</p>
+<p>无论你多有觉悟，只要身体虚弱、健康堪忧、名下没有一分钱，你就会平白受罪，而问题的解药又被你当成洪水猛兽，最后只能扮演受害者。</p>
+<p>自动机则完全相反。他们痴迷于金钱和进步，忽视内心世界，直到精疲力竭。</p>
+<p>然而还有第三个选项。</p>
+<p>对不能独立思考的人来说，这听起来疯狂又不可能，但未来属于那些能同时驾驭两个世界的人。</p>
+<p>以下是你在未来 10 年胜出的方法：</p>
+<h2 id="%E6%95%B0%E5%AD%97%E6%96%87%E8%89%BA%E5%A4%8D%E5%85%B4%E4%BA%BA%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%9A%E6%89%8D%E5%9C%A8-ai-%E6%97%B6%E4%BB%A3%E8%83%9C%E5%87%BA" tabindex="-1">数字文艺复兴人：为什么通才在 AI 时代胜出</h2>
+<blockquote>
+<p>我们正处于第二次文艺复兴之中，作品代替了简历，受众为你说话，你选择自己的方向。</p>
+</blockquote>
+<p>我们这个时代最大的悲剧是，我们被骗着相信机械式人生是不可避免的。</p>
+<p>有人告诉你选一条道。</p>
+<p>你被说服相信，有多种兴趣是一种性格缺陷。</p>
+<p>去做设计师，去做作家，去做工程师、营销人、销售，或者随便找个能拿高薪的工作，因为那是你获得尊重、过上好日子的方式。</p>
+<p>这听起来合理，但现在你觉得自己可以被替代。</p>
+<p>因为人类从来就不是那样活的。</p>
+<p><em>现代意义上的「工作」只有大约 250 年历史。</em></p>
+<p>在那之前，理想的人生是一个自由的人，一生做很多事（相比之下，奴隶只做一件专门的任务……听着耳熟吧）。工匠、农夫、海盗，都是懂得经营一整盘生意、而不只是其中一环的人。他们既是思考者又是制作者，既是艺术家又是科学家，他们明白，要过上好日子，就不能把自己限定在一个领域里。</p>
+<p>达芬奇走进委罗基奥的工作坊学画画，出来时已经懂解剖学、工程、光学和青铜铸造。没有人告诉他这些是互相独立的东西，需要各自拿一个学位或证书。</p>
+<p>在文艺复兴时期，没人在乎你的利基。他们在乎你创造的东西。</p>
+<p>在工业化时期，工厂模式不是故意要摧毁教育、批判性思维、个人能动性和品味，但它确实做到了。它把我们带离了文艺复兴的理想。教育变成了训练而不是发现。雇佣关系和重复性任务让我们对整个创业过程一无所知，所以我们既没有经验，也没有自主性去做自己的事。</p>
+<p>不幸的现实是，这对我们来说很正常。</p>
+<p><em>线性</em>的职业，而不是指数的。</p>
+<p>大众不质疑它。</p>
+<p>而现在 AI 就在门口，只有那些思想开放、不给自己贴上「全盘拒绝」或「全盘拥抱」下一阶段进化标签的人，才能利用这次转变。</p>
+<p>一个人现在能完成过去 10-50 人团队的工作，取决于任务。一个人现在指尖上就有全部已知的信息。一个人能用社交媒体零成本分发自己的作品。</p>
+<p>如果你是真正的文艺复兴新人，这是活着的最好时代，而很多人会浪费掉它。</p>
+<p>AI 现在能处理那些机器式的重复任务，过去两个世纪里，那几乎是我们的全部生活方式。人们担心 AI 会毁掉我们的思考、让我们变得更像机器，可他们一辈子本来就在像机器一样活着。</p>
+<p>对加入第二次文艺复兴的人来说，你的任务是选一门手艺，借 AI 之力管理整条链路，把精力放在品味、方向和判断上，因为 AI 的输出没有视角。AI 就是人工智能本身，像一袋水，得靠你把形状捏出来。</p>
+<h2 id="%E6%88%90%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%A4%9A%E7%BB%B4%E3%80%81%E4%B8%8D%E5%8F%AF%E6%9B%BF%E4%BB%A3%E3%80%81%E8%A1%8C%E8%B5%B0%E7%9A%84%E7%9F%9B%E7%9B%BE%E4%BD%93" tabindex="-1">成为一个多维、不可替代、行走的矛盾体</h2>
+<p>最有趣的人是行走的矛盾体。</p>
+<p>壮硕的学者。随意的亿万富翁。灵性战士。</p>
+<p>当别人没法把你塞进一个容易理解的盒子里时，生活更好。</p>
+<p>未来，最有趣的人是活在两个极端之间的人。纯粹的创造力和纯粹的生产力。他们能无缝平衡模拟生活（没有屏幕、没有紧迫感、纯粹的享受）和 AI 原生生活（借技术去做过去不可能做到的事）。</p>
+<p>意义和满足感不在一个扁平的「平衡」生活方式里，而在对比之中。如果你一直快乐，就不会把快乐当成快乐，你会觉得那是常态，老实说，还有点无聊。你需要更强的快感才能触到自己以为的快乐（所以今天的人离不开手机，普通的幸福生活对他们来说太无聊了）。而当你为了在乎的事失败、挣扎、受苦，你会在另一边学会什么是真正的快乐。</p>
+<p>赢的人会主动走进这种对比。他们深度工作，也深度休息。对技艺和毕生事业的高强度专注，穿插着彻底的休息，世界上最成功的创作者都是这么过日子的。</p>
+<p><img src="https://pub-b0cbd598b48a4f7ea23ab38a626aa292.r2.dev/interpreter-image/x_dankoe-2.jpg" alt=""></p>
+<p>查尔斯·达尔文一生写了 19 本书。</p>
+<p>以那样的产出水平来看，他的晨间作息会让人惊讶：</p>
+<p>7:00 上午 - 短散步，然后早餐。</p>
+<p>8:00 - 9:30 上午 - 在书房第一次工作。这是他最高产的时段。</p>
+<p>9:30 - 10:30 上午 - 休息，读信，和家人相处。</p>
+<p>10:30 上午 - 中午 - 第二次工作。到这时达尔文认为自己已经「做完了一天的工作」。</p>
+<p>中午过后 - 当天第二次散步，沿着桑德沃克（一条著名的四分之一英里碎石路，他自己修的）。</p>
+<p>午饭后 - 读报纸，然后休息，妻子大声给他读书。</p>
+<p>4:00 下午 - 当天第三次散步，通常还是桑德沃克，有时有时有人陪。</p>
+<p>达尔文每天大约工作 3 小时的专注创造性工作，分两段。</p>
+<p>我相信未来能兴旺的人会有类似的作息，但产出的规模是达尔文的很多倍，借助 AI。</p>
+<p>他们会有一个单人企业（在另一封信里详细拆解）。</p>
+<blockquote>
+<p>这个星球上有近 70 亿人。总有一天，我希望会有近 70 亿家公司。</p>
+</blockquote>
+<p>在工厂和工业化之前，你工作到任务完成，而不是熬满 8 小时班。你按季节、阳光和精力的节奏干活。</p>
+<p>更重要的是，你不是通过标准化课程和成绩单学会如何变得有价值。</p>
+<p>你在做中学。</p>
+<p>你在工作坊里从学徒到工匠到大师，跟着一个懂行的人模仿，直到形成自己的品味和判断。</p>
+<p>现在的问题就是这个。</p>
+<p>你如何成为文艺复兴新人？</p>
+<h2 id="%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E6%95%B0%E5%AD%97%E6%96%87%E8%89%BA%E5%A4%8D%E5%85%B4%E4%BA%BA" tabindex="-1">如何成为数字文艺复兴人</h2>
+<p>全都做。</p>
+<p>成为作家、设计师、营销人、电影制作人、健身者、跑者，或任何你的好奇心所指的方向。</p>
+<p>但把你的焦点和注意力导向一个容器。</p>
+<p>一门手艺。一件你选择为之出名的事，你的多面发展只会让你更有能力超过所有人。</p>
+<p>下面是你该做的。</p>
+<h2 id="%E9%80%89%E6%8B%A9%E4%BD%A0%E7%9A%84%E6%89%8B%E8%89%BA%EF%BC%8C%E6%88%90%E4%B8%BA%E4%B8%8D%E5%8F%AF%E6%9B%BF%E4%BB%A3%E7%9A%84%E4%BA%BA" tabindex="-1">选择你的手艺，成为不可替代的人</h2>
+<p>大多数艺术家、作家和创作者现在正在反抗 AI，因为他们认同的是他们的生态位，而不是他们的能力。</p>
+<p>我不在乎 AI 艺术算不算真正的艺术、AI 写作算不算真正的写作这种争论，因为这看起来就是个绝佳的消遣，让你一辈子什么都做不成（除了为了流量和点赞抱怨，并且加固那个在未来几年不会对你有任何帮助的身份认同）。</p>
+<p>你需要一门手艺，但你要明智地选择它。</p>
+<p>你的手艺存在于三者的交汇处：你在乎什么、你能独特地做什么、以及世界会付钱买什么。</p>
+<p>构建不可替代技能栈有三层。</p>
+<p><strong>第一层是人性基础。</strong></p>
+<p>营销、销售、写作、演讲、心理学，等等。它理解的是人类注意力的机制，以及人们觉得什么有价值这件事有多么主观、又怎样随世界一同变化。</p>
+<p>每一个想靠自己成功的人，无论以什么形式，都必须掌握这个领域。</p>
+<p>这是「别人愿意付钱给你」的部分。</p>
+<p><strong>第二层是你的领域执念和独特兴趣。</strong></p>
+<p>哲学、健身、设计、编程、营养，或任何其他。这些都不会消失，AI 不会让它们变得无关紧要。</p>
+<p>这些兴趣的组合，正是你独特性的所在。壮硕的哲学家，远比只在椅子上空想、从不拿亲身经验检验理论的哲学家有价值，也有趣得多。人们会绕过旁人，直接来找你。</p>
+<p>这部分对应「你在乎什么」和「你能独特地做什么」，也是别人专程来找你的原因。人性基础那一层，则是帮你在这些人面前把这份独特讲得更动人。</p>
+<p><strong>第三层是技术技能。</strong></p>
+<p>邮件营销软件。Photoshop。无代码建站。社媒管理。在屏幕上敲出实际的代码。</p>
+<p>这曾经是最重要的，因为学这些工具要花时间和精力，但现在 AI 可以在几秒钟内完成其中的大部分。</p>
+<p>每一次技术变革的模式都相同。技能里机械的部分被自动化，人的位置往上挪一层。抄写员变成了编辑，手工织布工变成了机器操作员。</p>
+<p>我们一会儿会详细谈这个。</p>
+<h2 id="%E5%A6%82%E4%BD%95%E6%8A%8A%E8%87%AA%E5%B7%B1%E6%95%99%E5%BE%97%E5%8D%B1%E9%99%A9%E5%9C%B0%E5%87%BA%E8%89%B2" tabindex="-1">如何把自己教得危险地出色</h2>
+<p>学校教你如何在社会里运作。</p>
+<p>这在一定程度上是好的、必要的，但学校不教你如何驾驭自己独特的人生目标和现实。</p>
+<p>真正的教育是发现。</p>
+<p>它是学习实现自我生成的愿景和目标所需的过程，而不是囤积知识、死记硬背、为了在一场与真实世界无关的考试里拿高分。</p>
+<p>更糟的是，大多数人毕业后就停止学习了。</p>
+<p>他们 20-25 岁定型，然后余生重复同一天。他们不追求创造性的人生目标。</p>
+<p>那你到底怎么学？</p>
+<p>你遵循学徒模式。</p>
+<p>今天美妙之处在于，你可以通过拿起一本书、订阅一份通讯、跟从在线的任何人找到导师和大师。</p>
+<p>我不在乎你是不是用 AI 获取信息。</p>
+<p>我不在乎你是不是从某个 YouTube 大神那里得到全部建议。</p>
+<p>我在乎的是：你有没有愿景、有没有目标、有没有朝目标努力，并把学到的东西用在沿途遇到的问题上。这才是检验所学、验证它是否适用于你的处境的方式。</p>
+<p>不管 AI 会不会幻觉，这世上仍然有大量蠢得彻底的人类，你大概不该听他们的。无论哪种情况，你都需要质疑、检验、做实验。</p>
+<p>不要先学再做，那会让你困在教程地狱里。</p>
+<p>你先做事，或尝试做事，只有那时你的心智才会准备好接收你正在寻找的信息。</p>
+<h2 id="%E5%8D%95%E4%BA%BA%E4%BC%81%E4%B8%9A%EF%BC%88%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%8A%A0%E5%85%A5%E6%96%B0%E7%BB%8F%E6%B5%8E%EF%BC%89" tabindex="-1">单人企业（以及如何加入新经济）</h2>
+<p>创作者正在取代机构。</p>
+<p>我知道这听起来很傻，但你看不到吗？</p>
+<p>创作者是新的教育系统，你实际用得上的东西，难道不大多是跟创作者学的吗？</p>
+<p>创作者塑造文化，文化塑造行为，你不信任一个你关注已久、观点一致的创作者吗？</p>
+<p>互联网是无需许可的杠杆，你不需要批准就能建立受众、创业、销售。</p>
+<p>AI 加快了通才的脚步，你可以成为单人企业。用社交媒体的内容，围绕你的毕生事业吸引受众；用代码搭建产品、转化漏斗和数字资产；再用领域知识，让你做的事比下一个人更值钱。</p>
+<p>现在说到创作者，你大概想到的是网红或「个人品牌」。</p>
+<p>那不完全是我的意思。</p>
+<p>我说的是创造价值的人。他们解决问题、创造方案，也帮别人做同样的事。而价值交换正是人际关系的核心，所以对方会回报他们，常常以钱的形式。</p>
+<p>James Clear 确实有个人品牌，但他其实只是用通讯、书、内容和免费的目的一样来吸引注意力，然后把它转化成学费和书销量。</p>
+<p>我相信未来大多数有野心的人会走这条路，哪怕我们今天说的社交媒体，将来不一定还是你展示作品的地方。过去是报纸和广播，现在是社交媒体，谁知道未来是什么，但先从社交媒体开始，你就已经领先所有人了。<strong>注意力就在那里。</strong></p>
+<p>个人品牌只是当下做创作者杠杆最高的载体。可惜它被包装成了可以变现的「内容创作者」身份，但这就是我们活着的世界。这不代表你必须按你想当然的内容创作者的样子去活。</p>
+<p>我们会在未来的信里拆解单人企业，但下一期 Creator Bootcamp 9 月 9 日开营。想学不可替代的品牌塑造、独特的内容、不玩套路的社媒增长策略，<a href="https://eden.so/bootcamp">可以考虑加入。</a></p>
+<h2 id="%E5%A6%82%E4%BD%95%E7%94%A8-ai-%E5%81%9A%E5%88%B0%E4%B8%8D%E5%8F%AF%E8%83%BD" tabindex="-1">如何用 AI 做到不可能</h2>
+<p>大多数人没有意识到，AI 不只是 slop 生成器和新时代的搜索引擎。</p>
+<p>他们没有意识到，你可以直接让它构建软件、落地页、功能、创意资产、工作流等等。</p>
+<p>「但是 Dan，那只会产生 AI slop！」</p>
+<p>没错。大多数人就在这里停下了。</p>
+<p>他们没有意识到<em>迭代</em>的存在。你的第一次迭代不管有没有 AI 都会很烂。</p>
+<p>落地页从一个粗糙的草稿开始，然后你不断微调，直到它值得上线。</p>
+<p>软件满是 bug、看起来很糟，直到你一遍又一遍修复，直到它顺畅地工作。</p>
+<p>简而言之，人们不明白他们可以直接问「我该怎么做这件事？」然后继续问，直到形成一个清晰的方案，再让 AI 执行<em>你自己选择和掌控的愿景，而不是随便猜一个</em>，然后不断迭代，直到它变得有价值。</p>
+<p>这仍然要花不少时间，那些只想要快速多巴胺刺激的人会放弃。</p>
+<p>以下是一份用 AI 做任何事的快速入门指南：</p>
+<p><strong>1) 知道你想要什么、什么是好</strong></p>
+<p>对你们大多数人来说，你会用 AI 来建立单人企业。</p>
+<p>如果你不知道怎么创业，那你就会指望 AI 完美地把它做出来，然后交给你。</p>
+<p>任何形式的成功仍然需要多年的迭代，这一点没变。</p>
+<p>但如果你知道你想要什么、需要什么、什么是好，那你就可以直接要求 AI 做出精确的东西，并指导它。</p>
+<p>最好的起点，是把 AI 当作学习工具。</p>
+<p>产品设计。文案。社交媒体。你自己都没想到要去问的事，AI 自然也不会替你做到。</p>
+<p><strong>2) 保持高得离谱的标准</strong></p>
+<p>你从 AI 得到的每个回复都是 slop 的原因，是你把初稿当作最终版。</p>
+<p>你不明白你仍然要调整每一个小设计、功能、词、句子和细节，直到它值得发布。</p>
+<p>你用 AI 做的东西很烂，因为你把 AI 当成应该直接产出完美成品的东西。</p>
+<p><strong>3) 试着用 AI 替代你自己。</strong></p>
+<p>学 AI 最好的方法，是试着自动化你做的一切。</p>
+<p>你会很快学会什么能被自动化，什么<em>不能</em>。</p>
+<p>只有那时，你才能选择你想让 AI 触及你的业务和手艺的哪些部分。</p>
+<p>对我来说，AI 显然很擅长扫描海量信息找模式和趋势。如果只靠手动刷社交媒体去找热门 YouTube 视频、推文和文章，就太蠢了，那会把你置于明显的劣势。<a href="https://eden.so/">所以现在这事交给 AI 来做。</a></p>
+<p>但说到写帖子本身……第一，我喜欢写作的创作过程，所以它是我每天日程的一部分。第二，写作的价值在读者眼里。代码不一样，没有最终用户在乎代码长什么样，他们看不到代码，只在乎它有没有用。所以我坚持自己写，为了对提供的价值保持精细的控制。</p>
+<p>如果你不知道从何开始，就想想你每天做的任何一件事。</p>
+<p>然后问 AI，它如何能变成一个可重复的流程，带一个 prompt、技能、工具或软件。</p>
+<p>当然，要明白自动化（prompt/工具/技能）本身也是初稿。一开始会很烂，直接告诉它怎么改进就行。</p>
+<p>以后的信里，我们会深入拆解这封信提到的所有内容：数字文艺复兴，如何高效学习，最值得学的技能，怎么用 AI 又不毁掉自己的思考，怎么想得清楚，以及更多。</p>
+<p>感谢阅读。</p>
+<p>– Dan</p>
+
+
+    </content>
+
+    <footer class="mt-auto">
+      <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl">
+        <div class="border-t border-black/[0.06] pt-8 pb-12 text-center text-xs text-gray-400 font-serif tracking-wider">
+          <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Floating Button -->
+    <button
+      id="back-to-top-btn"
+      aria-label="回到顶部"
+      class="!fixed bottom-6 right-6 z-[990] w-11 h-11 flex items-center justify-center liquid-glass rounded-full text-gray-700 hover:text-black hover:bg-white/95 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 shadow-lg active:scale-95 cursor-pointer"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 15l7-7 7 7"></path>
+      </svg>
+    </button>
+</body>
+</html>

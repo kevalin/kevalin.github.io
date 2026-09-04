@@ -259,9 +259,9 @@
 
     <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 mb-16 sm:mb-20 break-words animate-fade-in-up">
       
-<h1 class="!mb-0">认识 Stack 与 Heap</h1>
 
-  <div class="italic text-gray-500 text-xs mt-5 mb-8">Nov 13, 2019</div>
+  <h1 class="!mb-0">认识 Stack 与 Heap</h1>
+  <div class="italic text-gray-500 text-xs mt-3 mb-6">Nov 13, 2019</div>
 
 <h2 id="the-stack" tabindex="-1">The Stack</h2>
 <p>什么是堆栈？它是计算机内存中的一个特殊区域，存储着被函数（包括main()函数）创建的临时变量。它由CPU非常紧密的管理和优化，是一种 <code>LIFO</code> （后进先出）的数据结构。函数每一次定义一个新的变量，它都会被放进堆栈中。当函数执行完成退出时，被这个函数放到堆栈里的变量都会被释放，也就是从堆栈中被删除。一旦堆栈变量被释放，对于其他的堆栈变量而言，这个特殊的内存区域就变的可用。</p>
