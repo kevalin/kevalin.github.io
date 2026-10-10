@@ -776,6 +776,52 @@
 
           <!-- Photo Slider Container -->
           
+            <div class="cafe-slider relative mt-2 mb-2 overflow-hidden rounded-xl not-prose group/slider" data-current-index="0" data-total-photos="2">
+              
+                <div class="slider-track grid grid-cols-1 grid-rows-1 relative w-full overflow-hidden rounded-xl bg-black/5">
+                  
+                    <img
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1791602371067.JPG"
+                      alt="集福咖啡 1"
+                      class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-100 z-10"
+                      data-index="0"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  
+                    <img
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1791602371075.JPG"
+                      alt="集福咖啡 2"
+                      class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-0 z-0 pointer-events-none"
+                      data-index="1"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  
+                </div>
+
+                <button
+                  type="button"
+                  class="slider-prev absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-md flex items-center justify-center transition-all opacity-60 sm:opacity-0 sm:group-hover/slider:opacity-100 active:scale-95 z-20 cursor-pointer"
+                  aria-label="Previous photo"
+                >
+                  <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+
+                <button
+                  type="button"
+                  class="slider-next absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-md flex items-center justify-center transition-all opacity-60 sm:opacity-0 sm:group-hover/slider:opacity-100 active:scale-95 z-20 cursor-pointer"
+                  aria-label="Next photo"
+                >
+                  <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              
+            </div>
+          
 
           <!-- Impression / Review -->
           <p class="text-xs sm:text-sm text-gray-600 font-serif leading-relaxed !my-0">
