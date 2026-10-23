@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://rrust.org/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://rrust.org/posts/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rrust.org/photos/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rrust.org/cafes/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rrust.org/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/tcpretransmission/</loc>
+    <lastmod>Mar 15, 2018</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/认识Stack与Heap/</loc>
+    <lastmod>Nov 13, 2019</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/了解MySQL中的utf8和utf8mb4/</loc>
+    <lastmod>Dec 26, 2019</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/从电纸书到电子书/</loc>
+    <lastmod>Jan 04, 2020</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/ksmd占用太多CPU资源问题/</loc>
+    <lastmod>Feb 22, 2023</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/我的macOS生产力工具栈/</loc>
+    <lastmod>Jul 30, 2024</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/敏捷开发实作教程一/</loc>
+    <lastmod>Sep 02, 2024</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/敏捷开发实作教程二/</loc>
+    <lastmod>Sep 03, 2024</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/敏捷开发实作教程三/</loc>
+    <lastmod>Sep 04, 2024</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/敏捷开发实作教程四/</loc>
+    <lastmod>Sep 05, 2024</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/开发APISIXLua插件/</loc>
+    <lastmod>Sep 09, 2024</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/告别信息过载用TinyTinyRSS打造你的专属信息流/</loc>
+    <lastmod>May 10, 2025</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/编程Agent如何重塑工程、产品和设计【转】/</loc>
+    <lastmod>Mar 10, 2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/从自动化到流程-现代技术组织的一个哲学悖论/</loc>
+    <lastmod>Mar 14, 2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/Design-Without-Designing/</loc>
+    <lastmod>Mar 20, 2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/Notion 创始人：Jazz Mode、杠铃结构与 AI 时代的组织重启【转】/</loc>
+    <lastmod>Jun 04, 2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://rrust.org/posts/我们正处于数字文艺复兴之中，请抓住它【译】/</loc>
+    <lastmod>Sep 04, 2026</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+</urlset>
