@@ -2277,26 +2277,27 @@ pre[class*="language-"] {
   border-radius: 9999px;
   background-image:
     radial-gradient(150% 95% at 28% -25%, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0) 58%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.42)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.50)),
     linear-gradient(
-      150deg,
+      118deg,
       rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0.72) 22%,
-      rgba(255, 255, 255, 0.16) 48%,
-      rgba(255, 255, 255, 0.06) 62%,
-      rgba(150, 152, 160, 0.34) 84%,
-      rgba(255, 255, 255, 0.88) 100%
+      rgba(255, 255, 255, 0.8) 26%,
+      rgba(255, 255, 255, 0.42) 55%,
+      rgba(255, 255, 255, 0.5) 78%,
+      rgba(255, 255, 255, 0.95) 100%
     );
   background-origin: padding-box, padding-box, border-box;
   background-clip: padding-box, padding-box, border-box;
   -webkit-backdrop-filter: blur(22px) saturate(185%) contrast(1.06) brightness(1.12);
   backdrop-filter: blur(22px) saturate(185%) contrast(1.06) brightness(1.12);
+  /* 外阴影必须“紧”：玻璃本体是半透明的，大偏移/大模糊的外阴影会从内部透出来，
+     看起来就像右下角贴了一块脏抹布。轮廓交给细环 + 边圈渐变，不交给阴影。 */
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.95),
-    inset 0 0 1px rgba(255, 255, 255, 0.6),
-    inset 0 -4px 8px rgba(0, 0, 0, 0.055),
-    0 1px 2px rgba(0, 0, 0, 0.06),
-    0 6px 18px rgba(0, 0, 0, 0.12);
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px -1px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    0 3px 8px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.25s ease;
 }
 
@@ -2323,11 +2324,11 @@ pre[class*="language-"] {
 
 .liquid-glass:hover {
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.95),
-    inset 0 0 1px rgba(255, 255, 255, 0.6),
-    inset 0 -4px 8px rgba(0, 0, 0, 0.045),
-    0 1px 2px rgba(0, 0, 0, 0.06),
-    0 10px 26px rgba(0, 0, 0, 0.16);
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px -1px rgba(0, 0, 0, 0.03),
+    0 0 0 1px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 /* 玻璃上的图标：一层白色内发光辉，深色背景时也能把笔画从背景里分出来 */
