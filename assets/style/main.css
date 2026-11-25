@@ -1382,8 +1382,8 @@ video {
   height: 2.25rem;
 }
 
-.h-\[38px\] {
-  height: 38px;
+.h-\[34px\] {
+  height: 34px;
 }
 
 .h-auto {
@@ -1434,8 +1434,8 @@ video {
   width: 2.25rem;
 }
 
-.w-\[38px\] {
-  width: 38px;
+.w-\[34px\] {
+  width: 34px;
 }
 
 .w-full {
@@ -1687,10 +1687,6 @@ video {
   background-color: rgb(17 17 17 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#F2F2F7\]\/90 {
-  background-color: rgb(242 242 247 / 0.9);
-}
-
 .bg-black\/40 {
   background-color: rgb(0 0 0 / 0.4);
 }
@@ -1715,10 +1711,6 @@ video {
 
 .bg-white\/70 {
   background-color: rgb(255 255 255 / 0.7);
-}
-
-.bg-white\/95 {
-  background-color: rgb(255 255 255 / 0.95);
 }
 
 .object-cover {
@@ -2056,18 +2048,6 @@ video {
   opacity: 0.7;
 }
 
-.shadow-2xl {
-  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-\[0_1px_2px_rgba\(0\2c 0\2c 0\2c 0\.05\)\] {
-  --tw-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  --tw-shadow-colored: 0 1px 2px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .shadow-\[0_6px_20px_rgba\(0\2c 0\2c 0\2c 0\.15\)\] {
   --tw-shadow: 0 6px 20px rgba(0,0,0,0.15);
   --tw-shadow-colored: 0 6px 20px var(--tw-shadow-color);
@@ -2130,12 +2110,6 @@ video {
 
 .backdrop-blur-md {
   --tw-backdrop-blur: blur(12px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-          backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-}
-
-.backdrop-blur-xl {
-  --tw-backdrop-blur: blur(24px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
@@ -2286,21 +2260,31 @@ pre[class*="language-"] {
 /* refined liquid glass to match official style */
 
 .liquid-glass {
-  position: relative;
+  /* 不要在这里写 position：该 class 会与 .absolute/.fixed 等工具类同时作用 */
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
   border-radius: 9999px;
-  /* Pill shape */
-  transition: box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.58);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(0, 0, 0, 0.045),
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.10);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) or (-webkit-backdrop-filter: none) {
+.liquid-glass:hover {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+/* 不支持 backdrop-filter 时退化为更实的底，保证可读性 */
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
   .liquid-glass {
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.94);
   }
 }
 
@@ -2457,11 +2441,6 @@ pre[class*="language-"] {
 
 .hover\:bg-black\/70:hover {
   background-color: rgb(0 0 0 / 0.7);
-}
-
-.hover\:bg-white:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-white\/95:hover {
