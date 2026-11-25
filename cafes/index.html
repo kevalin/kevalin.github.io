@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,21 +74,22 @@
   <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
 </head>
 <body class="flex flex-col min-h-screen font-serif has-fixed-nav">
-    <nav id="main-nav" class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0">
+    <a href="#content" class="skip-link">跳到正文</a>
+    <nav id="main-nav" aria-label="主导航" class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0">
       <div class="container mx-auto max-w-3xl flex items-center justify-between w-full relative">
         <!-- Mobile/Tablet Top Bar -->
         <div class="flex sm:hidden items-center justify-between w-full pointer-events-auto py-4 px-1">
-          <a href="/" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:opacity-90 transition-all shrink-0 z-10 active:scale-95 duration-200">
-            <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-[38px] h-[38px] rounded-full object-cover pointer-events-none" />
+          <a href="/" aria-label="首页" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:opacity-90 transition-all shrink-0 z-10 active:scale-95 duration-200">
+            <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=192,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt="" width="38" height="38" class="w-[38px] h-[38px] rounded-full object-cover pointer-events-none" />
           </a>
           <div class="relative">
-            <button id="mobile-menu-btn" aria-label="Toggle Menu" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-gray-600 hover:text-black hover:bg-white transition-all focus:outline-none active:scale-95">
+            <button id="mobile-menu-btn" type="button" aria-label="切换菜单" aria-expanded="false" aria-controls="mobile-menu-dropdown" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-gray-600 hover:text-black hover:bg-white transition-all active:scale-95">
               <svg id="menu-icon-open" class="w-6 h-6 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12h.01M12 12h.01M19 12h.01"></path></svg>
               <svg id="menu-icon-close" class="w-6 h-6 hidden transition-all duration-300 scale-50 opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
             <!-- Floating Mobile Menu -->
-            <div id="mobile-menu-dropdown" class="absolute right-0 mt-4 w-36 bg-white/95 backdrop-blur-xl border border-black/5 shadow-2xl pb-3 pt-3 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[1100]" style="border-radius: 2.1rem;">
+            <div id="mobile-menu-dropdown" inert class="absolute right-0 mt-4 w-36 bg-white/95 backdrop-blur-xl border border-black/5 shadow-2xl pb-3 pt-3 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[1100]" style="border-radius: 2.1rem;">
               <div class="flex flex-col gap-1 px-3">
                 
                   <a
@@ -119,8 +120,8 @@
         <!-- Desktop Centered Pill -->
         <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
           <div class="flex items-center">
-            <a href="/" class="hover:opacity-90 shrink-0 z-10 duration-200 pr-3">
-              <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
+            <a href="/" aria-label="首页" class="hover:opacity-90 shrink-0 z-10 duration-200 pr-3">
+              <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=192,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt="" width="36" height="36" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
             </a>
             <div class="flex items-center gap-1">
               
@@ -164,39 +165,52 @@
         const iconClose = document.getElementById('menu-icon-close');
         
         let isOpen = false;
-        
+
+        // 菜单的开关状态同时驱动视觉、aria-expanded 与 inert（关闭时不可聚焦、不进无障碍树）
+        const setMenuOpen = (open) => {
+          if (!btn || !dropdown) return;
+          isOpen = open;
+          btn.setAttribute('aria-expanded', String(open));
+          dropdown.inert = !open;
+          dropdown.classList.toggle('opacity-0', !open);
+          dropdown.classList.toggle('translate-y-2', !open);
+          dropdown.classList.toggle('pointer-events-none', !open);
+          dropdown.classList.toggle('opacity-100', open);
+          dropdown.classList.toggle('translate-y-0', open);
+          dropdown.classList.toggle('pointer-events-auto', open);
+          iconOpen.classList.toggle('hidden', open);
+          iconOpen.classList.toggle('scale-50', open);
+          iconOpen.classList.toggle('opacity-0', open);
+          iconOpen.classList.toggle('scale-100', !open);
+          iconOpen.classList.toggle('opacity-100', !open);
+          iconClose.classList.toggle('hidden', !open);
+          iconClose.classList.toggle('scale-50', !open);
+          iconClose.classList.toggle('opacity-0', !open);
+          iconClose.classList.toggle('scale-100', open);
+          iconClose.classList.toggle('opacity-100', open);
+        };
+
         if (btn) {
-          btn.addEventListener('click', () => {
-            isOpen = !isOpen;
-            if (isOpen) {
-              dropdown.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
-              dropdown.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-              
-              iconOpen.classList.add('hidden', 'scale-50', 'opacity-0');
-              iconClose.classList.remove('hidden', 'scale-50', 'opacity-0');
-              iconClose.classList.add('scale-100', 'opacity-100');
-            } else {
-              dropdown.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
-              dropdown.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-              
-              iconClose.classList.add('hidden', 'scale-50', 'opacity-0');
-              iconOpen.classList.remove('hidden', 'scale-50', 'opacity-0');
-              iconOpen.classList.add('scale-100', 'opacity-100');
-            }
-          });
+          btn.addEventListener('click', () => setMenuOpen(!isOpen));
 
           // Close dropdown when clicking outside
           document.addEventListener('click', (e) => {
             if (isOpen && !btn.contains(e.target) && !dropdown.contains(e.target)) {
-              btn.click();
+              setMenuOpen(false);
+            }
+          });
+
+          // Escape 关闭并把焦点交还触发按钮
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isOpen) {
+              setMenuOpen(false);
+              btn.focus();
             }
           });
         }
     
         window.addEventListener('resize', () => {
-          if(window.innerWidth >= 640 && isOpen) {
-            btn.click();
-          }
+          if (window.innerWidth >= 640 && isOpen) setMenuOpen(false);
         });
 
         // Smart Auto-Hiding Navbar Handler
@@ -294,13 +308,14 @@
           toggleBackToTop();
 
           backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
           });
         }
       });
     </script>
 
-    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 mb-16 sm:mb-20 break-words animate-fade-in-up">
+    <main id="content" tabindex="-1" class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 mb-16 sm:mb-20 break-words animate-fade-in-up">
       
 <h1 class="!mb-6">Cafes</h1>
 
@@ -528,19 +543,24 @@
   <p>我喜欢喝咖啡，喜欢做咖啡，喜欢在咖啡店写代码 ... ☕️</p>
 </blockquote>
 
+<h2 class="sr-only">咖啡店清单</h2>
+
 <div class="space-y-6">
 
   <!-- City Filter Pills -->
   <div class="flex flex-wrap items-center gap-2 pt-2">
     <button
       data-city="all"
+      aria-pressed="true"
       class="cafe-filter-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 bg-[#111] text-white shadow-sm"
     >
       全部 (9)
     </button>
     <button
       id="geo-nearby-btn"
+      type="button"
       data-city="nearby"
+      aria-pressed="false"
       class="cafe-filter-btn px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10 inline-flex items-center gap-1 cursor-pointer"
     >
       <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -585,6 +605,7 @@
         
         <button
           data-city="shenzhen"
+          aria-pressed="false"
           class="cafe-filter-btn px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10"
         >
           深圳 (5)
@@ -618,6 +639,7 @@
         
         <button
           data-city="yunnan"
+          aria-pressed="false"
           class="cafe-filter-btn px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10"
         >
           云南 (2)
@@ -651,6 +673,7 @@
         
         <button
           data-city="guangxi"
+          aria-pressed="false"
           class="cafe-filter-btn px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 text-gray-600 hover:text-black hover:bg-black/5 active:bg-black/10"
         >
           广西 (2)
@@ -659,14 +682,8 @@
     
   </div>
 
-  <!-- Smart Height-Balanced 2-Column Container -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-start pt-2" id="cafe-cards-container">
-    <div id="col-left" class="space-y-4 flex flex-col w-full"></div>
-    <div id="col-right" class="space-y-4 flex flex-col w-full"></div>
-  </div>
-
-  <!-- Hidden Initial Templates Pool for JS distribution -->
-  <div id="cafe-cards-pool" class="hidden">
+  <!-- Pure-CSS 列布局：多列容器由浏览器自动均衡列高，不再需要 JS 测量高度、搬运节点 -->
+  <div id="cafe-cards" class="cafe-grid pt-2">
     
       
       <div
@@ -677,7 +694,7 @@
       >
         <div>
           <!-- Header Location Tag -->
-          <div class="flex items-center justify-between text-xs text-gray-400 font-mono mb-2">
+          <div class="flex items-center justify-between text-xs text-gray-500 font-mono mb-2">
             <span class="flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -707,7 +724,9 @@
               
                 <div class="slider-track relative w-full">
                   <img
-                    src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1773548674552.jpg"
+                    src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1773548674552.jpg"
+                    srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1773548674552.jpg 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1773548674552.jpg 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1773548674552.jpg 960w"
+                    sizes="(min-width: 640px) 340px, 92vw"
                     alt="華洋咖啡"
                     class="w-full h-auto rounded-xl border border-black/5 block !my-0"
                     loading="lazy"
@@ -750,7 +769,7 @@
       >
         <div>
           <!-- Header Location Tag -->
-          <div class="flex items-center justify-between text-xs text-gray-400 font-mono mb-2">
+          <div class="flex items-center justify-between text-xs text-gray-500 font-mono mb-2">
             <span class="flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -781,7 +800,9 @@
                 <div class="slider-track grid grid-cols-1 grid-rows-1 relative w-full overflow-hidden rounded-xl bg-black/5">
                   
                     <img
-                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1791602371067.JPG"
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1791602371067.JPG"
+                      srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1791602371067.JPG 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1791602371067.JPG 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1791602371067.JPG 960w"
+                      sizes="(min-width: 640px) 340px, 92vw"
                       alt="集福咖啡 1"
                       class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-100 z-10"
                       data-index="0"
@@ -790,7 +811,9 @@
                     />
                   
                     <img
-                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1791602371075.JPG"
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1791602371075.JPG"
+                      srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1791602371075.JPG 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1791602371075.JPG 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1791602371075.JPG 960w"
+                      sizes="(min-width: 640px) 340px, 92vw"
                       alt="集福咖啡 2"
                       class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-0 z-0 pointer-events-none"
                       data-index="1"
@@ -855,7 +878,7 @@
       >
         <div>
           <!-- Header Location Tag -->
-          <div class="flex items-center justify-between text-xs text-gray-400 font-mono mb-2">
+          <div class="flex items-center justify-between text-xs text-gray-500 font-mono mb-2">
             <span class="flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -918,7 +941,7 @@
       >
         <div>
           <!-- Header Location Tag -->
-          <div class="flex items-center justify-between text-xs text-gray-400 font-mono mb-2">
+          <div class="flex items-center justify-between text-xs text-gray-500 font-mono mb-2">
             <span class="flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -981,7 +1004,7 @@
       >
         <div>
           <!-- Header Location Tag -->
-          <div class="flex items-center justify-between text-xs text-gray-400 font-mono mb-2">
+          <div class="flex items-center justify-between text-xs text-gray-500 font-mono mb-2">
             <span class="flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -1040,7 +1063,7 @@
       >
         <div>
           <!-- Header Location Tag -->
-          <div class="flex items-center justify-between text-xs text-gray-400 font-mono mb-2">
+          <div class="flex items-center justify-between text-xs text-gray-500 font-mono mb-2">
             <span class="flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -1075,7 +1098,9 @@
                 <div class="slider-track grid grid-cols-1 grid-rows-1 relative w-full overflow-hidden rounded-xl bg-black/5">
                   
                     <img
-                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785127518764.jpg"
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785127518764.jpg"
+                      srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1785127518764.jpg 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785127518764.jpg 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1785127518764.jpg 960w"
+                      sizes="(min-width: 640px) 340px, 92vw"
                       alt="屋顶咖啡 1"
                       class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-100 z-10"
                       data-index="0"
@@ -1084,7 +1109,9 @@
                     />
                   
                     <img
-                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785127533104.jpg"
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785127533104.jpg"
+                      srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1785127533104.jpg 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785127533104.jpg 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1785127533104.jpg 960w"
+                      sizes="(min-width: 640px) 340px, 92vw"
                       alt="屋顶咖啡 2"
                       class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-0 z-0 pointer-events-none"
                       data-index="1"
@@ -1149,7 +1176,7 @@
       >
         <div>
           <!-- Header Location Tag -->
-          <div class="flex items-center justify-between text-xs text-gray-400 font-mono mb-2">
+          <div class="flex items-center justify-between text-xs text-gray-500 font-mono mb-2">
             <span class="flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -1180,7 +1207,9 @@
                 <div class="slider-track grid grid-cols-1 grid-rows-1 relative w-full overflow-hidden rounded-xl bg-black/5">
                   
                     <img
-                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546281.jpg"
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785082546281.jpg"
+                      srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1785082546281.jpg 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785082546281.jpg 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1785082546281.jpg 960w"
+                      sizes="(min-width: 640px) 340px, 92vw"
                       alt="虎牙咖啡 1"
                       class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-100 z-10"
                       data-index="0"
@@ -1189,7 +1218,9 @@
                     />
                   
                     <img
-                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546300.jpg"
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785082546300.jpg"
+                      srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1785082546300.jpg 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785082546300.jpg 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1785082546300.jpg 960w"
+                      sizes="(min-width: 640px) 340px, 92vw"
                       alt="虎牙咖啡 2"
                       class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-0 z-0 pointer-events-none"
                       data-index="1"
@@ -1198,7 +1229,9 @@
                     />
                   
                     <img
-                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785082546311.jpg"
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785082546311.jpg"
+                      srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1785082546311.jpg 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785082546311.jpg 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1785082546311.jpg 960w"
+                      sizes="(min-width: 640px) 340px, 92vw"
                       alt="虎牙咖啡 3"
                       class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-0 z-0 pointer-events-none"
                       data-index="2"
@@ -1263,7 +1296,7 @@
       >
         <div>
           <!-- Header Location Tag -->
-          <div class="flex items-center justify-between text-xs text-gray-400 font-mono mb-2">
+          <div class="flex items-center justify-between text-xs text-gray-500 font-mono mb-2">
             <span class="flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -1294,7 +1327,9 @@
                 <div class="slider-track grid grid-cols-1 grid-rows-1 relative w-full overflow-hidden rounded-xl bg-black/5">
                   
                     <img
-                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785247994145.jpg"
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785247994145.jpg"
+                      srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1785247994145.jpg 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785247994145.jpg 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1785247994145.jpg 960w"
+                      sizes="(min-width: 640px) 340px, 92vw"
                       alt="湖边咖啡铺（涠洲岛店） 1"
                       class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-100 z-10"
                       data-index="0"
@@ -1303,7 +1338,9 @@
                     />
                   
                     <img
-                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1785247994148.jpg"
+                      src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785247994148.jpg"
+                      srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1785247994148.jpg 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1785247994148.jpg 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1785247994148.jpg 960w"
+                      sizes="(min-width: 640px) 340px, 92vw"
                       alt="湖边咖啡铺（涠洲岛店） 2"
                       class="slider-img col-start-1 row-start-1 w-full h-auto rounded-xl border border-black/5 transition-opacity duration-300 ease-in-out !my-0 opacity-0 z-0 pointer-events-none"
                       data-index="1"
@@ -1368,7 +1405,7 @@
       >
         <div>
           <!-- Header Location Tag -->
-          <div class="flex items-center justify-between text-xs text-gray-400 font-mono mb-2">
+          <div class="flex items-center justify-between text-xs text-gray-500 font-mono mb-2">
             <span class="flex items-center gap-1">
               <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -1402,7 +1439,9 @@
               
                 <div class="slider-track relative w-full">
                   <img
-                    src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2026/1792039120864.JPG"
+                    src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1792039120864.JPG"
+                    srcset="https://r2.rrust.org/cdn-cgi/image/f=auto,w=320,fit=scale-down,q=50/images/2026/1792039120864.JPG 320w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=640,fit=scale-down,q=50/images/2026/1792039120864.JPG 640w, https://r2.rrust.org/cdn-cgi/image/f=auto,w=960,fit=scale-down,q=50/images/2026/1792039120864.JPG 960w"
+                    sizes="(min-width: 640px) 340px, 92vw"
                     alt="涠洲岛初遇长风咖啡店"
                     class="w-full h-auto rounded-xl border border-black/5 block !my-0"
                     loading="lazy"
@@ -1439,15 +1478,16 @@
   </div>
 </div>
 
-<!-- Interactive Filtering, Geolocation Balancing & On-Demand Lazy Loaded Photo Slider Script -->
+<!-- 交互增强：城市筛选 / 就近排序 / 图片滑块。布局本身是纯 CSS，无 JS 时全部卡片照常展示。 -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const colLeft = document.getElementById('col-left');
-    const colRight = document.getElementById('col-right');
-    const pool = document.getElementById('cafe-cards-pool');
-    let allCards = Array.from(pool.querySelectorAll('.cafe-card'));
+    const grid = document.getElementById('cafe-cards');
+    if (!grid) return;
 
-    let currentActiveCity = 'all';
+    const cards = Array.from(grid.querySelectorAll('.cafe-card'));
+    const filterBtns = document.querySelectorAll('.cafe-filter-btn');
+    const nearbyBtn = document.getElementById('geo-nearby-btn');
+
     let userLocation = null;
 
     // Haversine Distance Formula (in Kilometers)
@@ -1462,102 +1502,70 @@
       return R * c;
     }
 
-    // Smart Column Height Balancer
-    function balanceAndFilter(targetCity = 'all') {
-      colLeft.innerHTML = '';
-      colRight.innerHTML = '';
-
-      let leftHeight = 0;
-      let rightHeight = 0;
-
-      allCards.forEach(card => {
-        const cardCity = card.getAttribute('data-city-id');
-        const show = (targetCity === 'all' || targetCity === 'nearby' || cardCity === targetCity);
-        if (show) {
-          card.classList.remove('hidden');
-          
-          if (window.innerWidth >= 640) {
-            if (rightHeight < leftHeight) {
-              colRight.appendChild(card);
-              const cardH = card.offsetHeight > 50 ? card.offsetHeight : 350;
-              rightHeight += cardH;
-            } else {
-              colLeft.appendChild(card);
-              const cardH = card.offsetHeight > 50 ? card.offsetHeight : 350;
-              leftHeight += cardH;
-            }
-          } else {
-            colLeft.appendChild(card);
-          }
-        } else {
-          card.classList.add('hidden');
-        }
+    // 列高由多列容器自动均衡，这里只切换显隐，浏览器会自行重排
+    function applyCityFilter(city) {
+      cards.forEach(card => {
+        const show = city === 'all' || city === 'nearby' || card.dataset.cityId === city;
+        card.classList.toggle('hidden', !show);
       });
     }
 
-    function calculateDistancesAndSort() {
+    function setActiveBtn(active) {
+      filterBtns.forEach(b => {
+        const on = b === active;
+        b.classList.toggle('bg-[#111]', on);
+        b.classList.toggle('text-white', on);
+        b.classList.toggle('shadow-sm', on);
+        b.classList.toggle('font-bold', on);
+        b.classList.toggle('text-gray-600', !on);
+        b.classList.toggle('hover:text-black', !on);
+        b.classList.toggle('hover:bg-black/5', !on);
+        b.classList.toggle('font-medium', !on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+    }
+
+    function calculateDistances() {
       if (!userLocation) return;
-      allCards.forEach(card => {
+      cards.forEach(card => {
         const lat = parseFloat(card.getAttribute('data-lat'));
         const lng = parseFloat(card.getAttribute('data-lng'));
-        if (!isNaN(lat) && !isNaN(lng)) {
-          const distKm = calcHaversine(userLocation.lat, userLocation.lng, lat, lng);
-          card.setAttribute('data-distance', distKm);
-          const tag = card.querySelector('.cafe-distance-tag');
-          if (tag) {
-            tag.textContent = distKm < 1 ? `${Math.round(distKm * 1000)} m` : `${distKm.toFixed(1)} km`;
-            tag.classList.remove('hidden');
-          }
+        if (isNaN(lat) || isNaN(lng)) return;
+        const distKm = calcHaversine(userLocation.lat, userLocation.lng, lat, lng);
+        card.setAttribute('data-distance', distKm);
+        const tag = card.querySelector('.cafe-distance-tag');
+        if (tag) {
+          tag.textContent = distKm < 1 ? `${Math.round(distKm * 1000)} m` : `${distKm.toFixed(1)} km`;
+          tag.classList.remove('hidden');
         }
-      });
-
-      // Sort allCards array by distance
-      allCards.sort((a, b) => {
-        const distA = parseFloat(a.getAttribute('data-distance')) || Infinity;
-        const distB = parseFloat(b.getAttribute('data-distance')) || Infinity;
-        return distA - distB;
       });
     }
 
-    // Initial Distribution
-    balanceAndFilter('all');
+    // 按距离重排 DOM：多列容器会自动重新均衡，无需再手工分列
+    // 注意用 isFinite 判定：「正好 0 米」不能被 || 当成缺失值
+    const distanceOf = (card) => {
+      const d = parseFloat(card.getAttribute('data-distance'));
+      return Number.isFinite(d) ? d : Infinity;
+    };
 
-    window.addEventListener('load', () => balanceAndFilter(currentActiveCity));
-
-    allCards.forEach(card => {
-      const imgs = card.querySelectorAll('img');
-      imgs.forEach(img => {
-        if (!img.complete) {
-          img.addEventListener('load', () => balanceAndFilter(currentActiveCity));
-        }
-      });
-    });
-
-    window.addEventListener('resize', () => balanceAndFilter(currentActiveCity));
+    function sortByDistance() {
+      cards
+        .slice()
+        .sort((a, b) => distanceOf(a) - distanceOf(b))
+        .forEach(card => grid.appendChild(card));
+    }
 
     // City & Nearby Filter Buttons
-    const filterBtns = document.querySelectorAll('.cafe-filter-btn');
-    const nearbyBtn = document.getElementById('geo-nearby-btn');
-
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const targetCity = btn.getAttribute('data-city');
-        currentActiveCity = targetCity;
-
-        filterBtns.forEach(b => {
-          if (b === btn) {
-            b.classList.add('bg-[#111]', 'text-white', 'shadow-sm', 'font-bold');
-            b.classList.remove('text-gray-600', 'hover:text-black', 'hover:bg-black/5', 'font-medium');
-          } else {
-            b.classList.remove('bg-[#111]', 'text-white', 'shadow-sm', 'font-bold');
-            b.classList.add('text-gray-600', 'hover:text-black', 'hover:bg-black/5', 'font-medium');
-          }
-        });
+        setActiveBtn(btn);
 
         if (targetCity === 'nearby') {
           if (userLocation) {
-            calculateDistancesAndSort();
-            balanceAndFilter('nearby');
+            calculateDistances();
+            sortByDistance();
+            applyCityFilter('nearby');
           } else if (navigator.geolocation) {
             const btnSpan = nearbyBtn.querySelector('span');
             if (btnSpan) btnSpan.textContent = '定位中...';
@@ -1568,21 +1576,24 @@
                   lng: pos.coords.longitude
                 };
                 if (btnSpan) btnSpan.textContent = '离我最近';
-                calculateDistancesAndSort();
-                balanceAndFilter('nearby');
+                calculateDistances();
+                sortByDistance();
+                applyCityFilter('nearby');
               },
               (err) => {
                 console.warn('Geolocation error:', err);
                 if (btnSpan) btnSpan.textContent = '定位受阻';
-                balanceAndFilter('all');
+                setActiveBtn(document.querySelector('.cafe-filter-btn[data-city="all"]'));
+                applyCityFilter('all');
               },
               { timeout: 10000, enableHighAccuracy: true }
             );
           } else {
-            balanceAndFilter('all');
+            setActiveBtn(document.querySelector('.cafe-filter-btn[data-city="all"]'));
+            applyCityFilter('all');
           }
         } else {
-          balanceAndFilter(targetCity);
+          applyCityFilter(targetCity);
         }
       });
     });
@@ -1657,11 +1668,11 @@
   });
 </script>
 
-    </content>
+    </main>
 
     <footer class="mt-auto">
       <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl">
-        <div class="border-t border-black/[0.06] pt-8 pb-12 text-center text-xs text-gray-400 font-serif tracking-wider">
+        <div class="border-t border-black/[0.06] pt-8 pb-12 text-center text-xs text-gray-500 font-serif tracking-wider">
           <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
         </div>
       </div>

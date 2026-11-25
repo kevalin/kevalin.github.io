@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,21 +89,22 @@
   <link rel="icon" type="image/x-icon" href="https://r2.rrust.org/images/2024/1725350288000.ico">
 </head>
 <body class="flex flex-col min-h-screen font-serif has-fixed-nav">
-    <nav id="main-nav" class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0">
+    <a href="#content" class="skip-link">跳到正文</a>
+    <nav id="main-nav" aria-label="主导航" class="nav-fixed px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pointer-events-none flex justify-center z-[1000] w-full max-w-none left-0">
       <div class="container mx-auto max-w-3xl flex items-center justify-between w-full relative">
         <!-- Mobile/Tablet Top Bar -->
         <div class="flex sm:hidden items-center justify-between w-full pointer-events-auto py-4 px-1">
-          <a href="/" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:opacity-90 transition-all shrink-0 z-10 active:scale-95 duration-200">
-            <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-[38px] h-[38px] rounded-full object-cover pointer-events-none" />
+          <a href="/" aria-label="首页" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] hover:opacity-90 transition-all shrink-0 z-10 active:scale-95 duration-200">
+            <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=192,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt="" width="38" height="38" class="w-[38px] h-[38px] rounded-full object-cover pointer-events-none" />
           </a>
           <div class="relative">
-            <button id="mobile-menu-btn" aria-label="Toggle Menu" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-gray-600 hover:text-black hover:bg-white transition-all focus:outline-none active:scale-95">
+            <button id="mobile-menu-btn" type="button" aria-label="切换菜单" aria-expanded="false" aria-controls="mobile-menu-dropdown" class="w-11 h-11 flex items-center justify-center bg-[#F2F2F7]/90 backdrop-blur-xl border border-black/[0.04] rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.05)] text-gray-600 hover:text-black hover:bg-white transition-all active:scale-95">
               <svg id="menu-icon-open" class="w-6 h-6 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12h.01M12 12h.01M19 12h.01"></path></svg>
               <svg id="menu-icon-close" class="w-6 h-6 hidden transition-all duration-300 scale-50 opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
             <!-- Floating Mobile Menu -->
-            <div id="mobile-menu-dropdown" class="absolute right-0 mt-4 w-36 bg-white/95 backdrop-blur-xl border border-black/5 shadow-2xl pb-3 pt-3 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[1100]" style="border-radius: 2.1rem;">
+            <div id="mobile-menu-dropdown" inert class="absolute right-0 mt-4 w-36 bg-white/95 backdrop-blur-xl border border-black/5 shadow-2xl pb-3 pt-3 opacity-0 translate-y-2 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[1100]" style="border-radius: 2.1rem;">
               <div class="flex flex-col gap-1 px-3">
                 
                   <a
@@ -134,8 +135,8 @@
         <!-- Desktop Centered Pill -->
         <div id="nav-container" class="hidden sm:flex liquid-glass p-1.5 items-center shadow-lg rounded-full overflow-hidden pointer-events-auto mx-auto border border-black/[0.03]">
           <div class="flex items-center">
-            <a href="/" class="hover:opacity-90 shrink-0 z-10 duration-200 pr-3">
-              <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=1920,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt=" Avatar" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
+            <a href="/" aria-label="首页" class="hover:opacity-90 shrink-0 z-10 duration-200 pr-3">
+              <img src="https://r2.rrust.org/cdn-cgi/image/f=auto,w=192,fit=scale-down,q=50/images/2024/1725894190435.jpeg" alt="" width="36" height="36" class="w-9 h-9 rounded-full object-cover shadow-sm pointer-events-none" />
             </a>
             <div class="flex items-center gap-1">
               
@@ -177,39 +178,52 @@
         const iconClose = document.getElementById('menu-icon-close');
         
         let isOpen = false;
-        
+
+        // 菜单的开关状态同时驱动视觉、aria-expanded 与 inert（关闭时不可聚焦、不进无障碍树）
+        const setMenuOpen = (open) => {
+          if (!btn || !dropdown) return;
+          isOpen = open;
+          btn.setAttribute('aria-expanded', String(open));
+          dropdown.inert = !open;
+          dropdown.classList.toggle('opacity-0', !open);
+          dropdown.classList.toggle('translate-y-2', !open);
+          dropdown.classList.toggle('pointer-events-none', !open);
+          dropdown.classList.toggle('opacity-100', open);
+          dropdown.classList.toggle('translate-y-0', open);
+          dropdown.classList.toggle('pointer-events-auto', open);
+          iconOpen.classList.toggle('hidden', open);
+          iconOpen.classList.toggle('scale-50', open);
+          iconOpen.classList.toggle('opacity-0', open);
+          iconOpen.classList.toggle('scale-100', !open);
+          iconOpen.classList.toggle('opacity-100', !open);
+          iconClose.classList.toggle('hidden', !open);
+          iconClose.classList.toggle('scale-50', !open);
+          iconClose.classList.toggle('opacity-0', !open);
+          iconClose.classList.toggle('scale-100', open);
+          iconClose.classList.toggle('opacity-100', open);
+        };
+
         if (btn) {
-          btn.addEventListener('click', () => {
-            isOpen = !isOpen;
-            if (isOpen) {
-              dropdown.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
-              dropdown.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-              
-              iconOpen.classList.add('hidden', 'scale-50', 'opacity-0');
-              iconClose.classList.remove('hidden', 'scale-50', 'opacity-0');
-              iconClose.classList.add('scale-100', 'opacity-100');
-            } else {
-              dropdown.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
-              dropdown.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-              
-              iconClose.classList.add('hidden', 'scale-50', 'opacity-0');
-              iconOpen.classList.remove('hidden', 'scale-50', 'opacity-0');
-              iconOpen.classList.add('scale-100', 'opacity-100');
-            }
-          });
+          btn.addEventListener('click', () => setMenuOpen(!isOpen));
 
           // Close dropdown when clicking outside
           document.addEventListener('click', (e) => {
             if (isOpen && !btn.contains(e.target) && !dropdown.contains(e.target)) {
-              btn.click();
+              setMenuOpen(false);
+            }
+          });
+
+          // Escape 关闭并把焦点交还触发按钮
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isOpen) {
+              setMenuOpen(false);
+              btn.focus();
             }
           });
         }
     
         window.addEventListener('resize', () => {
-          if(window.innerWidth >= 640 && isOpen) {
-            btn.click();
-          }
+          if (window.innerWidth >= 640 && isOpen) setMenuOpen(false);
         });
 
         // Smart Auto-Hiding Navbar Handler
@@ -307,13 +321,14 @@
           toggleBackToTop();
 
           backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
           });
         }
       });
     </script>
 
-    <content class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 mb-16 sm:mb-20 break-words animate-fade-in-up">
+    <main id="content" tabindex="-1" class="prose container mx-auto text-base px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl flex-grow mt-24 sm:mt-28 mb-16 sm:mb-20 break-words animate-fade-in-up">
       
 
   <h1 class="!mb-0">敏捷开发实作教程二</h1>
@@ -324,11 +339,11 @@
 </blockquote>
 
 
-    </content>
+    </main>
 
     <footer class="mt-auto">
       <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-3xl">
-        <div class="border-t border-black/[0.06] pt-8 pb-12 text-center text-xs text-gray-400 font-serif tracking-wider">
+        <div class="border-t border-black/[0.06] pt-8 pb-12 text-center text-xs text-gray-500 font-serif tracking-wider">
           <p>© <span class="italic">2018 - 2026</span> Kevalin. All Rights Reserved.</p>
         </div>
       </div>
